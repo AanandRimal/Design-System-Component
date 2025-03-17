@@ -3,13 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import { ConfigProvider } from 'antd';
+import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs';
+const themeConfig = {
+  token: {
+    fontFamily: " 'Inter', sans-serif", // Custom font
+  },
+};
+const px2rem = px2remTransformer({
+  rootValue: 16,  // Set 1rem = 32px
+});
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
-    <App />
+        <StyleProvider transformers={[px2rem]}>
+        <ConfigProvider theme={themeConfig}>
+      <App />
+    </ConfigProvider>
+        </StyleProvider>
+
   </React.StrictMode>
 );
 

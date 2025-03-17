@@ -1,0 +1,268 @@
+import { useState } from "react";
+import { ReactNode } from "react";
+import { Switch, Typography as Type, Divider, Menu, Table } from "antd";
+import Button from "./Button"; 
+import { useTheme } from "./ThemeProvider";
+import ColorPalette from "./ColorPalette";
+import CheckBox from "./CheckBox";
+import Input from "./Input";
+import Typography from "./Typography";
+import { Flex, Input as AntInput } from 'antd';
+import PasswordInput from "./PasswordInput";
+import TextInput from "./TextInput";
+import OtpInput from "./OTPInput";
+import CustomInput from "./CustomInput";
+import {LeftIcon,RightIcon} from "./LeftIcon";
+import { GoogleIcon,AppleIcon } from "./Icon";
+
+const { Title } = Type;
+
+const components = ["Button", "Typography", "Checkbox", "Input", "Colors"];
+
+export default function KrispMake() {
+  const { themeMode, toggleTheme } = useTheme();
+  const [selectedComponent, setSelectedComponent] = useState<string>("Button");
+
+  const sizes: number[] = [32, 36, 40, 44, 48];
+  type CustomButtonType = "primary" | "secondary" | "success" | "info" | "destructive" | "warning" |"social" ;
+  type CustomInputType = "text"|"password"| "search"|"otp"| "textarea" | "select";
+  const inputSizes : number[] =[32, 36, 40, 44, 48];
+const buttonTypes: CustomButtonType[] = ['primary', 'secondary', 'success', 'info', 'destructive', 'warning'] 
+const inputTypes:CustomInputType[]= ['text', 'password', 'search', 'otp', 'textarea','select']
+
+const inputColumns = [
+  { title: "Type", dataIndex: "type", key: "type", width: 100 },
+  { title: "Size", dataIndex: "size", key: "size", width: 100 },
+  { title: "Default", dataIndex: "default", key: "default"  },
+  { title: "Filled", dataIndex: "filled", key: "filled" },
+  { title: "Disabled", dataIndex: "disabled", key: "disabled"},
+  { title: "Error", dataIndex: "error", key: "error"}
+];
+
+  const columns = [
+    { title: "Type", dataIndex: "type", key: "type", width: 150 },
+    { title: "Size", dataIndex: "size", key: "size", width: 100 },
+    { title: "Default", dataIndex: "default", key: "default" },
+    { title: "Hover", dataIndex: "hover", key: "hover" },
+    { title: "Clicked", dataIndex: "clicked", key: "clicked" },
+    { title: "Loading", dataIndex: "loading", key: "loading" },
+    { title: "Disabled", dataIndex: "disabled", key: "disabled" },
+  ];
+  const countryOptions = [
+    { value: "us", label: "+997 United States", img: "https://flagcdn.com/w40/us.png" },
+    { value: "gb", label: "United Kingdom", img: "https://flagcdn.com/w40/gb.png" },
+    { value: "in", label: "India", img: "https://flagcdn.com/w40/in.png" },
+  ];
+  interface ButtonData {
+    key: string;
+    type: string;
+    size: number | string;
+    default:ReactNode,
+    hover: ReactNode;
+    clicked: ReactNode;
+    loading: ReactNode;
+    disabled: ReactNode;
+  }
+
+  interface InputData {
+    key: string;
+    type: string;
+    size: number | string;
+    default: ReactNode;
+    filled: ReactNode;
+    disabled: ReactNode;
+    error: ReactNode;
+  }
+  
+  const data: ButtonData[] = [];
+  buttonTypes.forEach((type) => {
+    sizes.forEach((size, index) => {
+      data.push({
+        key: `${type}-${size}`,
+        type: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "", 
+        size,
+        default: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button label</Button>,
+        hover: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Hover</Button>,
+        clicked: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Clicked</Button>,
+        loading: <Button type={type} size={size} loading>Loading</Button>,
+        disabled: <Button type={type} size={size} disabled leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Disabled</Button>
+      });
+    });
+    data.push({ key: `${type}-spacer`, type: "", size: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
+  });
+
+  // Generate social buttons with Google Icon
+  sizes.forEach((size, index) => {
+    data.push({
+      key: `social-google-${size}`,
+      type: index === 0 ? "Social (Google)" : "", 
+      size,
+      default: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
+      hover: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Hover</Button>,
+      clicked: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Clicked</Button>,
+      loading: "", 
+      disabled: <Button type="social" size={size} disabled leftIcon={<GoogleIcon />}>Disabled</Button>
+    });
+  });
+  data.push({ key: "social-google-spacer", type: "", size: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
+  sizes.forEach((size, index) => {
+    data.push({
+      key: `social-apple-${size}`,
+      type: index === 0 ? "Social (Apple)" : "", 
+      size,
+      default: <Button type="social" size={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
+      hover: <Button type="social" size={size} leftIcon={<AppleIcon />}>Hover</Button>,
+      clicked: <Button type="social" size={size} leftIcon={<AppleIcon />}>Clicked</Button>,
+      loading: "",
+      disabled: <Button type="social" size={size} disabled leftIcon={<AppleIcon />}>Disabled</Button>
+    });
+  });
+  data.push({ key: "social-apple-spacer", type: "", size: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
+  const inputData: InputData[] = [];
+
+inputTypes.forEach((type, typeIndex) => {
+  if (typeIndex !== 0) {
+    inputData.push({
+      key: `spacer-${type}`,
+      type: "",
+      size: "",
+      default: <div className="h-8" />,
+      filled: "",
+      disabled: "",
+      error: "",
+    });
+  }
+
+  if (type === "otp" || type === "textarea") {
+    inputData.push({
+      key: `${type}-no-size`,
+      type: type.charAt(0).toUpperCase() + type.slice(1),
+      size: "-",
+      default: <CustomInput type={type} placeholder="Place Holder Text" label="Description" bottomLabel="This is required" />,
+      filled: <CustomInput type={type} value="Place Holder Text" label="Description" bottomLabel="This is required" />,
+      disabled: <CustomInput type={type} disabled placeholder="Place Holder Text" label="Description" bottomLabel="This is required" />,
+      error: <CustomInput type={type} status="error" placeholder="Error" label="Description" bottomLabel="This is required" />,
+    });
+  } else if (type === "search") {
+    inputSizes.forEach((size, index) => {
+      inputData.push({
+        key: `${type}-${size}`,
+        type: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "",
+        size,
+        default: <Input type="search" size={size} placeholder="Search..." />,
+        filled: <Input type="search" size={size} value="Search Query" />,
+        disabled: <Input type="search" size={size} disabled placeholder="Search..." />,
+        error: "-",
+      });
+    });
+  } else if (type === "select") {
+    inputSizes.forEach((size, index) => {
+      inputData.push({
+        key: `${type}-${size}`,
+        type: index === 0 ? "Select" : "",
+        size,
+        default: <Input type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions} />,
+        filled: <Input type={type} size={size} defaultValue="Text Placeholder" options={countryOptions} />,
+        disabled: <Input type={type} size={size} disabled defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions} />,
+        error:  <Input type={type} size={size} status="error" defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions} />,
+        
+      });
+    });
+  } else {
+    inputSizes.forEach((size, index) => {
+      inputData.push({
+        key: `${type}-${size}`,
+        type: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "",
+        size,
+        default: type === "password" ? <PasswordInput size={size} placeholder="Enter your Password" /> : <CustomInput type={type} size={size} placeholder="Text Placeholder" label="Label" bottomLabel="This is required" />,
+        filled: type === "password" ? <PasswordInput size={size} value="Enter your Password" /> : <CustomInput type={type} size={size} value="Text Placeholder" label="Label" bottomLabel="This is required" />,
+        disabled: type === "password" ? <></> : <CustomInput type={type} size={size} disabled placeholder="Text Placeholder" label="Label" bottomLabel="This is required" />,
+        error: type === "password" ? <PasswordInput size={size} status="error" placeholder="Error" /> : <CustomInput type={type} size={size} status="error" placeholder="Text Placeholder" label="Label" bottomLabel="This is required" />,
+      });
+    });
+  }
+});
+  return (
+    <div style={{ 
+      display: "flex", 
+      minHeight: "100vh", 
+      background: themeMode === "dark" ? "#1a1a1a" : "#f0f2f5", 
+      color: themeMode === "dark" ? "#fff" : "#000" 
+    }}>
+      <div style={{ 
+        minWidth: "250px", 
+        background: themeMode === "dark" ? "#111" : "#fff", 
+        padding: "16px", 
+        boxShadow: "2px 0 5px rgba(0,0,0,0.1)", 
+      }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img src="/krispmake.png" alt="Logo" style={{ width: "30px", height: "30px", marginRight: "5px"}} />
+          <Title level={3} style={{ margin: 0, color: themeMode === "dark" ? "#fff" : "#000" }}>KrispMake</Title>
+        </div>
+        <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
+        
+        <Menu 
+          selectedKeys={[selectedComponent]} 
+          onClick={(e) => setSelectedComponent(e.key)} 
+          theme={themeMode === "dark" ? "dark" : "light"}
+        >
+          {components.map((component) => (
+            <Menu.Item key={component}>{component}</Menu.Item>
+          ))}
+        </Menu>
+
+        <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <p style={{ margin: 0 }}>Dark Mode</p>
+          <Switch checked={themeMode === "dark"} onChange={toggleTheme} />
+        </div>
+      </div>
+      
+      <div style={{ flex: 1, padding: "16px" }}>
+        <Title level={3} style={{ margin: 0, color: themeMode === "dark" ? "#fff" : "#000" }}>{selectedComponent}</Title>
+        <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
+        
+        {selectedComponent === "Button" && (
+  <>
+    <Table columns={columns} dataSource={data} pagination={false} bordered />
+  </>
+)}
+   <div>
+          {
+            selectedComponent==="Checkbox"&&(
+              <>
+            <CheckBox checked>label </CheckBox>
+            <CheckBox  size={16}>label </CheckBox>
+            <CheckBox  size={20}>label </CheckBox>
+            <CheckBox  size={24}>label </CheckBox>
+            <CheckBox indeterminate>label </CheckBox>
+             <CheckBox disabled >label </CheckBox>
+             </>
+            
+
+
+            )
+          }
+        </div>
+        <div >
+        {selectedComponent === "Input" && (
+          <>
+         <Table
+  columns={inputColumns}
+  dataSource={inputData}
+  pagination={false}
+  bordered
+  scroll={{ x: "100%" }} 
+  style={{ maxWidth: "100%" }} 
+/>
+
+          </>
+          
+)}
+</div>
+{selectedComponent === "Colors" && <ColorPalette />}
+{selectedComponent==="Typography"&& <Typography/>}
+      </div>
+    </div>
+  );
+}
