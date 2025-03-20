@@ -127,7 +127,8 @@ import {
   Select as AntSelect,
   SelectProps as AntSelectProps,
 } from "antd";
-import { Sizes } from "./theme";
+import CardInput from "./CardInput";
+import { Sizes,Themes } from "./theme";
 import SearchIcon from "./SearchIcon";
 import { useTheme } from "./ThemeProvider";
 
@@ -142,7 +143,7 @@ interface CustomOption {
 
 interface CustomComponentProps extends Omit<AntInputProps & AntSelectProps, "size"> {
   size?: ExtendedSize;
-  type?: "text" | "password" | "search" | "textarea" | "otp" | "select";
+  type?: "text" | "password" | "search" | "textarea" | "otp" | "select"|"card";
   autoSize?: boolean | { minRows?: number; maxRows?: number };
   options?:  CustomOption[];
 }
@@ -150,7 +151,7 @@ interface CustomComponentProps extends Omit<AntInputProps & AntSelectProps, "siz
 const antSizeMapping: AntSize[] = ["small", "middle", "large"];
 
 const Input: React.FC<CustomComponentProps> = ({
-  size = "small",
+  size = "large",
   status,
   disabled,
   value,
@@ -163,9 +164,10 @@ const Input: React.FC<CustomComponentProps> = ({
 }) => {
   const { themeMode } = useTheme();
   const isError = status === "error";
+  const currentTheme=Themes[themeMode];
   const isAntDSize = antSizeMapping.includes(size as AntSize);
-  const borderColor = "#E3E3E8";
-  const placeholderTextColor = isError ? "#09090B" : "#9C9CAA";
+  const borderColor = currentTheme.stroke.strong;
+  const placeholderTextColor = isError ? currentTheme.Text2Component : currentTheme.Text3Disabled;
   const customSize = !isAntDSize ? Sizes[size as CustomSize] : undefined;
 
   return (
@@ -177,29 +179,47 @@ const Input: React.FC<CustomComponentProps> = ({
         },
         components: {
           Input: {
-            colorIcon: "#9C9CAA",
-            activeShadow: "transparent",
-            activeBorderColor: "transparent",
-            colorError: "#FF8588",
-            colorErrorBorderHover: "#FF8588",
+            colorIcon: currentTheme.Text3Disabled,
+            activeShadow:  `0 0 0 4px ${currentTheme.primary.focus}`,
+            colorError: currentTheme.destructive.stroke,
+            colorErrorBorderHover: currentTheme.destructive.stroke,
             colorBorder: borderColor,
-            colorTextPlaceholder: placeholderTextColor,
-            hoverBorderColor: "transparent",
-            colorBgContainerDisabled: "#F9F9FA",
-            colorTextDisabled: "#9C9CAA",
-            inputFontSizeSM: customSize?.fontSize,
-            paddingBlockSM: customSize?.paddingY,
-            paddingInlineSM: customSize?.paddingX,
-            controlHeightSM: customSize?.height,
-            borderRadiusSM: 8,
+             activeBorderColor: currentTheme.primary.stroke,
+             colorText: currentTheme.Text2Component,
+             colorTextPlaceholder: placeholderTextColor,
+             hoverBorderColor: "none",
+            colorBgContainer:currentTheme.Bg1,
+            colorBgContainerDisabled: currentTheme.Bg2Hover,
+            colorTextDisabled: currentTheme.Text3Disabled,
+            inputFontSizeLG: customSize?.fontSize,
+            paddingBlockLG: customSize?.paddingY,
+            paddingInlineLG: customSize?.paddingX,
+            controlHeightLG: customSize?.height,
+            borderRadiusLG: 8,
           },
           Select: {
-            activeBorderColor: borderColor,
+            activeBorderColor:currentTheme.primary.stroke,
+            colorText:currentTheme.Text2Component,
             colorTextPlaceholder: placeholderTextColor,
             controlHeightSM: customSize?.height,
-            borderRadiusSM: 8,
-            hoverBorderColor: "transparent",
-            showArrowPaddingInlineEnd: 1,
+            borderRadiusSM: 10,
+            paddingSM: customSize?.paddingX,
+            controlPaddingHorizontalSM:customSize?.paddingY,
+            colorErrorBorderHover: currentTheme.destructive.stroke,
+            colorBgContainer:currentTheme.Bg1,
+            colorBgElevated:currentTheme.Bg1,
+            
+            optionSelectedBg:currentTheme.Bg1,
+  
+            // lineHeight:customSize?.lineheight,
+            // paddingInlineSM: customSize?.paddingX,
+activeOutlineColor:  currentTheme.primary.focus,
+
+            hoverBorderColor: "none",
+            boxShadowSecondary:  `0 0 0 4px ${currentTheme.primary.focus}`,
+            colorTextQuaternary:currentTheme.Text3Disabled,
+            colorBgContainerDisabled: currentTheme.Bg2Hover,
+            // showArrowPaddingInlineEnd: ,
           },
         },
       }}
@@ -207,7 +227,7 @@ const Input: React.FC<CustomComponentProps> = ({
       {type === "select" ? (
         <AntSelect
   labelInValue
-  size={isAntDSize ? (size as AntSize) : "small"}
+  size={isAntDSize ? (size as AntSize) : "large"}
   status={isError ? "error" : undefined}
   disabled={disabled}
   placeholder={placeholder} 
@@ -218,10 +238,10 @@ const Input: React.FC<CustomComponentProps> = ({
       {option.data.img && (
         <img
           src={option.data.img}
-          style={{ width: 16, height: 16, borderRadius: "50%" }}
+          style={{ width: 20, height: 13.1, borderRadius: "10%" }}
         />
       )}
-      <span>{option.label}</span>
+      <span >{option.label}</span>
     </div>
   )}
   labelRender={(selected) => {
@@ -232,10 +252,10 @@ const Input: React.FC<CustomComponentProps> = ({
           <img
             src={selectedOption.img}
             alt={selectedOption.label}
-            style={{ width: 16, height: 16, borderRadius: "50%" }}
+            style={{ width: 20, height: 13.1, borderRadius: "10%" }}
           />
         )}
-        <span>{selectedOption?.label}</span>
+        <span> {selectedOption?.label}</span>
       </div>
     );
   }}
@@ -246,16 +266,24 @@ const Input: React.FC<CustomComponentProps> = ({
 
       ) : type === "password" ? (
         <AntInput.Password
-          size={isAntDSize ? (size as AntSize) : "small"}
+        size={isAntDSize ? (size as AntSize) : "large"}
           status={isError ? "error" : undefined}
           disabled={disabled}
           value={value}
           placeholder={placeholder}
           {...props}
         />
+      ): type === "card" ? (
+        <CardInput
+          size={isAntDSize ? (size as AntSize) : "large"}
+          disabled={disabled}
+          status={isError ? "error" : undefined}
+          placeholder={placeholder}
+          {...props}
+        />
       ) : type === "search" ? (
         <AntInput
-          size={isAntDSize ? (size as AntSize) : "small"}
+          size={isAntDSize ? (size as AntSize) : "large"}
           status={isError ? "error" : undefined}
           disabled={disabled}
           value={value}
@@ -284,7 +312,7 @@ const Input: React.FC<CustomComponentProps> = ({
         />
       ) : (
         <AntInput
-          size={isAntDSize ? (size as AntSize) : "small"}
+          size={isAntDSize ? (size as AntSize) : "large"}
           status={isError ? "error" : undefined}
           disabled={disabled}
           value={value}
@@ -296,4 +324,5 @@ const Input: React.FC<CustomComponentProps> = ({
   );
 };
 
+export  type {CustomComponentProps} ;
 export default Input;

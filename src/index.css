@@ -13,7 +13,7 @@ code {
   font-family: 'Inter',sans-serif;
 }
 .ant-input-affix-wrapper .ant-input-prefix  {
-  margin-inline-end: 6px; /* Set gap to 6px */
+  margin-inline-end: 6px; 
 } .ant-otp-input {
 
 width:40px;

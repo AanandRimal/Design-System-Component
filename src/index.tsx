@@ -7,11 +7,11 @@ import { ConfigProvider } from 'antd';
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs';
 const themeConfig = {
   token: {
-    fontFamily: " 'Inter', sans-serif", // Custom font
+    fontFamily: " 'Inter', sans-serif",
   },
 };
 const px2rem = px2remTransformer({
-  rootValue: 16,  // Set 1rem = 32px
+  rootValue: 16, 
 });
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(

@@ -1,4 +1,4 @@
-// LeftArrow.tsx
+
 const LeftIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path
@@ -11,9 +11,8 @@ const LeftIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
   );
   
-  // Assign LeftIcon to RightIcon
+
   const RightIcon = LeftIcon;
   
-  // Use named exports instead of default export
   export { LeftIcon, RightIcon };
   

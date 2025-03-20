@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useTheme } from "./ThemeProvider";
-import { colors } from "./theme";
+import { colors,Themes } from "./theme";
+import { theme } from "antd";
+
 
 const colorTypes = Object.keys(colors) as (keyof typeof colors)[];
 
 const ColorPalette: React.FC = () => {
   const { themeMode } = useTheme();
+  const currentTheme=Themes[themeMode];
   const [selectedType, setSelectedType] = useState<keyof typeof colors>("primary");
   const [customHex, setCustomHex] = useState<string>("");
   const [colorValues, setColorValues] = useState<typeof colors>(colors);
@@ -26,13 +29,13 @@ const ColorPalette: React.FC = () => {
     container: {
       display: "flex",
       height: "100vh",
-      backgroundColor: themeMode === "dark" ? "#1a1a1a" : "#f9f9fa",
+      backgroundColor:currentTheme.Bg1,
       color: themeMode === "dark" ? "#fff" : "#000",
     },
     sidebar: {
       width: "250px",
       padding: "16px",
-      background: themeMode === "dark" ? "#333" : "#fff",
+      background:currentTheme.Bg1,
       borderRight: "1px solid #ddd",
     },
     mainContent: {
@@ -53,7 +56,7 @@ const ColorPalette: React.FC = () => {
       width: "120px",
       padding: "10px",
       textAlign: "center",
-      background: themeMode === "dark" ? "#333" : "#fff",
+      background: currentTheme.Bg1,
       borderRadius: "6px",
       border: "1px solid #ddd",
       boxShadow: themeMode === "dark" ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
@@ -70,16 +73,16 @@ const ColorPalette: React.FC = () => {
       border: "1px solid #ccc",
       borderRadius: "4px",
       marginBottom: "10px",
-      background: themeMode === "dark" ? "#555" : "white",
-      color: themeMode === "dark" ? "#fff" : "#000",
+      background: currentTheme.Bg1,
+      color: currentTheme.text,
     },
     select: {
       width: "100%",
       padding: "8px",
       border: "1px solid #ccc",
       borderRadius: "4px",
-      background: themeMode === "dark" ? "#555" : "white",
-      color: themeMode === "dark" ? "#fff" : "#000",
+      background: currentTheme.Bg1,
+      color:currentTheme.text,
       marginBottom: "10px",
     },
   };

@@ -1,11 +1,14 @@
 interface ThemeColor {
-    default: string;
-    hover: string;
-    focus: string;
-    accentBg: string;
-    stroke: string;
-    dark: string;
-  }
+  default?: string;
+  hover?: string;
+  focus?: string;
+  accentBg?: string;
+  stroke?: string;
+  dark?: string;
+  textcolor?:string;
+  strong?: string; 
+  decorative?: string; 
+}
   
   interface ThemeType {
     primary: ThemeColor;
@@ -14,6 +17,7 @@ interface ThemeColor {
     destructive: ThemeColor;
     info: ThemeColor;
     warning: ThemeColor;
+    stroke: Partial<Pick<ThemeColor, 'strong' | 'decorative'>>;
     background: string;
     text: string;
     Bg1: string;
@@ -25,6 +29,7 @@ interface ThemeColor {
     TabBg: string;
     Text1Title: string;
     Text2Subtitle: string;
+    Text2Component:string;
     Text3Subtitle:string;
     Text3Disabled: string;
     InverseText: string;
@@ -90,27 +95,30 @@ interface ThemeColor {
     light: {
       primary: { 
         default: colors.primary[700], hover: colors.primary[600], focus: colors.primary[100],
-        accentBg: colors.primary[200], stroke: colors.primary[400], dark: colors.primary[900]
+        accentBg: colors.primary[200], stroke: colors.primary[400], dark: colors.primary[900],textcolor:"#FFFFFF"
       },
       secondary: { 
         default: "#FFFFFF", hover: "#F9F9FA", focus: "#F4F4F6",
-        accentBg: "#E3E3E8", stroke: "#D3D3DA", dark: "#3D3D48"
+        accentBg: "#E3E3E8", stroke: "#D3D3DA", dark: "#3D3D48",textcolor:colors.grey[700]
+      },
+      stroke: { 
+        strong: colors.grey[200], decorative: colors.grey[100]
       },
       success: { 
         default: colors.green[700], hover: colors.green[600], focus: colors.green[100],
-        accentBg: colors.green[200], stroke: colors.green[400], dark: colors.green[900]
+        accentBg: colors.green[200], stroke: colors.green[400], dark: colors.green[900],textcolor:"#FFFFFF"
       },
       destructive: { 
         default: colors.red[700], hover: colors.red[600], focus: colors.red[100],
-        accentBg: colors.red[200], stroke: colors.red[400], dark: colors.red[900]
+        accentBg: colors.red[200], stroke: colors.red[400], dark: colors.red[900],textcolor:"#FFFFFF"
       },
       info: { 
         default: colors.blue[700], hover: colors.blue[600], focus: colors.blue[100],
-        accentBg: colors.blue[200], stroke: colors.blue[400], dark: colors.blue[900]
+        accentBg: colors.blue[200], stroke: colors.blue[400], dark: colors.blue[900],textcolor:"#FFFFFF"
       },
       warning: { 
         default: colors.orange[700], hover: colors.orange[600], focus: colors.orange[100],
-        accentBg: colors.orange[200], stroke: colors.orange[400], dark: colors.orange[900]
+        accentBg: colors.orange[200], stroke: colors.orange[400], dark: colors.orange[900],textcolor:"#FFFFFF"
       },
       background: "#FFFFFF",
       text: "#09090B",
@@ -123,6 +131,7 @@ interface ThemeColor {
       TabBg: colors.grey[50], 
       Text1Title: colors.grey[950], 
       Text2Subtitle: colors.grey[500], 
+      Text2Component:colors.grey[700],
       Text3Subtitle:colors.grey[500],
       Text3Disabled: colors.grey[400], 
       InverseText: "#FFFFFF", 
@@ -131,27 +140,30 @@ interface ThemeColor {
     dark: {
       primary: { 
         default: colors.primary[600], hover: colors.primary[500], focus: colors.primary[950],
-        accentBg: colors.primary[950], stroke: colors.primary[600], dark: colors.primary[500]
+        accentBg: colors.primary[950], stroke: colors.primary[600], dark: colors.primary[500],textcolor:"#FFFFFF"
       },
       secondary: { 
-        default: "#E3E3E8", hover: "#6C6C7F", focus: "#17171C",
-        accentBg: "#17171C", stroke: "#50505E", dark: "#26262C"
+        default: colors.grey[950], hover: colors.grey[900], focus: "#17171C",
+        accentBg: "#17171C", stroke: "#50505E", dark: "#26262C",textcolor:colors.grey[300]
+      },
+      stroke: { 
+        strong: colors.grey[800], decorative: colors.grey[800],
       },
       success: { 
         default: colors.green[600], hover: colors.green[500], focus: colors.green[950],
-        accentBg: colors.green[950], stroke: colors.green[600], dark: colors.green[500]
+        accentBg: colors.green[950], stroke: colors.green[600], dark: colors.green[500],textcolor:"#FFFFFF"
       },
       destructive: { 
         default: colors.red[600], hover: colors.red[500], focus: colors.red[950],
-        accentBg: colors.red[950], stroke: colors.red[600], dark: colors.red[500]
+        accentBg: colors.red[950], stroke: colors.red[600], dark: colors.red[500],textcolor:"#FFFFFF"
       },
       info: { 
         default: colors.blue[600], hover: colors.blue[500], focus: colors.blue[950],
-        accentBg: colors.blue[950], stroke: colors.blue[600], dark: colors.blue[500]
+        accentBg: colors.blue[950], stroke: colors.blue[600], dark: colors.blue[500],textcolor:"#FFFFFF"
       },
       warning: { 
         default: colors.orange[600], hover: colors.orange[500], focus: colors.orange[950],
-        accentBg: colors.orange[950], stroke: colors.orange[600], dark: colors.orange[500]
+        accentBg: colors.orange[950], stroke: colors.orange[600], dark: colors.orange[500],textcolor:"#FFFFFF"
       },
       background: "#09090B",
       text: "#FFFFFF",
@@ -164,6 +176,7 @@ interface ThemeColor {
       TabBg: colors.grey[600], 
       Text1Title: colors.grey[100],
       Text2Subtitle: colors.grey[400], 
+      Text2Component:colors.grey[300],
       Text3Subtitle:colors.grey[400],
       Text3Disabled: colors.grey[400], 
       InverseText: colors.grey[950], 

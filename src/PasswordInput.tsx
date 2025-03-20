@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CheckCircleFilled } from "@ant-design/icons";
 import Input from "./Input"; // Import your custom Input component
-
+import { CircleCheck } from "lucide-react";
 interface PasswordInputProps extends React.ComponentProps<typeof Input> {
   label?: string;
 }
@@ -9,7 +9,6 @@ interface PasswordInputProps extends React.ComponentProps<typeof Input> {
 const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value, onChange, ...props }) => {
   const [password, setPassword] = useState<string>(String(value || "")); // Ensure value is a string
 
-  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
     setPassword(newPassword); // Update state
@@ -35,7 +34,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value
       <div style={{ fontSize: "12px", color: "#9C9CAA", marginTop: "4px" }}>
         {passwordRules.map((rule, index) => (
           <div key={index} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <CheckCircleFilled style={{ color: rule.check ? "green" : "#9C9CAA" }} />
+            <CircleCheck  size={12.67} color={rule.check ? "green" : "#9C9CAA"}/>
             <span>{rule.label}</span>
           </div>
         ))}

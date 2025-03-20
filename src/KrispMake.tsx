@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ReactNode } from "react";
-import { Switch, Typography as Type, Divider, Menu, Table } from "antd";
+import { Switch, Typography as Type, Divider, Menu, Table,ConfigProvider } from "antd";
 import Button from "./Button"; 
 import { useTheme } from "./ThemeProvider";
 import ColorPalette from "./ColorPalette";
@@ -14,7 +14,7 @@ import OtpInput from "./OTPInput";
 import CustomInput from "./CustomInput";
 import {LeftIcon,RightIcon} from "./LeftIcon";
 import { GoogleIcon,AppleIcon } from "./Icon";
-
+import { Themes } from "./theme";
 const { Title } = Type;
 
 const components = ["Button", "Typography", "Checkbox", "Input", "Colors"];
@@ -25,10 +25,11 @@ export default function KrispMake() {
 
   const sizes: number[] = [32, 36, 40, 44, 48];
   type CustomButtonType = "primary" | "secondary" | "success" | "info" | "destructive" | "warning" |"social" ;
-  type CustomInputType = "text"|"password"| "search"|"otp"| "textarea" | "select";
+  type CustomInputType = "text"|"password"| "search"|"otp"| "textarea" | "select" | "card";
   const inputSizes : number[] =[32, 36, 40, 44, 48];
 const buttonTypes: CustomButtonType[] = ['primary', 'secondary', 'success', 'info', 'destructive', 'warning'] 
-const inputTypes:CustomInputType[]= ['text', 'password', 'search', 'otp', 'textarea','select']
+const inputTypes:CustomInputType[]= ['text', 'password', 'search', 'otp', 'textarea','select','card']
+const currentTheme=Themes[themeMode]
 
 const inputColumns = [
   { title: "Type", dataIndex: "type", key: "type", width: 100 },
@@ -81,27 +82,26 @@ const inputColumns = [
         key: `${type}-${size}`,
         type: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "", 
         size,
-        default: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button label</Button>,
-        hover: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Hover</Button>,
-        clicked: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Clicked</Button>,
-        loading: <Button type={type} size={size} loading>Loading</Button>,
-        disabled: <Button type={type} size={size} disabled leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Disabled</Button>
+        default: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
+        hover: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
+        clicked: <Button type={type} size={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
+        loading: <Button type={type} size={size} loading>Button Label</Button>,
+        disabled: <Button type={type} size={size} disabled leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>
       });
     });
     data.push({ key: `${type}-spacer`, type: "", size: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
   });
 
-  // Generate social buttons with Google Icon
   sizes.forEach((size, index) => {
     data.push({
       key: `social-google-${size}`,
       type: index === 0 ? "Social (Google)" : "", 
       size,
       default: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
-      hover: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Hover</Button>,
-      clicked: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Clicked</Button>,
+      hover: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
+      clicked: <Button type="social" size={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
       loading: "", 
-      disabled: <Button type="social" size={size} disabled leftIcon={<GoogleIcon />}>Disabled</Button>
+      disabled: <Button type="social" size={size} disabled leftIcon={<GoogleIcon />}>Sign in with Google</Button>
     });
   });
   data.push({ key: "social-google-spacer", type: "", size: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
@@ -111,10 +111,10 @@ const inputColumns = [
       type: index === 0 ? "Social (Apple)" : "", 
       size,
       default: <Button type="social" size={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
-      hover: <Button type="social" size={size} leftIcon={<AppleIcon />}>Hover</Button>,
-      clicked: <Button type="social" size={size} leftIcon={<AppleIcon />}>Clicked</Button>,
+      hover: <Button type="social" size={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
+      clicked: <Button type="social" size={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
       loading: "",
-      disabled: <Button type="social" size={size} disabled leftIcon={<AppleIcon />}>Disabled</Button>
+      disabled: <Button type="social" size={size} disabled leftIcon={<AppleIcon />}>Sign in with Apple</Button>
     });
   });
   data.push({ key: "social-apple-spacer", type: "", size: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
@@ -138,10 +138,10 @@ inputTypes.forEach((type, typeIndex) => {
       key: `${type}-no-size`,
       type: type.charAt(0).toUpperCase() + type.slice(1),
       size: "-",
-      default: <CustomInput type={type} placeholder="Place Holder Text" label="Description" bottomLabel="This is required" />,
-      filled: <CustomInput type={type} value="Place Holder Text" label="Description" bottomLabel="This is required" />,
-      disabled: <CustomInput type={type} disabled placeholder="Place Holder Text" label="Description" bottomLabel="This is required" />,
-      error: <CustomInput type={type} status="error" placeholder="Error" label="Description" bottomLabel="This is required" />,
+      default: <CustomInput type={type} placeholder="Place Holder Text" label="Label" bottomLabel="This is required" />,
+      filled: <CustomInput type={type} value="Place Holder Text" label="Label" bottomLabel="This is required" />,
+      disabled: <CustomInput type={type} disabled placeholder="Place Holder Text" label="Label" bottomLabel="This is required" />,
+      error: <CustomInput type={type} status="error" placeholder="Error" label="Label" bottomLabel="This is required" />,
     });
   } else if (type === "search") {
     inputSizes.forEach((size, index) => {
@@ -155,17 +155,27 @@ inputTypes.forEach((type, typeIndex) => {
         error: "-",
       });
     });
+  } else if (type === "card") {
+    inputData.push({
+      key: `${type}-no-size`,
+      type: type.charAt(0).toUpperCase() + type.slice(1),
+      size: "-",
+      default: <Input type="card" placeholder="7777786766" />,
+      filled: <Input type="card" value="7777786766" />,
+      disabled: <Input type="card" disabled placeholder="7777786766" />,
+      error: <Input type="card" status="error" placeholder="Invalid Card" />,
+    });
+  
   } else if (type === "select") {
     inputSizes.forEach((size, index) => {
       inputData.push({
         key: `${type}-${size}`,
         type: index === 0 ? "Select" : "",
         size,
-        default: <Input type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions} />,
-        filled: <Input type={type} size={size} defaultValue="Text Placeholder" options={countryOptions} />,
-        disabled: <Input type={type} size={size} disabled defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions} />,
-        error:  <Input type={type} size={size} status="error" defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions} />,
-        
+        default: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  label="Label" bottomLabel="This is required" />,
+        filled: <CustomInput type={type} size={size} defaultValue="Text Placeholder" options={countryOptions}  label="Label" bottomLabel="This is required"/>,
+        disabled:  <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  label="Label" bottomLabel="This is required" />,
+        error:   <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} status="error" options={countryOptions}  label="Label" bottomLabel="This is required" />,
       });
     });
   } else {
@@ -183,15 +193,29 @@ inputTypes.forEach((type, typeIndex) => {
   }
 });
   return (
+    <ConfigProvider
+  theme={{
+    components: {
+      Table: {
+        colorText: currentTheme.text, // Ensures all table text follows the theme color
+        colorBgContainer: currentTheme.Bg1,
+        headerBg: currentTheme.Bg1,
+        headerColor: currentTheme.text,
+        rowHoverBg: "none",
+        borderColor: "#d9d9d9",
+      },
+    },
+  }}
+>
     <div style={{ 
       display: "flex", 
       minHeight: "100vh", 
-      background: themeMode === "dark" ? "#1a1a1a" : "#f0f2f5", 
-      color: themeMode === "dark" ? "#fff" : "#000" 
+      background: currentTheme.Bg1,
+      color: currentTheme.text
     }}>
       <div style={{ 
         minWidth: "250px", 
-        background: themeMode === "dark" ? "#111" : "#fff", 
+        background: currentTheme.Bg1, 
         padding: "16px", 
         boxShadow: "2px 0 5px rgba(0,0,0,0.1)", 
       }}>
@@ -218,14 +242,16 @@ inputTypes.forEach((type, typeIndex) => {
         </div>
       </div>
       
-      <div style={{ flex: 1, padding: "16px" }}>
+      <div style={{ flex: 1, padding: "16px", background:Themes[themeMode].Bg1 }}>
         <Title level={3} style={{ margin: 0, color: themeMode === "dark" ? "#fff" : "#000" }}>{selectedComponent}</Title>
         <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
         
         {selectedComponent === "Button" && (
-  <>
-    <Table columns={columns} dataSource={data} pagination={false} bordered />
-  </>
+
+<Table columns={columns} dataSource={data} pagination={false} bordered  />
+
+
+
 )}
    <div>
           {
@@ -247,6 +273,7 @@ inputTypes.forEach((type, typeIndex) => {
         <div >
         {selectedComponent === "Input" && (
           <>
+      
          <Table
   columns={inputColumns}
   dataSource={inputData}
@@ -264,5 +291,8 @@ inputTypes.forEach((type, typeIndex) => {
 {selectedComponent==="Typography"&& <Typography/>}
       </div>
     </div>
+    </ConfigProvider>
   );
+
 }
+

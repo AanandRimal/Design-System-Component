@@ -3,26 +3,21 @@ import { ConfigProvider, Button as AntButton } from "antd";
 import { Themes, Sizes ,socialSizePadding} from "./theme";
 import { useTheme } from "./ThemeProvider";
 import { ButtonProps as AntButtonProps } from "antd/lib/button";
-
-
 type CustomButtonType = "secondary" | "success" | "info" | "destructive" | "warning" | "social";
 type ExtendedButtonType = AntButtonProps["type"] | CustomButtonType;
 type CustomSize = keyof typeof Sizes;
 type ExtendedSize = AntButtonProps["size"] | CustomSize;
-
 interface ButtonProps extends Omit<AntButtonProps, "type" | "size" | "icon"> {
   type?: ExtendedButtonType;
   size?: ExtendedSize;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
-
 const antSupportedTypes: AntButtonProps["type"][] = ["primary", "default", "dashed", "text", "link"];
-const antSizeMapping: AntButtonProps["size"][] = ["small", "large"];
-
+const antSizeMapping: AntButtonProps["size"][] = ["small","large"];
 const Button: React.FC<ButtonProps> = ({
   type = "primary",
-  size = "default",
+  size = "large",
   loading,
   disabled,
   children,
@@ -33,6 +28,7 @@ const Button: React.FC<ButtonProps> = ({
   const isAntSupportedType = antSupportedTypes.includes(type as AntButtonProps["type"]);
   const isAntDSize = antSizeMapping.includes(size as AntButtonProps["size"]);
   const { themeMode } = useTheme();
+  const currentTheme=Themes[themeMode];
   const colorPrimary = (Themes[themeMode] as any)[type as CustomButtonType] || Themes[themeMode]?.secondary;
   const customSize = !isAntDSize && size ? Sizes[size as CustomSize] : undefined;
   const isSocialType = type === "social";
@@ -40,28 +36,24 @@ const Button: React.FC<ButtonProps> = ({
   const finalPaddingY = isSocialType ? socialPadding?.paddingY : customSize?.paddingY;
   const finalPaddingX = isSocialType ? socialPadding?.paddingX : customSize?.paddingX;
   const lineheight = customSize?.lineheight ?? 16;
-
   const buttonStyle: React.CSSProperties = {
-    color:( type ===  "secondary" || type === "social") && !disabled && !loading ? "#3D3D48" : undefined,
-    borderColor: type === "secondary" ||"social" ? "#E3E3E8" : undefined,
+    borderColor: (type === "secondary" || type === "social") ? currentTheme.stroke.strong : undefined,
     ...(loading && {
-      backgroundColor: "#F9F9FA",
-      color: "#9C9CAA",
+      backgroundColor: currentTheme.Bg2Hover,
+      color: currentTheme.Text3Disabled,
     }),
   };
-
-  const iconColor = disabled ? "#9C9CAA" : type === "secondary" ? "#6C6C7F" : "#FFFFFF";
+    const iconColor = disabled ? currentTheme.Text3Disabled   : isSocialType //for all disbaled state icon color is same so text3diabeld and then for type socila icon color is defualt when exported and  for type secondary icon color is different then other so handling 
+  ? undefined : type === "secondary" ? currentTheme.Text3Subtitle : "#FFFFFF";
   const iconSize = customSize?.iconSize || 20;
   const StyledIcon = ({ icon }: { icon: React.ReactNode }) => {
     const iconStyle = {
       width: iconSize,
       height: iconSize,
-      stroke: iconColor,
       fill: iconColor,
       color: iconColor,
       flexShrink: 0,
     };
-
     if (React.isValidElement(icon)) {
       const existingStyle = (icon.props as any).style || {};
   
@@ -69,26 +61,19 @@ const Button: React.FC<ButtonProps> = ({
         style: { ...iconStyle, ...existingStyle },
       });
     }
-
     return <span style={iconStyle}>{icon}</span>;
   };
 
   const button = (
     <AntButton
       type={isAntSupportedType ? (type as AntButtonProps["type"]) : "primary"}
-      size={isAntDSize ? (size as AntButtonProps["size"]) : undefined}
+      size={isAntDSize ? (size as AntButtonProps["size"]) : undefined} /// undeifned gave me error
       loading={loading}
       disabled={disabled}
-      className={loading ? "custom-loading" : ""}
       style={{
         ...buttonStyle,
-        gap: "6px",
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center",
         paddingBlock: finalPaddingY,
         lineHeight: `${lineheight / 16}rem`
-
       }}
       {...props}
     >
@@ -97,27 +82,30 @@ const Button: React.FC<ButtonProps> = ({
       {!loading && rightIcon && <StyledIcon icon={rightIcon} />}
     </AntButton>
   );
-
   return (
     <ConfigProvider
       theme={{
-        token: {},
+        token: {
+        },
         components: {
           Button: {
             colorPrimary: colorPrimary.default,
             colorPrimaryHover: colorPrimary.hover,
             colorPrimaryActive: colorPrimary.default,
             colorBorder: "none",
-            colorTextDisabled: "#9C9CAA",
-            colorBgContainerDisabled: "#F9F9FA",
+            colorPrimaryBorder:colorPrimary.focus,
+            colorTextDisabled: currentTheme.Text3Disabled,
+            colorBgContainerDisabled: currentTheme.Bg2Hover,
+            colorTextLightSolid:colorPrimary.textcolor,
             borderRadius: 8,
+            marginXS:6,
             fontWeight: customSize?.fontWeight,
             contentFontSize: customSize?.fontSize ,
             contentLineHeight: customSize?.lineheight,
             controlHeight: customSize?.height,
-            paddingBlock: customSize?.paddingY,
             paddingInline: finalPaddingX,
             primaryShadow: "none",
+            opacityLoading:1,
           },
         },
       }}
@@ -126,5 +114,4 @@ const Button: React.FC<ButtonProps> = ({
     </ConfigProvider>
   );
 };
-
 export default Button;
