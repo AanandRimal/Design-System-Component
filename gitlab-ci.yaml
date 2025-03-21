@@ -1,0 +1,45 @@
+image: registry.gitlab.com/krispcall/krispcall-design-system:base
+services:
+  - docker:dind
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ''
+  CI_DOCKER_REPO: registry.gitlab.com/krispcall/krispcall-design-system
+  DOCKERFILE_NAME: Dockerfile.prod
+  DEPLOYMENT_BRANCH_FOLDER_NAME: 'DEV'
+  DEPLOYMENT_MANIFEST_BRANCH: 'devops-poc'
+
+default:
+  tags:
+    - krispcall-design-system-runner
+
+stages:
+  - build_docker_image
+  - deploy
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "developer"
+      variables:
+        IMAGE_SUFFIX: 'DEV.$CI_COMMIT_SHORT_SHA'
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+build_react_app:
+  stage: build
+  script:
+    - echo "Building React App..."
+    - npm install
+    - npm run build
+    # - yarn install --frozen-lockfile
+    # - yarn build
+    - cp -r build/* .
+    - echo "Building Docker Image..."
+    - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
+    - echo "Logging into GitLab Container Registry..."
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $CI_DOCKER_REPO:$IMAGE_TAG
