@@ -1,6 +1,7 @@
 image: krispcall/krispcall-design-system:base
 services:
   - docker:dind
+    privileged: true
 variables:
   DOCKER_HOST: tcp://docker:2375/
   DOCKER_DRIVER: overlay2
@@ -28,6 +29,10 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
+
+before_script:
+  - echo "Logging into GitLab Container Registry..."
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
 build_react_app:
   stage: build_docker_image
