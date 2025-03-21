@@ -1,12 +1,12 @@
 image: krispcall/krispcall-design-system:base
+
 services:
-  - name: docker:dind
-    command: ["--tls=false"]
-    privileged: true
+  - docker:dind
+
 variables:
   DOCKER_HOST: tcp://docker:2375/
   DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ''
+  DOCKER_TLS_CERTDIR: ""
   CI_DOCKER_REPO: registry.gitlab.com/krispcall/krispcall-design-system
   DOCKERFILE_NAME: Dockerfile.prod
   DEPLOYMENT_BRANCH_FOLDER_NAME: 'DEV'
@@ -32,6 +32,8 @@ cache:
     - node_modules/
 
 before_script:
+  - echo "Enabling privileged mode..."
+  - docker info | grep "Security"
   - echo "Logging into GitLab Container Registry..."
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
 
@@ -41,11 +43,13 @@ build_react_app:
     - echo "Building React App..."
     - npm install
     - npm run build
-    # - yarn install --frozen-lockfile
-    # - yarn build
     - cp -r build/* .
+
+    - echo "Setting IMAGE_TAG..."
+    - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
+
     - echo "Building Docker Image..."
     - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
-    - echo "Logging into GitLab Container Registry..."
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+    - echo "Pushing Docker Image..."
     - docker push $CI_DOCKER_REPO:$IMAGE_TAG
