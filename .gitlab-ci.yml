@@ -12,7 +12,7 @@ variables:
 
 default:
   tags:
-    - krispcall-design-system-runner
+    - design-system-runner
 
 stages:
   - build_docker_image

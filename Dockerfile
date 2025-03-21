@@ -9,7 +9,7 @@ COPY nginx/k8s-nginx.conf /etc/nginx/conf.d
 ## Remove default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY dist/ /usr/share/nginx/html
+COPY build/ /usr/share/nginx/html
 COPY src/favicon.ico /usr/share/nginx/html/favicon.ico
 
 # Expose port 80 for HTTP Traffic
