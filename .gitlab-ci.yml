@@ -1,6 +1,7 @@
 image: krispcall/krispcall-design-system:base
 services:
-  - docker:dind
+  - name: docker:dind
+    command: ["--tls=false"]
     privileged: true
 variables:
   DOCKER_HOST: tcp://docker:2375/
