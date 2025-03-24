@@ -14,6 +14,7 @@ variables:
 default:
   tags:
     - design-system-runner
+    - crm-docker
     # - krispcall-design-system-runner-refactor-server
     # - design-system-runner-casdoor
 
