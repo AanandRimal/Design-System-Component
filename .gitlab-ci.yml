@@ -19,6 +19,7 @@ default:
     # - krispcall-design-system-runner-refactor-server
     # - design-system-runner-casdoor
     - casdoor-server-runner-design-system
+    
 
 stages:
   - build_docker_image
