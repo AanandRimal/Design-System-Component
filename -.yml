@@ -15,8 +15,9 @@ default:
   tags:
     # - design-system-runner
     - crm-docker
+    - krispcall-design-system-runner-casdoor
     # - krispcall-design-system-runner-refactor-server
-    # - design-system-runner-casdoor
+    - design-system-runner-casdoor
 
 stages:
   - build_docker_image
