@@ -1,5 +1,5 @@
 import { ConfigProvider } from "antd";
-import { Sizes } from "./theme";
+import { Sizes } from "./components/Foundation/theme";
 
 type AntSize = "small" | "middle" | "large";
 type CustomSize = keyof typeof Sizes;

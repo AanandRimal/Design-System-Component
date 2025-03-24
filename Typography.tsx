@@ -1,9 +1,7 @@
 import React from "react";
-
 interface HeadingRowProps {
   level: number;
 }
-
 const HeadingRow: React.FC<HeadingRowProps> = ({ level }) => {
   return (
     <div className="grid grid-cols-4 gap-4 items-center">
@@ -13,11 +11,9 @@ const HeadingRow: React.FC<HeadingRowProps> = ({ level }) => {
     </div>
   );
 };
-
 interface TextRowProps {
   size: string;
 }
-
 const TextRow: React.FC<TextRowProps> = ({ size }) => {
   return (
     <div className="grid grid-cols-4 gap-4 items-center">
@@ -27,11 +23,9 @@ const TextRow: React.FC<TextRowProps> = ({ size }) => {
     </div>
   );
 };
-
-const TypographyShowcase: React.FC = () => {
+  const TypographyShowcase: React.FC = () => {
   const headingLevels: number[] = [1, 2, 3, 4, 5, 6];
   const textSizes: string[] = ["large", "medium", "base", "small", "x-small"];
-
   return (
     <div className="p-8 space-y-12">
       {/* Headings Section */}
@@ -49,7 +43,6 @@ const TypographyShowcase: React.FC = () => {
           ))}
         </div>
       </div>
-
       {/* Text Section */}
       <div>
         <h2 className="text-2xl font-bold mb-4">Text Sizes</h2>
@@ -68,5 +61,4 @@ const TypographyShowcase: React.FC = () => {
     </div>
   );
 };
-
 export default TypographyShowcase;

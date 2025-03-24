@@ -1,6 +1,6 @@
 import { Input as AntInput, InputProps as AntInputProps } from "antd";
 import InputConfigProvider from "./InputConfigProvider";
-import { Sizes } from "./theme";
+import { Sizes } from "./components/Foundation/theme";
 
 type AntSize = "small" | "middle" | "large";
 type ExtendedSize = AntSize | keyof typeof Sizes;

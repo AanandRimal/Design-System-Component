@@ -1,11 +1,9 @@
 import React from "react";
-import Input from "./Input"; // Your existing Input component
-
+import Input from "./components/Input/Input"; // Your existing Input component
 interface TextInputProps extends React.ComponentProps<typeof Input> {
   label?: string;
   bottomLabel?: string;
 }
-
 const TextInput: React.FC<TextInputProps> = ({
   label,
   bottomLabel,
@@ -13,7 +11,6 @@ const TextInput: React.FC<TextInputProps> = ({
   ...props
 }) => {
   const isError = status === "error"; // Check if status is error
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       {/* Top Label */}
@@ -22,10 +19,8 @@ const TextInput: React.FC<TextInputProps> = ({
           {label}
         </label>
       )}
-
       {/* Input Field */}
       <Input status={status} {...props} />
-
       {/* Bottom Label (Turns red if error) */}
       {bottomLabel && (
         <span style={{ fontSize: "12px", color: isError ? "#FF8588" : "#9C9CAA" }}>

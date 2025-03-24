@@ -1,7 +1,7 @@
 import React from "react";
 import { ConfigProvider, Button as AntButton } from "antd";
-import { Themes, Sizes ,socialSizePadding} from "./theme";
-import { useTheme } from "./ThemeProvider";
+import { Themes, Sizes ,socialSizePadding} from "../Foundation/theme";
+import { useTheme } from "../../ThemeProvider";
 import { ButtonProps as AntButtonProps } from "antd/lib/button";
 type CustomButtonType = "secondary" | "success" | "info" | "destructive" | "warning" | "social";
 type ExtendedButtonType = AntButtonProps["type"] | CustomButtonType;
@@ -14,10 +14,10 @@ interface ButtonProps extends Omit<AntButtonProps, "type" | "size" | "icon"> {
   rightIcon?: React.ReactNode;
 }
 const antSupportedTypes: AntButtonProps["type"][] = ["primary", "default", "dashed", "text", "link"];
-const antSizeMapping: AntButtonProps["size"][] = ["small","large"];
+const antSizeMapping: AntButtonProps["size"][] = ["small","large"];//defualt not working as middle is passed fomr ant d 
 const Button: React.FC<ButtonProps> = ({
   type = "primary",
-  size = "large",
+  size = "default",
   loading,
   disabled,
   children,
@@ -30,7 +30,11 @@ const Button: React.FC<ButtonProps> = ({
   const { themeMode } = useTheme();
   const currentTheme=Themes[themeMode];
   const colorPrimary = (Themes[themeMode] as any)[type as CustomButtonType] || Themes[themeMode]?.secondary;
-  const customSize = !isAntDSize && size ? Sizes[size as CustomSize] : undefined;
+
+  const customSize = size && !isAntDSize && Sizes.hasOwnProperty(size as keyof typeof Sizes)
+    ? Sizes[size as keyof typeof Sizes]
+    : Sizes[32];
+  console.log(customSize);
   const isSocialType = type === "social";
   const socialPadding = isSocialType ? socialSizePadding[size as number] : undefined;
   const finalPaddingY = isSocialType ? socialPadding?.paddingY : customSize?.paddingY;
@@ -72,6 +76,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       style={{
         ...buttonStyle,
+        
         paddingBlock: finalPaddingY,
         lineHeight: `${lineheight / 16}rem`
       }}

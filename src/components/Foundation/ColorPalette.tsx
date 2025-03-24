@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "../../ThemeProvider";
 import { colors,Themes } from "./theme";
-import { theme } from "antd";
-
-
 const colorTypes = Object.keys(colors) as (keyof typeof colors)[];
-
 const ColorPalette: React.FC = () => {
   const { themeMode } = useTheme();
   const currentTheme=Themes[themeMode];

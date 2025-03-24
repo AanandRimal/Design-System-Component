@@ -24,6 +24,7 @@ interface ThemeColor {
     Bg2Hover: string;
     Bg3: string;
     Bg4: string;
+    Bg5:string;
     Bg5TableActive: string;
     Inverse: string;
     TabBg: string;
@@ -126,6 +127,7 @@ interface ThemeColor {
       Bg2Hover: colors.grey[50], 
       Bg3: colors.grey[100], 
       Bg4: colors.grey[200], 
+      Bg5:colors.grey[300],
       Bg5TableActive: colors.grey[300], 
       Inverse: colors.grey[950], 
       TabBg: colors.grey[50], 
@@ -171,6 +173,7 @@ interface ThemeColor {
       Bg2Hover: colors.grey[900], 
       Bg3: colors.grey[800], 
       Bg4: colors.grey[700], 
+      Bg5:colors.grey[600],
       Bg5TableActive: colors.grey[600], 
       Inverse: "#FFFFFF", 
       TabBg: colors.grey[600], 

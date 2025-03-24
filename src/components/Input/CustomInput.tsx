@@ -1,12 +1,9 @@
 import React from "react";
 import Input from "./Input"; 
-import { Themes } from "./theme";
-
 interface CustomInputProps extends React.ComponentProps<typeof Input> {
   label?: string;
   bottomLabel?: string;
 }
-
 const CustomInput: React.FC<CustomInputProps> = ({
   label,
   bottomLabel,
@@ -15,7 +12,6 @@ const CustomInput: React.FC<CustomInputProps> = ({
   ...props
 }) => {
   const isError = status === "error"; 
-
   return (
     <div className="flex flex-col">
        {label && (
@@ -23,9 +19,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
           {label}
         </label>
       )}
-
       <Input type={type} status={status} {...props} />
-
       {bottomLabel && (
         <span className={`text-xs ${isError ? "text-red-700" : "text-grey-500"} mt-1.5`}>
           {bottomLabel}
@@ -34,6 +28,5 @@ const CustomInput: React.FC<CustomInputProps> = ({
     </div>
   );
 };
-
 export default CustomInput;
 

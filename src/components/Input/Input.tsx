@@ -128,10 +128,9 @@ import {
   SelectProps as AntSelectProps,
 } from "antd";
 import CardInput from "./CardInput";
-import { Sizes,Themes } from "./theme";
-import SearchIcon from "./SearchIcon";
-import { useTheme } from "./ThemeProvider";
-
+import { Sizes,Themes } from "../Foundation/theme";
+import SearchIcon from "../Icon/SearchIcon";
+import { useTheme } from "../../ThemeProvider";
 type AntSize = "small" | "middle" | "large";
 type CustomSize = keyof typeof Sizes;
 type ExtendedSize = AntSize | CustomSize;
@@ -140,16 +139,13 @@ interface CustomOption {
   label: string;
   img?: string; 
 }
-
 interface CustomComponentProps extends Omit<AntInputProps & AntSelectProps, "size"> {
   size?: ExtendedSize;
   type?: "text" | "password" | "search" | "textarea" | "otp" | "select"|"card";
   autoSize?: boolean | { minRows?: number; maxRows?: number };
   options?:  CustomOption[];
 }
-
 const antSizeMapping: AntSize[] = ["small", "middle", "large"];
-
 const Input: React.FC<CustomComponentProps> = ({
   size = "large",
   status,
@@ -168,13 +164,13 @@ const Input: React.FC<CustomComponentProps> = ({
   const isAntDSize = antSizeMapping.includes(size as AntSize);
   const borderColor = currentTheme.stroke.strong;
   const placeholderTextColor = isError ? currentTheme.Text2Component : currentTheme.Text3Disabled;
-  const customSize = !isAntDSize ? Sizes[size as CustomSize] : undefined;
-
+  const customSize = Sizes[size as CustomSize] || Sizes[40];
+console.log(customSize);
   return (
     <ConfigProvider
       theme={{
         token: {
-          controlHeightSM: customSize?.height,
+          // controlHeightSM: customSize?.height,
           borderRadius: 8,
         },
         components: {
@@ -184,10 +180,10 @@ const Input: React.FC<CustomComponentProps> = ({
             colorError: currentTheme.destructive.stroke,
             colorErrorBorderHover: currentTheme.destructive.stroke,
             colorBorder: borderColor,
-             activeBorderColor: currentTheme.primary.stroke,
-             colorText: currentTheme.Text2Component,
-             colorTextPlaceholder: placeholderTextColor,
-             hoverBorderColor: "none",
+            activeBorderColor: currentTheme.primary.stroke,
+            colorText: currentTheme.Text2Component,
+            colorTextPlaceholder: placeholderTextColor,
+            hoverBorderColor: "none",
             colorBgContainer:currentTheme.Bg1,
             colorBgContainerDisabled: currentTheme.Bg2Hover,
             colorTextDisabled: currentTheme.Text3Disabled,
@@ -201,10 +197,11 @@ const Input: React.FC<CustomComponentProps> = ({
             activeBorderColor:currentTheme.primary.stroke,
             colorText:currentTheme.Text2Component,
             colorTextPlaceholder: placeholderTextColor,
-            controlHeightSM: customSize?.height,
-            borderRadiusSM: 10,
-            paddingSM: customSize?.paddingX,
-            controlPaddingHorizontalSM:customSize?.paddingY,
+            controlHeightLG: customSize?.height,
+            borderRadiusLG: 10,
+            colorBorder:borderColor,
+            paddingLG: customSize?.paddingX,
+            controlPaddingHorizontal:customSize?.paddingY,
             colorErrorBorderHover: currentTheme.destructive.stroke,
             colorBgContainer:currentTheme.Bg1,
             colorBgElevated:currentTheme.Bg1,
@@ -213,8 +210,7 @@ const Input: React.FC<CustomComponentProps> = ({
   
             // lineHeight:customSize?.lineheight,
             // paddingInlineSM: customSize?.paddingX,
-activeOutlineColor:  currentTheme.primary.focus,
-
+            activeOutlineColor:  currentTheme.primary.focus,
             hoverBorderColor: "none",
             boxShadowSecondary:  `0 0 0 4px ${currentTheme.primary.focus}`,
             colorTextQuaternary:currentTheme.Text3Disabled,
@@ -261,9 +257,6 @@ activeOutlineColor:  currentTheme.primary.focus,
   }}
   {...(props as AntSelectProps)}
 />
-
-
-
       ) : type === "password" ? (
         <AntInput.Password
         size={isAntDSize ? (size as AntSize) : "large"}
@@ -275,7 +268,7 @@ activeOutlineColor:  currentTheme.primary.focus,
         />
       ): type === "card" ? (
         <CardInput
-          size={isAntDSize ? (size as AntSize) : "large"}
+          size={isAntDSize ? (size as AntSize) : undefined}
           disabled={disabled}
           status={isError ? "error" : undefined}
           placeholder={placeholder}
@@ -323,6 +316,5 @@ activeOutlineColor:  currentTheme.primary.focus,
     </ConfigProvider>
   );
 };
-
 export  type {CustomComponentProps} ;
 export default Input;

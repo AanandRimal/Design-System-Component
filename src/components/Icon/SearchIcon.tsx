@@ -1,5 +1,5 @@
 import React from "react";
-import { Themes, Sizes } from "./theme"; 
+import { Themes } from "../Foundation/theme"; 
 
 interface SearchIconProps {
   size?: number;
