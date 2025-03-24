@@ -13,7 +13,7 @@ variables:
 
 default:
   tags:
-    - design-system-runner-cd
+    - cd-runner-design-system
     # - design-system-runner
     # - crm-docker
     # - krispcall-design-system-runner-casdoor
