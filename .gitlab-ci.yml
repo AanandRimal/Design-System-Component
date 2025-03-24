@@ -37,8 +37,8 @@ cache:
 
 build_react_app:
   stage: build_docker_image
-  before_script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY  # If image is private
+  # before_script:
+  #   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY  # If image is private
   script:
     - echo "Building React App..."
     - npm install
