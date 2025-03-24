@@ -13,9 +13,9 @@ variables:
 
 default:
   tags:
-    # - design-system-runner
+    - design-system-runner
     # - krispcall-design-system-runner-refactor-server
-    - design-system-runner-casdoor
+    # - design-system-runner-casdoor
 
 stages:
   - build_docker_image
