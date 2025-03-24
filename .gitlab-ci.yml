@@ -13,7 +13,8 @@ variables:
 
 default:
   tags:
-    - design-system-runner
+    # - design-system-runner
+    - krispcall-design-system-runner-refactor-server
 
 stages:
   - build_docker_image
