@@ -3,6 +3,7 @@ image: registry.gitlab.com/krispcall/krispcall-design-system:base
 services:
   - name: docker:dind
     command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]
+    privileged: true
 
 variables:
   DOCKER_HOST: tcp://docker:2375/
