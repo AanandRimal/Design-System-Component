@@ -25,7 +25,6 @@ workflow:
       variables:
         IMAGE_SUFFIX: 'DEV.$CI_COMMIT_SHORT_SHA'
 
-
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
