@@ -30,6 +30,7 @@ cache:
   paths:
     - node_modules/
 
+
 build_react_app:
   stage: build_docker_image
   variables:
