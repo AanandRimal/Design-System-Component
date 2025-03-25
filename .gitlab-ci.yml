@@ -3,7 +3,6 @@ image: registry.gitlab.com/krispcall/krispcall-design-system:base
 services:
   - name: docker:dind
     command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]
-    privileged: true
 
 variables:
   DOCKER_HOST: tcp://docker:2375/
@@ -15,14 +14,6 @@ variables:
 default:
   tags:
     - cd-runner-design-system
-    # - design-system-runner
-    # - crm-docker
-    # - krispcall-design-system-runner-casdoor
-    # - krispcall-design-system-runner-refactor-server
-    # - design-system-runner-casdoor
-    # - casdoor-server-runner-design-system
-
-
 
 stages:
   - build_docker_image
@@ -41,14 +32,16 @@ cache:
 
 build_react_app:
   stage: build_docker_image
-  # before_script:
-  #   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY  # If image is private
+  variables:
+    DOCKER_HOST: "tcp://docker:2375/"
+    DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - docker info  # Ensure Docker is running
   script:
     - echo "Building React App..."
     - export NODE_OPTIONS=--max_old_space_size=4096
     - npm install
     - npm run build
-    # - cp -r build/* .
     - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
-    - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
+    - DOCKER_BUILDKIT=1 docker build --privileged -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
     - docker push $CI_DOCKER_REPO:$IMAGE_TAG
