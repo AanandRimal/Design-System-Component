@@ -33,8 +33,11 @@ cache:
 
 build_react_app:
   stage: build_docker_image
+  image: docker:24.0.7 # Ensure a modern Docker version
+  services:
+    - docker:dind # Required for Docker builds
   variables:
-    DOCKER_HOST: "tcp://docker:2375/"
+    DOCKER_HOST: "tcp://docker:2375"
     DOCKER_TLS_CERTDIR: ""
   script:
     - echo "Building React App..."
@@ -43,7 +46,11 @@ build_react_app:
     - export CI=false  # Prevent ESLint warnings from failing CI
     - npm run build
     - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
-    - docker buildx create --use
-    - docker buildx inspect --bootstrap
+    - docker version  # Debug: Check Docker version
+    - docker info     # Debug: Check if Buildx is available
+    - docker buildx version || echo "Buildx is not installed!"
+    - docker buildx create --name mybuilder --driver docker-container --use || echo "Failed to create builder"
+    - docker buildx inspect --bootstrap || echo "Buildx bootstrap failed"
     - DOCKER_BUILDKIT=1 docker build --progress=plain -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
     - docker push $CI_DOCKER_REPO:$IMAGE_TAG
+
