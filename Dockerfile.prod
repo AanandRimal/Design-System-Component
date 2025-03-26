@@ -10,7 +10,6 @@ COPY nginx/k8s-nginx.conf /etc/nginx/conf.d
 RUN rm -rf /usr/share/nginx/html/*
 
 COPY build/ /usr/share/nginx/html
-COPY src/favicon.ico /usr/share/nginx/html/favicon.ico
 
 # Expose port 80 for HTTP Traffic
 EXPOSE 80 443
