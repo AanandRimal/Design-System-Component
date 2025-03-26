@@ -52,7 +52,7 @@ Deploy:
   script:
     - git config --global user.name bot:krispcalldev
     - git config --global user.email bot@krispcalldev.com
-    - git clone https://git-clone:$git_clone_TOKEN_SECRET@gitlab.com/krispcall/deployment.git -b devops-poc
+    - git clone https://git-clone:$ACCESS_TOKEN@gitlab.com/krispcall/deployment.git -b devops-poc
     - cd deployment/DEV/DESIGN/ #=> deployment/DEV/DIALER
     - kustomize edit set image registry.gitlab.com/krispcall/krispcall-design-system:${IMAGE_SUFFIX}
     - git add .
