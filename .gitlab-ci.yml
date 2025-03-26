@@ -33,9 +33,6 @@ cache:
 
 build_react_app:
   stage: build_docker_image
-  variables:
-    DOCKER_HOST: "tcp://docker:2375/"
-    DOCKER_TLS_CERTDIR: ""
   script:
     - echo "Building React App..."
     - export NODE_OPTIONS=--max_old_space_size=4096
@@ -46,6 +43,4 @@ build_react_app:
     - apt install docker.io -y
     - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
     - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
-    # - docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
     - docker push $CI_DOCKER_REPO:$IMAGE_TAG
-
