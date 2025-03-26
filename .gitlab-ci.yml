@@ -1,4 +1,5 @@
-image: registry.gitlab.com/krispcall/krispcall-design-system:base
+# image: registry.gitlab.com/krispcall/krispcall-design-system:base
+image: registry.gitlab.com/krispcall/hubspot-calling-extension:baseimage
 
 services:
   - name: docker:dind
