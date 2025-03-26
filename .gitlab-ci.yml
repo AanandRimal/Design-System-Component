@@ -46,6 +46,7 @@ build_react_app:
     - apt install docker.io -y
     - ls
     - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
+    - docker login -u $USERNAME -p $ACCESS_TOKEN $CI_DOCKER_REPO
     - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
     # - docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
     - docker push $CI_DOCKER_REPO:$IMAGE_TAG
