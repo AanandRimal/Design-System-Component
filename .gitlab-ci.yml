@@ -1,4 +1,4 @@
-image: registry.gitlab.com/krispcall/hubspot-calling-extension:baseimage
+image: node:18.19.0
 
 services:
   - name: docker:dind
@@ -42,8 +42,10 @@ build_react_app:
     - npm install
     - export CI=false  # Disable CI mode to prevent ESLint warnings from failing the build
     - npm run build
+    - apt update -y
+    - apt install docker.io -y
     - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
-    # - DOCKER_BUILDKIT=1 docker build --privileged -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
-    - docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
+    - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
+    # - docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
     - docker push $CI_DOCKER_REPO:$IMAGE_TAG
 
