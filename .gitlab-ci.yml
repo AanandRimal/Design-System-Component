@@ -37,11 +37,11 @@ build_react_app:
     DOCKER_HOST: "tcp://docker:2375/"
     DOCKER_TLS_CERTDIR: ""
   script:
-    - echo "Building React App..."
-    # - export NODE_OPTIONS=--max_old_space_size=4096
-    - npm install
-    - export CI=false  # Disable CI mode to prevent ESLint warnings from failing the build
-    - npm run build
+    # - echo "Building React App..."
+    # # - export NODE_OPTIONS=--max_old_space_size=4096
+    # - npm install
+    # - export CI=false  # Disable CI mode to prevent ESLint warnings from failing the build
+    # - npm run build
     - apt update -y
     - apt install docker.io -y
     - ls
