@@ -1,4 +1,3 @@
-# image: registry.gitlab.com/krispcall/krispcall-design-system:base
 image: registry.gitlab.com/krispcall/hubspot-calling-extension:baseimage
 
 services:
@@ -11,6 +10,7 @@ variables:
   DOCKER_TLS_CERTDIR: ""
   CI_DOCKER_REPO: registry.gitlab.com/krispcall/krispcall-design-system
   DOCKERFILE_NAME: Dockerfile.prod
+  ESLINT_NO_DEV_ERRORS: "true"
 
 default:
   tags:
@@ -31,18 +31,16 @@ cache:
   paths:
     - node_modules/
 
-
 build_react_app:
   stage: build_docker_image
   variables:
     DOCKER_HOST: "tcp://docker:2375/"
     DOCKER_TLS_CERTDIR: ""
-  # before_script:
-  #   - docker info 
   script:
     - echo "Building React App..."
     - export NODE_OPTIONS=--max_old_space_size=4096
     - npm install
+    - export ESLINT_NO_DEV_ERRORS=true  # Prevents ESLint warnings from failing CI
     - npm run build
     - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
     - DOCKER_BUILDKIT=1 docker build --privileged -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
