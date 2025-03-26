@@ -14,7 +14,7 @@ variables:
 
 default:
   tags:
-    - cd-runner-design-system
+    - crm-docker
 
 stages:
   - build_docker_image
