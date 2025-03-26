@@ -14,7 +14,7 @@ variables:
 
 default:
   tags:
-    - crm-docker
+    - hrms-srv-runner
 
 stages:
   - build_docker_image
