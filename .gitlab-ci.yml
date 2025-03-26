@@ -37,17 +37,21 @@ build_react_app:
     DOCKER_HOST: "tcp://docker:2375/"
     DOCKER_TLS_CERTDIR: ""
   script:
-    # - echo "Building React App..."
-    # # - export NODE_OPTIONS=--max_old_space_size=4096
-    # - npm install
-    # - export CI=false  # Disable CI mode to prevent ESLint warnings from failing the build
-    # - npm run build
     - apt update -y
     - apt install docker.io -y
     - ls
-    - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
+    - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:${IMAGE_SUFFIX} . -f ${DOCKERFILE_NAME}
     - docker login -u $USERNAME -p $ACCESS_TOKEN $CI_DOCKER_REPO
-    - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
-    # - docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
-    - docker push $CI_DOCKER_REPO:$IMAGE_TAG
+    - docker push $CI_DOCKER_REPO:${IMAGE_SUFFIX}
 
+Deploy:
+  stage: deploy
+  script:
+    - git config --global user.name bot:krispcalldev
+    - git config --global user.email bot@krispcalldev.com
+    - git clone https://git-clone:$git_clone_TOKEN_SECRET@gitlab.com/krispcall/deployment.git -b devops-poc
+    - cd deployment/DEV/DESIGN/ #=> deployment/DEV/DIALER
+    - kustomize edit set image registry.gitlab.com/krispcall/krispcall-design-system:${IMAGE_SUFFIX}
+    - git add .
+    - git commit -m  "Update Design image to version ${IMAGE_SUFFIX}"
+    - git push origin devops-poc
