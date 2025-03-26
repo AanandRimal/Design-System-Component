@@ -40,9 +40,10 @@ build_react_app:
     - echo "Building React App..."
     - export NODE_OPTIONS=--max_old_space_size=4096
     - npm install
-    - export CI=false  # Disable CI mode to prevent ESLint warnings from failing the build
+    - export CI=false  # Prevent ESLint warnings from failing CI
     - npm run build
     - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
-    - DOCKER_BUILDKIT=1 docker build --privileged -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
+    - docker buildx create --use
+    - docker buildx inspect --bootstrap
+    - DOCKER_BUILDKIT=1 docker build --progress=plain -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
     - docker push $CI_DOCKER_REPO:$IMAGE_TAG
-
