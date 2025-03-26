@@ -41,7 +41,7 @@ build_react_app:
     - apt install docker.io -y
     - ls
     - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:${IMAGE_SUFFIX} . -f ${DOCKERFILE_NAME}
-    - echo "$ACCESS_TOKEN" | docker login --u "sandeep_thapa --password-stdin $CI_DOCKER_REPO
+    - echo "$ACCESS_TOKEN" | docker login --u sandeep_thapa --password-stdin $CI_DOCKER_REPO
     - docker login -u sandeep_thapa -p $ACCESS_TOKEN $CI_DOCKER_REPO
     - docker push $CI_DOCKER_REPO:${IMAGE_SUFFIX}
 
