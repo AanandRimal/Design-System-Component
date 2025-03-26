@@ -48,7 +48,7 @@ build_react_app:
 Deploy:
   stage: deploy
   # image: registry.gitlab.com/krispcall/krispcall-design-system
-  image: image: registry.gitlab.com/krispcall/hubspot-calling-extension:baseimage
+  image: registry.gitlab.com/krispcall/hubspot-calling-extension:baseimage
   script:
     - git config --global user.name bot:krispcalldev
     - git config --global user.email bot@krispcalldev.com
