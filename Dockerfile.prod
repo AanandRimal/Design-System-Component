@@ -1,5 +1,6 @@
 FROM nginx:alpine
 
+
 RUN rm /etc/nginx/nginx.conf
 RUN rm /etc/nginx/conf.d/default.conf
 
@@ -9,7 +10,7 @@ COPY nginx/k8s-nginx.conf /etc/nginx/conf.d
 ## Remove default nginx index page
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY build/ /usr/share/nginx/html
+COPY ./build/ /usr/share/nginx/html
 
 # Expose port 80 for HTTP Traffic
 EXPOSE 80 443
