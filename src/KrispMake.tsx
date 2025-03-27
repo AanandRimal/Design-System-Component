@@ -312,6 +312,9 @@ const alertData = [
         rowHoverBg: "none",
         borderColor: currentTheme.stroke.strong,
       },
+      Menu:{
+        darkItemBg:currentTheme.Bg1
+      }
     },
   }}
 >
@@ -332,15 +335,17 @@ const alertData = [
         left: 0,
         background: currentTheme.Bg1, 
         padding: "16px", 
-        boxShadow: "2px 0 5px rgba(0,0,0,0.1)", 
+    boxShadow: `4px 0 4px ${currentTheme.Bg2Hover}`,
       }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <img src="/krispmake.png" alt="Logo" style={{ width: "30px", height: "30px", marginRight: "5px"}} />
           <Title level={3} style={{ margin: 0, color: currentTheme.text }}>KrispMake</Title>
         </div>
         <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
-        
-        <Menu 
+ 
+    
+
+        <Menu
           selectedKeys={[selectedComponent]} 
           onClick={(e) => setSelectedComponent(e.key)} 
           theme={themeMode === "dark" ? "dark" : "light"}
@@ -349,7 +354,6 @@ const alertData = [
             <Menu.Item key={component}>{component}</Menu.Item>
           ))}
         </Menu>
-
         <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <p style={{ margin: 0 }}>Dark Mode</p>
@@ -436,7 +440,7 @@ const alertData = [
         <div>
    {selectedComponent === "Avatar" && (
     <>
- <Avatar size={120} src={<img src={"./Female 2.png"} alt="avatar" />}/>
+ {/* <Avatar size={120} src={<img src={"./Female 2.png"} alt="avatar" />}/>
  <Avatar
   size={32}
   icon={
@@ -444,15 +448,8 @@ const alertData = [
       icon="mage:user-fill"// Adjust this value as needed
     />
   }
-/>
-<Avatar size={20}>C</Avatar>
-<Avatar size={14}>U</Avatar>
-<Avatar size={32}>C</Avatar>
-<Avatar size={40}>UC</Avatar>
-<Avatar size={48}>UC</Avatar>
-<Avatar size={120}>UC</Avatar>
-<Avatar>CK</Avatar>
-<TestAvatar></TestAvatar>
+/> */}
+<Avatar customSize={20}>C</Avatar>
  </>
 )}
         </div>

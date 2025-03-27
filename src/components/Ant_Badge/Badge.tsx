@@ -20,7 +20,9 @@ const Badge: React.FC<CustomBadgeProps> = ({customSize=16,...props }) => {
         },
       }}
     >
-      <AntBadge  {...props} />
+      <AntBadge  {...props} >
+        {props.children}
+        </AntBadge>
     </ConfigProvider>
   );
 };
