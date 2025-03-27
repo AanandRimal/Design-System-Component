@@ -36,9 +36,9 @@
   .custom-indeterminate .ant-checkbox-inner::after {
     content: "";
     position: absolute;
-    width: 10px; /* Length of "-" */
+    width: calc(var(--indeterminate-width, 8.65px));
     height: 0; /* No height to avoid tick-like shape */
-    border-top: 2px solid #fff; /* White "-" line */
+    border-top: calc(var(--indeterminate-width-bold)) solid #fff; /* White "-" line */
     border-inline-start: none; /* Remove vertical line */
     border-bottom: none; /* Remove bottom line */
     border-inline-end: none; /* Remove right line */
@@ -70,3 +70,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }   */
+/* .ant-checkbox-checked .ant-checkbox-inner::after {
+
+  top: 50%;
+*/

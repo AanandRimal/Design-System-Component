@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTheme } from "../../ThemeProvider";
+import { useTheme } from "../../contexthook/ThemeProvider";
 import { colors,Themes } from "./theme";
 const colorTypes = Object.keys(colors) as (keyof typeof colors)[];
 const ColorPalette: React.FC = () => {

@@ -1,21 +1,23 @@
 import React from "react";
 import {ConfigProvider, Alert as AntAlert } from "antd";
 import { AlertProps as AntAlertProps } from "antd/lib/alert";
-import { Themes, Sizes ,socialSizePadding} from "../Foundation/theme";
-import { useTheme } from "../../ThemeProvider";
+import { Themes} from "../Foundation/theme";
+import { useTheme } from "../../contexthook/ThemeProvider";
 type CustomAlertType = "primary" | "neutral";
 type ExtendedAlertType = AntAlertProps["type"] | CustomAlertType;
 interface AlertProps extends Omit<AntAlertProps, "type" > {
   type?: ExtendedAlertType;
+  stroke?:boolean;
 }
 const Alert: React.FC<AlertProps> = ({
   type = "info",
+  stroke=false,
   ...props
 }) => {
   const { themeMode } = useTheme();
   const currentTheme=Themes[themeMode];
   const themeType = type === "error" ? "destructive" : type;
-  const colorInfo = (Themes[themeMode] as any)[themeType as CustomAlertType] || Themes[themeMode]?.secondary;
+  const colorInfo = (currentTheme as any)[themeType as CustomAlertType] || currentTheme?.secondary;
 
     // const customSize = size && !isAntDSize && Sizes.hasOwnProperty(size as keyof typeof Sizes)
     //   ? Sizes[size as keyof typeof Sizes]
@@ -37,14 +39,15 @@ const Alert: React.FC<AlertProps> = ({
             colorInfo: colorInfo.default,
             colorInfoHover: colorInfo.hover,
             colorInfoActive: colorInfo.default,
-            colorInfoBg:colorInfo.focus,
-            colorInfoBorder: "none",
+            colorInfoBg: stroke? "none" :colorInfo.focus,
+            colorInfoBorder:stroke? colorInfo.stroke: "none",
             colorText:colorInfo.dark,
             colorTextHeading:colorInfo.dark,
-            withDescriptionIconSize:17,
+            withDescriptionIconSize:20,
           colorIcon:colorInfo.stroke,
           fontSizeIcon:16,
           withDescriptionPadding:"12px 14px",
+        
             // colorInfoBorder:colorInfo.focus,
             // colorTextDisabled: currentTheme.Text3Disabled,
             // colorBgContainerDisabled: currentTheme.Bg2Hover,

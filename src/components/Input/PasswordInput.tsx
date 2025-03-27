@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "./components/Input/Input"; // Import your custom Input component
+import Input from "./Input"; // Import your custom Input component
 import { CircleCheck } from "lucide-react";
 interface PasswordInputProps extends React.ComponentProps<typeof Input> {
   label?: string;
