@@ -1,8 +1,8 @@
-image: registry.gitlab.com/krispcall/krispcall-design-system:base  # Corrected image path
+image: node:18.19.0
 
 services:
   - name: docker:dind
-    command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]  # Optional: Adjust dind command
+    command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]
 
 variables:
   DOCKER_HOST: tcp://docker:2375/
@@ -10,10 +10,11 @@ variables:
   DOCKER_TLS_CERTDIR: ""
   CI_DOCKER_REPO: registry.gitlab.com/krispcall/krispcall-design-system
   DOCKERFILE_NAME: Dockerfile.prod
+  ESLINT_NO_DEV_ERRORS: "true"
 
 default:
   tags:
-    - design-system-runner
+    - cd-runner-design-system
 
 stages:
   - build_docker_image
@@ -32,13 +33,28 @@ cache:
 
 build_react_app:
   stage: build_docker_image
-  # before_script:
-  #   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY  # If image is private
+  variables:
+    DOCKER_HOST: "tcp://docker:2375/"
+    DOCKER_TLS_CERTDIR: ""
   script:
-    - echo "Building React App..."
-    - npm install
-    - npm run build
-    - cp -r build/* .
-    - export IMAGE_TAG="${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHORT_SHA}"
-    - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:$IMAGE_TAG . -f ${DOCKERFILE_NAME}
-    - docker push $CI_DOCKER_REPO:$IMAGE_TAG
+    - apt update -y
+    - apt install docker.io -y
+    - DOCKER_BUILDKIT=1 docker build -t $CI_DOCKER_REPO:${IMAGE_SUFFIX} . -f ${DOCKERFILE_NAME}
+    - echo "$ACCESS_TOKEN" | docker login -u sandeep_thapa --password-stdin $CI_DOCKER_REPO
+    # - echo "$ACCESS_TOKEN" | DOCKER_CLI_ACI=0 docker login -u sandeep_thapa --password-stdin $CI_DOCKER_REPO
+    # - docker login -u sandeep_thapa -p $ACCESS_TOKEN $CI_DOCKER_REPO
+    - docker push $CI_DOCKER_REPO:${IMAGE_SUFFIX}
+
+Deploy:
+  stage: deploy
+  # image: registry.gitlab.com/krispcall/krispcall-design-system
+  image: registry.gitlab.com/krispcall/hubspot-calling-extension:baseimage
+  script:
+    - git config --global user.name bot:krispcalldev
+    - git config --global user.email bot@krispcalldev.com
+    - git clone https://git-clone:$ACCESS_TOKEN@gitlab.com/krispcall/deployment.git -b devops-poc
+    - cd deployment/DEV/DESIGN/ #=> deployment/DEV/DIALER
+    - kustomize edit set image registry.gitlab.com/krispcall/krispcall-design-system:${IMAGE_SUFFIX}
+    - git add .
+    - git commit -m  "Update Design image to version ${IMAGE_SUFFIX}"
+    - git push origin devops-poc
