@@ -31,7 +31,7 @@ cache:
   paths:
     - node_modules/
 
-build_react_app:
+build_design_system_app:
   stage: build_docker_image
   variables:
     DOCKER_HOST: "tcp://docker:2375/"
@@ -45,7 +45,7 @@ build_react_app:
     # - docker login -u sandeep_thapa -p $ACCESS_TOKEN $CI_DOCKER_REPO
     - docker push $CI_DOCKER_REPO:${IMAGE_SUFFIX}
 
-Deploy:
+deploy_design_system_app:
   stage: deploy
   # image: registry.gitlab.com/krispcall/krispcall-design-system
   image: registry.gitlab.com/krispcall/hubspot-calling-extension:baseimage
@@ -53,7 +53,7 @@ Deploy:
     - git config --global user.name bot:krispcalldev
     - git config --global user.email bot@krispcalldev.com
     - git clone https://git-clone:$ACCESS_TOKEN@gitlab.com/krispcall/deployment.git -b devops-poc
-    - cd deployment/DEV/DESIGN/ #=> deployment/DEV/DIALER
+    - cd deployment/DEV/DESIGN/
     - kustomize edit set image registry.gitlab.com/krispcall/krispcall-design-system:${IMAGE_SUFFIX}
     - git add .
     - git commit -m  "Update Design image to version ${IMAGE_SUFFIX}"
