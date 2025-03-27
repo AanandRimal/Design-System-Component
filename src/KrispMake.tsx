@@ -60,8 +60,8 @@ const inputColumns = [
 ];
 
   const columns = [
-    { title: "Type", dataIndex: "type", key: "type", width: 150 },
-    { title: "Size", dataIndex: "size", key: "size", width: 100 },
+    { title: "Type", dataIndex: "Customtype", key: "type", width: 150 },
+    { title: "Size", dataIndex: "Customsize", key: "size", width: 100 },
     { title: "Default", dataIndex: "default", key: "default" },
     { title: "Hover", dataIndex: "hover", key: "hover" },
     { title: "Clicked", dataIndex: "clicked", key: "clicked" },
@@ -131,7 +131,7 @@ const alertColumns = [
       data.push({
         key: `${type}-${size}`,
         Customtype: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "", 
-        Customsize:"",
+        Customsize:size,
         default: <Button Customtype={type} Customsize={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
         hover: <Button Customtype={type} Customsize={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
         clicked: <Button Customtype={type} Customsize={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
@@ -146,7 +146,7 @@ const alertColumns = [
     data.push({
       key: `social-google-${size}`,
       Customtype: index === 0 ? "Social (Google)" : "", 
-      Customsize:"",
+      Customsize:size,
       default: <Button Customtype="social" Customsize={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
       hover: <Button Customtype="social" Customsize={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
       clicked: <Button Customtype="social" Customsize={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
@@ -159,7 +159,7 @@ const alertColumns = [
     data.push({
       key: `social-apple-${size}`,
       Customtype: index === 0 ? "Social (Apple)" : "", 
-      Customsize:"",
+      Customsize:size,
       default: <Button Customtype="social" Customsize={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
       hover: <Button Customtype="social" Customsize={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
       clicked: <Button Customtype="social" Customsize={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,

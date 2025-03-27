@@ -12,7 +12,7 @@ leftIcon?:React.ReactNode;
 rightIcon?:React.ReactNode;
 }
 const Button: React.FC<ButtonProps> = ({
-  type = "primary", //made type primary by defualt if no type provided
+  type="primary",
   Customtype,
   Customsize,
   leftIcon,
@@ -36,6 +36,8 @@ const Button: React.FC<ButtonProps> = ({
     ...(props.loading && { // loading case we dont have token so handled with css for all button
       backgroundColor: currentTheme.Bg2Hover,
       color: currentTheme.Text3Disabled,
+            paddingBlock: finalPaddingY,
+        lineHeight: `${lineheight / 16}rem`
     }),
   };
     const iconColor = props.disabled ? currentTheme.Text3Disabled   : isSocialType //for all disbaled state icon color is same so text3diabeld and then for type socila icon color is defualt when exported the svg color  and  for type secondary icon color is different then other so handling 
@@ -64,8 +66,6 @@ const Button: React.FC<ButtonProps> = ({
     type={type}//type provided as if not type given it is priamry as we have default primary prop if the type of pther proivded it takes that and config token is not applied 
       style={{
         ...buttonStyle,
-        paddingBlock: finalPaddingY,
-        lineHeight: `${lineheight / 16}rem`
       }}
       {...props}
     >
