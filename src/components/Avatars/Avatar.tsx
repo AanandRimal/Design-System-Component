@@ -1,55 +1,54 @@
 import React from "react";
+import styled from "styled-components";
 import { Avatar as AntAvatar, AvatarProps, ConfigProvider } from "antd";
-import { Themes } from "../Foundation/theme";
 import { useTheme } from "../../contexthook/ThemeProvider";
+import { Themes } from "../foundation/Theme";
+import Badge from "../ant-badge/Badge";
 import { avatarSizes } from "./AvatarSizes";
-import Badge from "../Ant_Badge/Badge";
 
 interface CustomAvatarProps extends AvatarProps {
   customSize?: number;
 }
 
-const Avatar: React.FC<CustomAvatarProps> = ({ icon, customSize, ...props }) => {
+const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
+  height: ${(props) => props.iconSize}px;
+  width: ${(props) => props.iconSize}px;
+  transform: translateY(${(props) => props.translateY}px);
+`;
+
+const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-  
-  const resolvedSize = avatarSizes.hasOwnProperty(customSize as keyof typeof avatarSizes)
-    ? avatarSizes[customSize as keyof typeof avatarSizes]
-    : avatarSizes[120];
 
-  const iconSize = resolvedSize.base * 0.8;
-  const translateY = resolvedSize.base * 0.15;
+  const avatarSizeobj = avatarSizes[customSize as keyof typeof avatarSizes] || avatarSizes[120];
+  const iconSize = avatarSizeobj.base * 0.8;
+  const translateY = avatarSizeobj.base * 0.19;
 
   return (
     <ConfigProvider
       theme={{
         components: {
           Avatar: {
-            colorBgContainer: currentTheme.Bg1,
+            colorTextPlaceholder: icon ? currentTheme.Bg5 : currentTheme.primary.default,
             colorText: currentTheme.Text1Title,
-            colorTextLightSolid: currentTheme.Bg2Hover,
+            colorTextLightSolid: icon ? currentTheme.Bg2Hover : currentTheme.StaticWhite,
             colorBorder: "#ffff",
-            containerSize: resolvedSize.base,
-            fontSize: 500,
+            containerSize: avatarSizeobj.base,
+            textFontSize: iconSize,
           },
         },
       }}
     >
-      <Badge dot customSize={resolvedSize.status} offset={[-2, 17]}>
+      <Badge dot customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]}>
         <AntAvatar
           icon={
-            React.isValidElement(icon)
-              ? React.cloneElement(icon as React.ReactElement<any>, {
-                  style: {
-                    height: `${iconSize}px`,
-                    width: `${iconSize}px`,
-                    transform: `translateY(${translateY}px)`,
-                    ...(icon.props && typeof icon.props === "object"
-                      ? (icon.props as { style?: React.CSSProperties }).style
-                      : {}),
-                  },
-                })
-              : icon
+            React.isValidElement(icon) ? (
+              <StyledIconWrapper iconSize={iconSize} translateY={translateY}>
+                {React.cloneElement(icon as React.ReactElement<any>)}
+              </StyledIconWrapper>
+            ) : (
+              icon
+            )
           }
           {...props}
         />

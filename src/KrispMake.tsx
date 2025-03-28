@@ -1,25 +1,24 @@
 import { useState } from "react";
 import { ReactNode } from "react";
 import {  Typography as Type, Divider, Menu, Table,ConfigProvider,Space } from "antd";
-import Button from "./components/Button/Button"; 
+import Button from "./components/button/Button"; 
 import { useTheme } from "./contexthook/ThemeProvider";
-import ColorPalette from "./components/Foundation/ColorPalette";
-import CheckBox from "./components/CheckBox/CheckBox";
-import Input from "./components/Input/Input";
-import Typography from "./components/Foundation/Typography";
-import PasswordInput from "./components/Input/PasswordInput";
-import CustomInput from "./components/Input/CustomInput";
-import {LeftIcon,RightIcon} from "./components/Icon/LeftIcon";
-import { GoogleIcon,AppleIcon } from "./components/Icon/Icon";
-import { Themes } from "./components/Foundation/theme";
+import ColorPalette from "./components/foundation/ColorPalette";
+import CheckBox from "./components/checkbox/CheckBox";
+import Input from "./components/input/Input";
+import Typography from "./components/foundation/Typography";
+import PasswordInput from "./components/input/PasswordInput";
+import CustomInput from "./components/input/CustomInput";
+import {LeftIcon,RightIcon} from "./components/icons/LeftIcon";
+import { GoogleIcon,AppleIcon } from "./components/icons/Icon";
+import { Themes } from "./components/foundation/Theme";
 import Radio from "./components/Radio";
-import Switch from "./components/Switch/Switch"
-import Alert from "./components/Alerts/Alerts"
-import { ExtendedAlertType } from "./components/Alerts/Alerts";
-import Breadcrumb from "./components/BreadCrumbs/BreadCrumbs";
-import Avatar from "./components/Avatars/Avatar";
+import Switch from "./components/switch/Switch"
+import Alert from "./components/alerts/Alerts"
+import { ExtendedAlertType } from "./components/alerts/Alerts";
+import Breadcrumb from "./components/breadcrumbs/BreadCrumbs";
+import Avatar from "./components/avatars/Avatar";
 import { Icon } from "@iconify/react";
-import TestAvatar from "./components/Avatars/Testavatar";
 const { Title } = Type;
 const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb"];
 export default function KrispMake() {
@@ -98,6 +97,13 @@ const alertColumns = [
   { title: "Condition", dataIndex: "condition", key: "condition", width: 150 },
   { title: "Type", dataIndex: "type", key: "type", width: 150 },
   { title: "Alert", dataIndex: "alert", key: "alert" },
+];
+const avatarSizesList = [14, 20, 24, 32, 36, 40, 48, 64, 80, 120];
+const avatarColumns = [
+  { title: "Size", dataIndex: "size", key: "size", width: 100 },
+  { title: "Image", dataIndex: "image", key: "image" },
+  { title: "Initials", dataIndex: "initials", key: "initials" },
+  { title: "Avatar", dataIndex: "avatar", key: "avatar" },
 ];
   const countryOptions = [
     { value: "us", label: "+997 United States", img: "https://flagcdn.com/w40/us.png" },
@@ -299,6 +305,15 @@ const alertData = [
   ...generateAlertData("stroke"),
 ];
 
+const avatarData = avatarSizesList.map((size) => ({
+  key: `avatar-${size}`,
+  size,
+  image: <Avatar customSize={size} src={<img src={"./Female 2.png"} alt="avatar" />} />,
+  initials: <Avatar customSize={size}>K</Avatar>,
+  avatar: <Avatar customSize={size} icon={  <Icon
+    icon="mage:user-fill"
+  />} />, 
+}));
 
   return (
     <ConfigProvider
@@ -440,16 +455,7 @@ const alertData = [
         <div>
    {selectedComponent === "Avatar" && (
     <>
- {/* <Avatar size={120} src={<img src={"./Female 2.png"} alt="avatar" />}/>
- <Avatar
-  size={32}
-  icon={
-    <Icon
-      icon="mage:user-fill"// Adjust this value as needed
-    />
-  }
-/> */}
-<Avatar customSize={20}>C</Avatar>
+ <Table columns={avatarColumns} dataSource={avatarData} pagination={false} bordered />
  </>
 )}
         </div>

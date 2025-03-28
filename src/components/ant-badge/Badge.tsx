@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge as AntBadge, ConfigProvider, BadgeProps } from "antd";
-import { Themes } from "../Foundation/theme";
 import { useTheme } from "../../contexthook/ThemeProvider";
+import { Themes } from "../foundation/Theme";
 interface CustomBadgeProps extends BadgeProps{
   customSize?:number
 }
@@ -15,7 +15,9 @@ const Badge: React.FC<CustomBadgeProps> = ({customSize=16,...props }) => {
           Badge: {
             indicatorHeight:customSize,
             dotSize:customSize,
-            colorError:currentTheme.success.default
+            colorError:currentTheme.success.default,
+            colorBorderBg:currentTheme.Bg1,
+            lineWidth:2
           },
         },
       }}

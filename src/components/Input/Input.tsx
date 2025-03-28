@@ -4,10 +4,10 @@ import {
   InputProps as AntInputProps,
   Select as AntSelect,
   SelectProps as AntSelectProps,} from "antd";
-import CardInput from "./CardInput";
-import { Sizes,Themes } from "../Foundation/theme";
-import SearchIcon from "../Icon/SearchIcon";
 import { useTheme } from "../../contexthook/ThemeProvider";
+import { Sizes,Themes } from "../foundation/Theme";
+import SearchIcon from "../icons/SearchIcon";
+import CardInput from "./CardInput";
 type AntSize = "small" | "middle" | "large";
 type CustomSize = keyof typeof Sizes;
 type ExtendedSize = AntSize | CustomSize;

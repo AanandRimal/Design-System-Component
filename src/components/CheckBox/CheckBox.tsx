@@ -1,8 +1,8 @@
 import React from "react";
 import { Checkbox, ConfigProvider, CheckboxProps } from "antd";
-import { Themes } from "../Foundation/theme";
-import { checkSizes } from "./CheckSizes";
 import { useTheme } from "../../contexthook/ThemeProvider"; 
+import { Themes } from "../foundation/Theme";
+import { checkSizes } from "./CheckSizes";
 import "./check.css";
 interface CustomCheckBoxProps extends CheckboxProps {
   size?: number;

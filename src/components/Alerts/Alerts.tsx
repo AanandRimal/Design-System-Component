@@ -1,7 +1,7 @@
 import React from "react";
 import {ConfigProvider, Alert as AntAlert } from "antd";
 import { AlertProps as AntAlertProps } from "antd/lib/alert";
-import { Themes} from "../Foundation/theme";
+import { Themes} from "../foundation/Theme";
 import { useTheme } from "../../contexthook/ThemeProvider";
 type CustomAlertType = "primary" | "neutral";
 type ExtendedAlertType = AntAlertProps["type"] | CustomAlertType;

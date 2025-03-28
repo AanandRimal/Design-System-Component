@@ -1,7 +1,7 @@
 import React from "react";
 import { Radio as AntRadio, ConfigProvider, RadioProps } from "antd";
-import { Themes } from "./Foundation/theme";
 import { useTheme } from "../contexthook/ThemeProvider";
+import { Themes } from "./foundation/Theme";
 interface CustomRadioProps extends RadioProps {
   size?: number;
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { ConfigProvider, Button as AntButton } from "antd";
-import { Themes, Sizes ,socialSizePadding} from "../Foundation/theme";
-import { useTheme } from "../../contexthook/ThemeProvider";
 import { ButtonProps as AntButtonProps } from "antd/lib/button";
+import { useTheme } from "../../contexthook/ThemeProvider";
+import { Themes, Sizes ,socialSizePadding} from "../foundation/Theme";
 type Customtype = "primary"| "secondary" | "success" | "info" | "destructive" | "warning" | "social"; // made so that no other type can be passed
 type CustomSize = keyof typeof Sizes;//same dfor szie as well no other than key of typeszies be passed 
 interface ButtonProps extends AntButtonProps { // adding extra porps with extending the exisintg button prop of ant 
@@ -12,12 +12,12 @@ leftIcon?:React.ReactNode;
 rightIcon?:React.ReactNode;
 }
 const Button: React.FC<ButtonProps> = ({
-  type="primary",
+  //removed explicit type and rathe rpassed the type while passing button itslef
   Customtype,
   Customsize,
   leftIcon,
   rightIcon,
-  ...props
+  ...props 
 }) => {
   const { themeMode } = useTheme();
   const currentTheme=Themes[themeMode];
@@ -36,8 +36,8 @@ const Button: React.FC<ButtonProps> = ({
     ...(props.loading && { // loading case we dont have token so handled with css for all button
       backgroundColor: currentTheme.Bg2Hover,
       color: currentTheme.Text3Disabled,
-            paddingBlock: finalPaddingY,
-        lineHeight: `${lineheight / 16}rem`
+      paddingBlock: finalPaddingY,
+      lineHeight: `${lineheight / 16}rem`
     }),
   };
     const iconColor = props.disabled ? currentTheme.Text3Disabled   : isSocialType //for all disbaled state icon color is same so text3diabeld and then for type socila icon color is defualt when exported the svg color  and  for type secondary icon color is different then other so handling 
@@ -53,7 +53,6 @@ const Button: React.FC<ButtonProps> = ({
     };
     if (React.isValidElement(icon)) {
       const existingStyle = (icon.props as any).style || {};
-  
       return React.cloneElement(icon as React.ReactElement<any>, {
         style: { ...iconStyle, ...existingStyle },
       });
@@ -63,7 +62,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const button = (
     <AntButton
-    type={type}//type provided as if not type given it is priamry as we have default primary prop if the type of pther proivded it takes that and config token is not applied 
+    type={props.type?props.type:"primary"}//type provided as if not type given it is priamry as we have default primary prop if the type of pther proivded it takes that and config token is not applied 
       style={{
         ...buttonStyle,
       }}

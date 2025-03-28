@@ -7,7 +7,7 @@ interface CustomInputProps extends InputProps {
 
 const TextInput: React.FC<CustomInputProps> = ({ customSize, ...props }) => {
   return (
-    <InputConfigProvider size={customSize}>
+    <InputConfigProvider CustomSize={customSize}>
       <AntInput {...props} />
     </InputConfigProvider>
   );
