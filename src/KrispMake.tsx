@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ReactNode } from "react";
 import {  Typography as Type, Divider, Menu, Table,ConfigProvider,Space } from "antd";
+import { Icon } from "@iconify/react";
 import Button from "./components/button/Button"; 
 import { useTheme } from "./contexthook/ThemeProvider";
 import ColorPalette from "./components/foundation/ColorPalette";
@@ -18,9 +19,11 @@ import Alert from "./components/alerts/Alerts"
 import { ExtendedAlertType } from "./components/alerts/Alerts";
 import Breadcrumb from "./components/breadcrumbs/BreadCrumbs";
 import Avatar from "./components/avatars/Avatar";
-import { Icon } from "@iconify/react";
+import Badge from "./components/badge/Badge";
+import BadgeTable from "./BadgeDisplay";
+import MyComponent from "./TabItems";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs"];
 export default function KrispMake() {
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
@@ -308,11 +311,11 @@ const alertData = [
 const avatarData = avatarSizesList.map((size) => ({
   key: `avatar-${size}`,
   size,
-  image: <Avatar customSize={size} src={<img src={"./Female 2.png"} alt="avatar" />} />,
-  initials: <Avatar customSize={size}>K</Avatar>,
+  image: <Avatar customSize={size} src={<img src={"./Female 2.png"} alt="avatar" />} dot />,
+  initials: <Avatar customSize={size} dot>K</Avatar >,
   avatar: <Avatar customSize={size} icon={  <Icon
     icon="mage:user-fill"
-  />} />, 
+  />}  dot/>, 
 }));
 
   return (
@@ -458,6 +461,24 @@ const avatarData = avatarSizesList.map((size) => ({
  <Table columns={avatarColumns} dataSource={avatarData} pagination={false} bordered />
  </>
 )}
+   {selectedComponent === "Badges" && (
+    <>
+{/* <Badge type="filled" status="success" icon={  <Avatar customSize={14} src={<img src={"./Female 2.png"} alt="avatar" />}  />}>dfdvdfdf</Badge>
+          <Badge type="solid" status="destructive"  icon={  <Icon
+          icon="mage:select-box"/>}>dfdvdfdf</Badge>
+            <Badge type="solid" status="destructive"  icon={  <Icon
+          icon="mage:select-box"/>}>dfdvdfdf</Badge>
+          <Badge type="stroke" status="destructive"  size={20} dot >dfdvdfdf</Badge>
+          <Badge type="filled" status="destructive"  size={24} dot>dfdvdfdf</Badge>
+          <Badge type="solid" status="success"  size={24} dot>dfdvdfdf</Badge> */}
+          <BadgeTable />
+         
+ </>
+)}
+{selectedComponent==="Tabs"&& (
+   <MyComponent></MyComponent>
+)
+}
         </div>
         </div>
 

@@ -21,6 +21,7 @@ interface ThemeColor {
     background: string;
     text: string;
     Bg1: string;
+    Bg2:string;
     Bg2Hover: string;
     Bg3: string;
     Bg4: string;
@@ -125,6 +126,7 @@ interface ThemeColor {
       text: "#09090B",
       Bg1: colors.grey[50], 
       Bg2Hover: colors.grey[50], 
+      Bg2:"#FFFFFF",
       Bg3: colors.grey[100], 
       Bg4: colors.grey[200], 
       Bg5:colors.grey[300],
@@ -171,6 +173,7 @@ interface ThemeColor {
       text: "#FFFFFF",
       Bg1: colors.grey[950], 
       Bg2Hover: colors.grey[900], 
+      Bg2:colors.grey[800],
       Bg3: colors.grey[800], 
       Bg4: colors.grey[700], 
       Bg5:colors.grey[600],

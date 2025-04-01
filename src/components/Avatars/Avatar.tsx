@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { Avatar as AntAvatar, AvatarProps, ConfigProvider } from "antd";
 import { useTheme } from "../../contexthook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
-import Badge from "../ant-badge/Badge";
+import Badge from "../avatar-badge/AvatarBadge";
 import { avatarSizes } from "./AvatarSizes";
 
 interface CustomAvatarProps extends AvatarProps {
   customSize?: number;
+  dot?:boolean;
 }
 
 const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
@@ -39,7 +40,7 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
         },
       }}
     >
-      <Badge dot customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]}>
+      <Badge dot={props.dot} customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]} customStatus="online">
         <AntAvatar
           icon={
             React.isValidElement(icon) ? (
