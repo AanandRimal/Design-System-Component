@@ -345,40 +345,49 @@ const avatarData = avatarSizesList.map((size) => ({
       marginLeft: "250px", 
       overflowY:"auto"
     }}>
-      <div style={{ 
-        minWidth: "250px", 
-        height: "100vh", 
-        overflow:"hidden",
-        position: "fixed",  
-        top: 0,
-        left: 0,
+     <div style={{ 
+    minWidth: "250px", 
+    height: "100vh", 
+    display: "flex",
+    flexDirection: "column",
+    position: "fixed",  
+    top: 0,
+    left: 0,
+    background: currentTheme.background.bg1, 
+    padding: "16px", 
+    boxShadow: `4px 0 4px ${currentTheme.background.bg2Hover}`
+}}>
+    <div style={{ display: "flex", alignItems: "center" }}>
+        <img src="/krispmake.png" alt="Logo" style={{ width: "30px", height: "30px", marginRight: "5px"}} />
+        <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>KrispMake</Title>
+    </div>
+    <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
+    <div style={{ 
+        flexGrow: 1, 
+        overflowY: "auto", 
         background: currentTheme.background.bg1, 
-        padding: "16px", 
-    boxShadow: `4px 0 4px ${currentTheme.background.bg2Hover}`,
-      }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img src="/krispmake.png" alt="Logo" style={{ width: "30px", height: "30px", marginRight: "5px"}} />
-          <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>KrispMake</Title>
-        </div>
-        <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
- 
-    
-
+        paddingBottom: "10px", 
+        color:currentTheme.text.t1Title
+    }}>
         <Menu
-          selectedKeys={[selectedComponent]} 
-          onClick={(e) => setSelectedComponent(e.key)} 
-          theme={themeMode === "dark" ? "dark" : "light"}
+            selectedKeys={[selectedComponent]} 
+            onClick={(e) => setSelectedComponent(e.key)} 
+            theme={themeMode === "dark" ? "dark" : "light"}
+            style={{ background: currentTheme.background.bg1, color: currentTheme.text.t1Title }}
         >
-          {components.map((component) => (
-            <Menu.Item key={component}>{component}</Menu.Item>
-          ))}
+            {components.map((component) => (
+                <Menu.Item key={component}>{component}</Menu.Item>
+            ))}
         </Menu>
-        <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <p style={{ margin: 0 }}>Dark Mode</p>
-          <Switch checked={themeMode === "dark"} onChange={toggleTheme} />
-        </div>
-      </div>
+    </div>
+
+    <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd", margin: "10px 0" }} />
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
+        <p style={{ margin: 0 }}>Dark Mode</p>
+        <Switch checked={themeMode === "dark"} onChange={toggleTheme} />
+    </div>
+</div>
+
       
       <div style={{ flex: 1, padding: "16px", background:currentTheme.background.bg1 }}>
         <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>{selectedComponent}</Title>
