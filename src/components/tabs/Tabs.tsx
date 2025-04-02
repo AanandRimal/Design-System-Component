@@ -47,11 +47,11 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
         components: {
           Tabs: {
 
-            itemSelectedColor: currentTheme.Text1Title,
+            itemSelectedColor: currentTheme.text.t1Title,
             inkBarColor:isBox?  "transparent": currentTheme.primary.default, // Hide underline
-            colorText: currentTheme.Text2Component,
+            colorText: currentTheme.text.t2Component,
             horizontalItemGutter:1,
-itemHoverColor:currentTheme.Text2Component,
+itemHoverColor:currentTheme.text.t2Component,
 paddingSM:1
 
           },
@@ -65,8 +65,10 @@ paddingSM:1
           return {
             ...rest,
             label: (
-              <TabLabel isBox={isBox} isActive={props.activeKey === tab.key} boxBgColor={currentTheme.Bg1} underlineBgColor={currentTheme.Bg2}>            <span>{label}</span> {/* Text First */}
-               {icon} {/* Icon After Text */}          </TabLabel>
+              <TabLabel isBox={isBox} isActive={props.activeKey === tab.key} boxBgColor={currentTheme.background.bg1|| "#FFFFFF"} underlineBgColor={currentTheme.background.bg2|| "#FFFFFF"}>           
+               <span>{label}</span> 
+               {icon}     
+               </TabLabel>
             ),
           };
         })}

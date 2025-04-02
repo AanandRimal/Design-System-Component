@@ -1,29 +1,30 @@
 import { useState } from "react";
 import { ReactNode } from "react";
-import {  Typography as Type, Divider, Menu, Table,ConfigProvider,Space } from "antd";
+import {  Typography as Type, Divider, Menu, Table,ConfigProvider,Space} from "antd";
 import { Icon } from "@iconify/react";
-import Button from "./components/button/Button"; 
-import { useTheme } from "./contexthook/ThemeProvider";
-import ColorPalette from "./components/foundation/ColorPalette";
-import CheckBox from "./components/checkbox/CheckBox";
-import Input from "./components/input/Input";
-import Typography from "./components/foundation/Typography";
-import PasswordInput from "./components/input/PasswordInput";
-import CustomInput from "./components/input/CustomInput";
-import {LeftIcon,RightIcon} from "./components/icons/LeftIcon";
-import { GoogleIcon,AppleIcon } from "./components/icons/Icon";
-import { Themes } from "./components/foundation/Theme";
-import Radio from "./components/Radio";
-import Switch from "./components/switch/Switch"
-import Alert from "./components/alerts/Alerts"
-import { ExtendedAlertType } from "./components/alerts/Alerts";
-import Breadcrumb from "./components/breadcrumbs/BreadCrumbs";
-import Avatar from "./components/avatars/Avatar";
-import Badge from "./components/badge/Badge";
+import Button from "../components/button/Button"; 
+import { useTheme } from "../contexthook/ThemeProvider";
+import ColorPalette from "../components/foundation/ColorPalette";
+import CheckBox from "../components/checkbox/CheckBox";
+import Input from "../components/input/Input";
+import Typography from "../components/foundation/Typography";
+import PasswordInput from "../components/input/PasswordInput";
+import CustomInput from "../components/input/CustomInput";
+import {LeftIcon,RightIcon} from "../components/icons/LeftIcon";
+import { GoogleIcon,AppleIcon } from "../components/icons/Icon";
+import { Themes } from "../components/foundation/Theme";
+import Radio from "../components/Radio";
+import Switch from "../components/switch/Switch"
+import Alert from "../components/alerts/Alerts"
+import { ExtendedAlertType } from "../components/alerts/Alerts";
+import Breadcrumb from "../components/breadcrumbs/BreadCrumbs";
+import Avatar from "../components/avatars/Avatar";
+import Badge from "../components/badge/Badge";
 import BadgeTable from "./BadgeDisplay";
-import MyComponent from "./TabItems";
+import TabDisplay from "./TabDisplay";
+import Pagination from "../components/pagination/Pagination";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination"];
 export default function KrispMake() {
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
@@ -323,15 +324,15 @@ const avatarData = avatarSizesList.map((size) => ({
   theme={{
     components: {
       Table: {
-        colorText: currentTheme.text, 
-        colorBgContainer: currentTheme.Bg1,
-        headerBg: currentTheme.Bg1,
-        headerColor: currentTheme.text,
+        colorText: currentTheme.text.t1Title, 
+        colorBgContainer: currentTheme.background.bg1,
+        headerBg: currentTheme.background.bg1,
+        headerColor: currentTheme.text.t1Title,
         rowHoverBg: "none",
         borderColor: currentTheme.stroke.strong,
       },
       Menu:{
-        darkItemBg:currentTheme.Bg1
+        darkItemBg:currentTheme.background.bg1
       }
     },
   }}
@@ -339,8 +340,8 @@ const avatarData = avatarSizesList.map((size) => ({
     <div style={{ 
       display: "flex", 
       minHeight: "100vh", 
-      background: currentTheme.Bg1,
-      color: currentTheme.text,
+      background: currentTheme.background.bg1,
+      color: currentTheme.text.t1Title,
       marginLeft: "250px", 
       overflowY:"auto"
     }}>
@@ -351,13 +352,13 @@ const avatarData = avatarSizesList.map((size) => ({
         position: "fixed",  
         top: 0,
         left: 0,
-        background: currentTheme.Bg1, 
+        background: currentTheme.background.bg1, 
         padding: "16px", 
-    boxShadow: `4px 0 4px ${currentTheme.Bg2Hover}`,
+    boxShadow: `4px 0 4px ${currentTheme.background.bg2Hover}`,
       }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <img src="/krispmake.png" alt="Logo" style={{ width: "30px", height: "30px", marginRight: "5px"}} />
-          <Title level={3} style={{ margin: 0, color: currentTheme.text }}>KrispMake</Title>
+          <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>KrispMake</Title>
         </div>
         <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
  
@@ -379,8 +380,8 @@ const avatarData = avatarSizesList.map((size) => ({
         </div>
       </div>
       
-      <div style={{ flex: 1, padding: "16px", background:currentTheme.Bg1 }}>
-        <Title level={3} style={{ margin: 0, color: currentTheme.text }}>{selectedComponent}</Title>
+      <div style={{ flex: 1, padding: "16px", background:currentTheme.background.bg1 }}>
+        <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>{selectedComponent}</Title>
         <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
         
         {selectedComponent === "Button" && (
@@ -476,7 +477,11 @@ const avatarData = avatarSizesList.map((size) => ({
  </>
 )}
 {selectedComponent==="Tabs"&& (
-   <MyComponent></MyComponent>
+   <TabDisplay/>
+)
+}
+{selectedComponent==="Pagination"&& (
+<Pagination defaultCurrent={1} total={50} />
 )
 }
         </div>

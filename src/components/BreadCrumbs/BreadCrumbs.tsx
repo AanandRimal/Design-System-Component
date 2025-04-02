@@ -32,10 +32,10 @@ const Breadcrumb: React.FC<BreadcrumbsProps> = ({ items }) => {
       theme={{
         components: {
           Breadcrumb: {
-            itemColor: currentTheme.Text3Subtitle,
-            separatorColor: currentTheme.Text3Disabled,
-            lastItemColor: currentTheme.Text2Component,
-            linkColor: currentTheme.Text3Subtitle,
+            itemColor: currentTheme.text.t3Subtitle,
+            separatorColor: currentTheme.text.t3Disabled,
+            lastItemColor: currentTheme.text.t2Component,
+            linkColor: currentTheme.text.t3Subtitle,
             separatorMargin: 6,
           },
         },

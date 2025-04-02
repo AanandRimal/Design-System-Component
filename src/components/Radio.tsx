@@ -18,13 +18,13 @@ interface CustomRadioProps extends RadioProps {
             colorPrimary: primaryColor, // Active radio color
             dotColorDisabled: "red",
             colorPrimaryHover: primaryColor,
-            colorPrimaryBorder: currentTheme.Bg5TableActive,
-            colorBgContainer: currentTheme.Bg1,
+            colorPrimaryBorder: currentTheme.background.bg5TableActive,
+            colorBgContainer: currentTheme.background.bg1,
             colorBorder: currentTheme.stroke.strong, // diabeld ko border linxa 
-            colorBgContainerDisabled: currentTheme.Bg5TableActive,
-            colorTextDisabled: currentTheme.Text3Disabled,
-            colorText: currentTheme.Text2Component,
-            colorWhite: currentTheme.Bg1, //this is dot color
+            colorBgContainerDisabled: currentTheme.background.bg5TableActive,
+            colorTextDisabled: currentTheme.text.t3Disabled,
+            colorText: currentTheme.text.t2Component,
+            colorWhite: currentTheme.background.bg1, //this is dot color
             dotSize:dotSize,
             radioSize:size,// tick mark color
             // borderRadiusSM: 5,

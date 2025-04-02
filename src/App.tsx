@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import KrispMake from './KrispMake';
+import KrispMake from './pages/KrispMake';
 import { ThemeProvider } from './contexthook/ThemeProvider';
 
 const App: React.FC = () => {

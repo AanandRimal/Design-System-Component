@@ -12,7 +12,7 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16, children, ...props
   const currentTheme=Themes[themeMode];
   const primaryColor = Themes[themeMode]?.primary?.default;
   const disabledColor = "#F1F1F3";
-  const disabledText = currentTheme.Text3Disabled;
+  const disabledText = currentTheme.text.t3Disabled;
   const checksize=checkSizes[size];
   const indeterminateWidth = checksize.linewidth
   const indeterminateborderwidth=checksize.linewidthbold
@@ -23,13 +23,13 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16, children, ...props
           Checkbox: {
             colorPrimary: primaryColor,
             colorPrimaryHover: primaryColor,
-            colorPrimaryBorder:currentTheme.Bg5TableActive,//THIS IS FOCUS COLOR 
-            colorBgContainer:currentTheme.Bg1,
+            colorPrimaryBorder:currentTheme.background.bg5TableActive,//THIS IS FOCUS COLOR 
+            colorBgContainer:currentTheme.background.bg1,
             colorBorder:currentTheme.stroke.strong,
             colorBgContainerDisabled: disabledColor,
             colorTextDisabled: disabledText,
-            colorText:currentTheme.Text2Component,
-            colorWhite:currentTheme.StaticWhite,
+            colorText:currentTheme.text.t2Component,
+            colorWhite:currentTheme.text.staticWhite,
             borderRadiusSM: checksize.borderadius,
             lineWidthBold:checksize.linewidthbold,
             controlInteractiveSize: size, 

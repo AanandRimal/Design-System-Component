@@ -36,7 +36,7 @@ const Input: React.FC<CustomComponentProps> = ({
   const currentTheme=Themes[themeMode];
   const isAntDSize = antSizeMapping.includes(size as AntSize);
   const borderColor = currentTheme.stroke.strong;
-  const placeholderTextColor = isError ? currentTheme.Text2Component : currentTheme.Text3Disabled;
+  const placeholderTextColor = isError ? currentTheme.text.t2Component : currentTheme.text.t3Disabled;
   const customSize = Sizes[size as CustomSize] || Sizes[40];
 console.log(customSize);
   return (
@@ -48,18 +48,18 @@ console.log(customSize);
         },
         components: {
           Input: {
-            colorIcon: currentTheme.Text3Disabled,
+            colorIcon: currentTheme.text.t3Disabled,
             activeShadow:  `0 0 0 4px ${currentTheme.primary.focus}`,
             colorError: currentTheme.destructive.stroke,
             colorErrorBorderHover: currentTheme.destructive.stroke,
             colorBorder: borderColor,
             activeBorderColor: currentTheme.primary.stroke,
-            colorText: currentTheme.Text2Component,
+            colorText: currentTheme.text.t2Component,
             colorTextPlaceholder: placeholderTextColor,
             hoverBorderColor: "none",
-            colorBgContainer:currentTheme.Bg1,
-            colorBgContainerDisabled: currentTheme.Bg2Hover,
-            colorTextDisabled: currentTheme.Text3Disabled,
+            colorBgContainer:currentTheme.background.bg1,
+            colorBgContainerDisabled: currentTheme.background.bg2Hover,
+            colorTextDisabled: currentTheme.text.t3Disabled,
             inputFontSizeLG: customSize?.fontSize,
             paddingBlockLG: customSize?.paddingY,
             paddingInlineLG: customSize?.paddingX,
@@ -68,7 +68,7 @@ console.log(customSize);
           },
           Select: {
             activeBorderColor:currentTheme.primary.stroke,
-            colorText:currentTheme.Text2Component,
+            colorText:currentTheme.text.t2Component,
             colorTextPlaceholder: placeholderTextColor,
             controlHeightLG: customSize?.height,
             borderRadiusLG: 10,
@@ -76,16 +76,16 @@ console.log(customSize);
             paddingLG: customSize?.paddingX,
             controlPaddingHorizontal:customSize?.paddingY,
             colorErrorBorderHover: currentTheme.destructive.stroke,
-            colorBgContainer:currentTheme.Bg1,
-            colorBgElevated:currentTheme.Bg1,
-            optionSelectedBg:currentTheme.Bg1,
+            colorBgContainer:currentTheme.background.bg1,
+            colorBgElevated:currentTheme.background.bg1,
+            optionSelectedBg:currentTheme.background.bg1,
             // lineHeight:customSize?.lineheight,
             // paddingInlineSM: customSize?.paddingX,
             activeOutlineColor:  currentTheme.primary.focus,
             hoverBorderColor: "none",
             boxShadowSecondary:  `0 0 0 4px ${currentTheme.primary.focus}`,
-            colorTextQuaternary:currentTheme.Text3Disabled,
-            colorBgContainerDisabled: currentTheme.Bg2Hover,
+            colorTextQuaternary:currentTheme.text.t3Disabled,
+            colorBgContainerDisabled: currentTheme.background.bg2Hover,
             // showArrowPaddingInlineEnd: ,
           },
         },

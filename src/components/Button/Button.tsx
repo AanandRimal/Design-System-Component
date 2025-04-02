@@ -34,14 +34,14 @@ const Button: React.FC<ButtonProps> = ({
   const buttonStyle: React.CSSProperties = {
     borderColor: (Customtype === "secondary" || Customtype === "social") ? currentTheme.stroke.strong : undefined, // as border color is there for social and soecndary so used css
     ...(props.loading && { // loading case we dont have token so handled with css for all button
-      backgroundColor: currentTheme.Bg2Hover,
-      color: currentTheme.Text3Disabled,
+      backgroundColor: currentTheme.background.bg2Hover,
+      color: currentTheme.text.t3Disabled,
       paddingBlock: finalPaddingY,
       lineHeight: `${lineheight / 16}rem`
     }),
   };
-    const iconColor = props.disabled ? currentTheme.Text3Disabled   : isSocialType //for all disbaled state icon color is same so text3diabeld and then for type socila icon color is defualt when exported the svg color  and  for type secondary icon color is different then other so handling 
-  ? undefined : Customtype === "secondary" ? currentTheme.Text3Subtitle : "#FFFFFF";
+    const iconColor = props.disabled ? currentTheme.text.t3Disabled   : isSocialType //for all disbaled state icon color is same so text3diabeld and then for type socila icon color is defualt when exported the svg color  and  for type secondary icon color is different then other so handling 
+  ? undefined : Customtype === "secondary" ? currentTheme.text.t3Subtitle : "#FFFFFF";
   const iconSize = customSize?.iconSize || 20;
   const StyledIcon = ({ icon }: { icon: React.ReactNode }) => {
     const iconStyle = {
@@ -85,8 +85,8 @@ const Button: React.FC<ButtonProps> = ({
             colorPrimaryActive: colorPrimary.default,
             colorBorder: "none",
             colorPrimaryBorder:colorPrimary.focus,
-            colorTextDisabled: currentTheme.Text3Disabled,
-            colorBgContainerDisabled: currentTheme.Bg2Hover,
+            colorTextDisabled: currentTheme.text.t3Disabled,
+            colorBgContainerDisabled: currentTheme.background.bg2Hover,
             colorTextLightSolid:colorPrimary.textcolor,
             borderRadius: 8,
             marginXS:6,

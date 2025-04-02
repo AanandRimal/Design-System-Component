@@ -7,7 +7,7 @@ interface SearchIconProps {
 }
 
 const SearchIcon: React.FC<SearchIconProps> = ({ size = 20, theme = "light" }) => {
-  const themeColors = Themes[theme].Text3Subtitle; 
+  const themeColors = Themes[theme].text.t3Subtitle; 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

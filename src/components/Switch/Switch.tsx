@@ -11,7 +11,7 @@ interface CustomSwitchProps extends Omit<SwitchProps, "size"> {
 const Switch: React.FC<CustomSwitchProps> = ({ size = "default", ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-  const disabledText = currentTheme.Text3Disabled;
+  const disabledText = currentTheme.text.staticWhite
   const customTrackHeight = switchSizes.hasOwnProperty(size as keyof typeof switchSizes) //switchSizes[size as keyof typeof switchSizes] || switchSizes[20];
   ? switchSizes[size as keyof typeof switchSizes]
   : switchSizes[20];
@@ -24,12 +24,12 @@ const Switch: React.FC<CustomSwitchProps> = ({ size = "default", ...props }) => 
           Switch: {
             colorPrimary: props.disabled && props.checked ? currentTheme.success.accentBg : currentTheme.success.default,
             colorPrimaryHover: currentTheme.success.default,
-            colorTextQuaternary: props.disabled? currentTheme.Bg3:currentTheme.Bg5,
+            colorTextQuaternary: currentTheme.fill.f4,
             colorTextDisabled: disabledText,
-            colorBgContainerDisabled: currentTheme.Bg3,
+            colorBgContainerDisabled: currentTheme.fill.f4,
             trackHeight: customTrackHeight.trackHeight,
             handleSize:customTrackHeight.ballSize,
-            handleBg:currentTheme.Bg1,
+            handleBg:currentTheme.text.staticWhite,
             trackMinWidth:customTrackHeight.trackWidth,
             trackPadding:customTrackHeight.padding,
             handleShadow:`0px 1px 2px 0px rgba(0, 0, 0, 0.05)`,
@@ -39,7 +39,6 @@ const Switch: React.FC<CustomSwitchProps> = ({ size = "default", ...props }) => 
     >
       <AntSwitch 
       size="default"
-      style={{ border: props.disabled && !props.checked ? `1px solid ${currentTheme.stroke.strong}` : undefined }}
     //right now size small wont take as itt will make it defualt
        {...props} />
     </ConfigProvider>

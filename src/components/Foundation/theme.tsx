@@ -5,38 +5,55 @@ interface ThemeColor {
   accentBg?: string;
   stroke?: string;
   dark?: string;
-  textcolor?:string;
-  strong?: string; 
-  decorative?: string; 
+  textcolor?: string;
+  strong?: string;
+  decorative?: string;
 }
-  
-  interface ThemeType {
-    primary: ThemeColor;
-    secondary: ThemeColor;
-    success: ThemeColor;
-    destructive: ThemeColor;
-    info: ThemeColor;
-    warning: ThemeColor;
-    stroke: Partial<Pick<ThemeColor, 'strong' | 'decorative'>>;
-    background: string;
-    text: string;
-    Bg1: string;
-    Bg2:string;
-    Bg2Hover: string;
-    Bg3: string;
-    Bg4: string;
-    Bg5:string;
-    Bg5TableActive: string;
-    Inverse: string;
-    TabBg: string;
-    Text1Title: string;
-    Text2Subtitle: string;
-    Text2Component:string;
-    Text3Subtitle:string;
-    Text3Disabled: string;
-    InverseText: string;
-    StaticWhite: string;
-  }
+
+interface BackgroundColor {
+  bg0?: string;
+  bg1?: string;
+  bg2?: string;
+  bg2Hover?: string;
+  bg3?: string;
+  bg4?: string;
+  bg5?: string;
+  bg5TableActive?: string;
+  inverse?: string;
+  tabBg?: string;
+}
+
+interface TextColor {
+  t1Title?: string;
+ t2Subtitle?: string;
+  t2Component?: string;
+  t3Subtitle?: string;
+  t3Disabled?: string;
+  inverse?: string;
+  staticWhite?: string;
+}
+
+interface FillColor {
+  f1?: string;
+  f2?: string;
+  f3?: string;
+  f4?:string;
+}
+
+interface ThemeType {
+  primary: ThemeColor;
+  secondary: ThemeColor;
+  success: ThemeColor;
+  destructive: ThemeColor;
+  info: ThemeColor;
+  warning: ThemeColor;
+  stroke: Partial<Pick<ThemeColor, 'strong' | 'decorative'>>;
+  background: BackgroundColor;
+  text: TextColor;
+  fill: FillColor;
+  Inverse:string;
+}
+
   
   const colors: Record<string, Record<number, string>> = { primary: {
     50: "#F9F5FF", 100: "#F0E5FF", 200: "#E7D6FF", 300: "#D5B8FF",
@@ -91,7 +108,26 @@ interface ThemeColor {
   800:"#E08300",
   900:"#A35F00",
   950:"#663C00",
-}, };
+},
+ab:{
+  2:"	#17171C05",
+  4:"#17171C0A",
+  6:"#17171C0F",
+  8:"#17171C14",
+  12:"#17171C1F",
+  16:"#17171C29",
+
+},
+aw: {
+  2: "#FFFFFF05",
+  4: "#FFFFFF0A",
+  6: "#FFFFFF0F",
+  8: "#FFFFFF14",
+  12: "#FFFFFF1F",
+  16: "#FFFFFF29"
+},
+};
+const bw="#FFFFFF";
   
   const Themes: Record<string, ThemeType> = {
     light: {
@@ -104,7 +140,7 @@ interface ThemeColor {
         accentBg: "#E3E3E8", stroke: "#D3D3DA", dark: "#3D3D48",textcolor:colors.grey[700]
       },
       stroke: { 
-        strong: colors.grey[200], decorative: colors.grey[100]
+        strong: colors.ab[12], decorative: colors.ab[6]
       },
       success: { 
         default: colors.green[700], hover: colors.green[600], focus: colors.green[100],
@@ -122,24 +158,36 @@ interface ThemeColor {
         default: colors.orange[700], hover: colors.orange[600], focus: colors.orange[100],
         accentBg: colors.orange[200], stroke: colors.orange[400], dark: colors.orange[900],textcolor:"#FFFFFF"
       },
-      background: "#FFFFFF",
-      text: "#09090B",
-      Bg1: colors.grey[50], 
-      Bg2Hover: colors.grey[50], 
-      Bg2:"#FFFFFF",
-      Bg3: colors.grey[100], 
-      Bg4: colors.grey[200], 
-      Bg5:colors.grey[300],
-      Bg5TableActive: colors.grey[300], 
+      background: {
+        bg0: colors.grey[50],
+        bg1: bw,
+        bg2: bw,
+        bg2Hover: colors.grey[50],
+        bg3: bw,
+        bg4:colors.grey[200],
+        bg5:colors.grey[300],
+        bg5TableActive: colors.grey[300],
+        tabBg: colors.grey[50]
+      },
+      text: {
+        t1Title: colors.grey[950],
+        t2Subtitle: colors.grey[500],
+        t2Component: colors.grey[700],
+        t3Subtitle:colors.grey[500],
+        t3Disabled: colors.grey[400],
+        inverse: bw,
+        staticWhite: bw
+      },
+
+      fill: {
+      f1:colors.ab[2],
+      f2:colors.ab[4],
+      f3:colors.ab[8],
+      f4:colors.ab[16],
+
+      },
+      
       Inverse: colors.grey[950], 
-      TabBg: colors.grey[50], 
-      Text1Title: colors.grey[950], 
-      Text2Subtitle: colors.grey[500], 
-      Text2Component:colors.grey[700],
-      Text3Subtitle:colors.grey[500],
-      Text3Disabled: colors.grey[400], 
-      InverseText: "#FFFFFF", 
-      StaticWhite: "#FFFFFF",
     },
     dark: {
       primary: { 
@@ -151,7 +199,7 @@ interface ThemeColor {
         accentBg: "#17171C", stroke: "#50505E", dark: "#26262C",textcolor:colors.grey[300]
       },
       stroke: { 
-        strong: colors.grey[800], decorative: colors.grey[800],
+        strong: colors.aw[12], decorative: colors.aw[6],
       },
       success: { 
         default: colors.green[600], hover: colors.green[500], focus: colors.green[950],
@@ -169,24 +217,38 @@ interface ThemeColor {
         default: colors.orange[600], hover: colors.orange[500], focus: colors.orange[950],
         accentBg: colors.orange[950], stroke: colors.orange[600], dark: colors.orange[500],textcolor:"#FFFFFF"
       },
-      background: "#09090B",
-      text: "#FFFFFF",
-      Bg1: colors.grey[950], 
-      Bg2Hover: colors.grey[900], 
-      Bg2:colors.grey[800],
-      Bg3: colors.grey[800], 
-      Bg4: colors.grey[700], 
-      Bg5:colors.grey[600],
-      Bg5TableActive: colors.grey[600], 
-      Inverse: "#FFFFFF", 
-      TabBg: colors.grey[600], 
-      Text1Title: colors.grey[100],
-      Text2Subtitle: colors.grey[400], 
-      Text2Component:colors.grey[300],
-      Text3Subtitle:colors.grey[400],
-      Text3Disabled: colors.grey[400], 
-      InverseText: colors.grey[950], 
-      StaticWhite: "#FFFFFF", 
+      background: {
+        bg0: colors.grey[950],
+        bg1: colors.grey[900],
+        bg2: colors.grey[800],
+        bg2Hover: colors.grey[900],
+        bg3: colors.grey[700],
+        bg4:colors.grey[700],
+        bg5:colors.grey[600],
+        bg5TableActive: colors.grey[600],
+        tabBg: colors.grey[600]
+      },
+      text: {
+        t1Title: colors.grey[100],
+        t2Subtitle: colors.grey[400],
+        t2Component: colors.grey[300],
+        t3Subtitle:colors.grey[400],
+        t3Disabled: colors.grey[400],
+        inverse: colors.grey[950],
+        staticWhite: bw
+      },
+
+      fill: {
+      f1:colors.ab[2],
+      f2:colors.ab[4],
+      f3:colors.ab[8],
+      f4:colors.ab[16],
+
+      },
+      
+      Inverse: bw, 
+ 
+  
     },
   };
   

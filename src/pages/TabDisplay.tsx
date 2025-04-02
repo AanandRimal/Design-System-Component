@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Tabs from "./components/tabs/Tabs"; // Import the custom Tabs component
-import Badge from "./components/badge/Badge"; // Import Badge component
+import Tabs from "../components/tabs/Tabs"; // Import the custom Tabs component
+import Badge from "../components/badge/Badge"; // Import Badge component
 
-const MyComponent: React.FC = () => {
+const TabDisplay: React.FC = () => {
   const [boxactiveKey,setboxActiveKey]=useState<string>("1");
   const [underlineactiveKey,setunderlineActiveKey]=useState<string>("1");
     const tabItems = [
@@ -56,4 +56,4 @@ const MyComponent: React.FC = () => {
   };
   
 
-export default MyComponent;
+export default TabDisplay;

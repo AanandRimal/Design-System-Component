@@ -18,7 +18,7 @@ const Badge: React.FC<CustomBadgeProps> = ({customSize=16,...props }) => {
             indicatorHeight:customSize,
             dotSize:customSize,
             colorError:isOnlineStatus ? currentTheme.success.default :currentTheme.stroke.strong,
-            colorBorderBg:currentTheme.Bg1,
+            colorBorderBg:currentTheme.background.bg1,
             lineWidth:2
           },
         },

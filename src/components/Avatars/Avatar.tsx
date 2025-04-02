@@ -30,9 +30,9 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
       theme={{
         components: {
           Avatar: {
-            colorTextPlaceholder: icon ? currentTheme.Bg5 : currentTheme.primary.default,
-            colorText: currentTheme.Text1Title,
-            colorTextLightSolid: icon ? currentTheme.Bg2Hover : currentTheme.StaticWhite,
+            colorTextPlaceholder: icon ? currentTheme.background.bg5 : currentTheme.primary.default,
+            colorText: currentTheme.text.t1Title,
+            colorTextLightSolid: icon ? currentTheme.background.bg2Hover : currentTheme.text.staticWhite,
             colorBorder: "#ffff",
             containerSize: avatarSizeobj.base,
             textFontSize: iconSize,

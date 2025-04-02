@@ -25,15 +25,15 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
     'transparent';
   const borderColor = type === 'stroke' ? currentTheme.stroke.strong : 'transparent';
   const textColor =
-    type === 'stroke' ? currentTheme?.Text2Component :
-    type === 'solid' ? currentTheme.StaticWhite :
+    type === 'stroke' ? currentTheme?.text.t2Component :
+    type === 'solid' ? currentTheme.text.staticWhite :
     themeStatus?.dark ?? 'inherit';
-  const iconStyles = { color: type === 'solid' ? currentTheme.StaticWhite : themeStatus?.default ?? 'inherit' };
+  const iconStyles = { color: type === 'solid' ? currentTheme.text.staticWhite : themeStatus?.default ?? 'inherit' };
   const dotStyles = {
     width: 6,
     height: 6,
     borderRadius: '50%',
-    backgroundColor: type === 'solid' ?  currentTheme.StaticWhite :themeStatus?.default ?? 'inherit',
+    backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:themeStatus?.default ?? 'inherit',
     marginRight: 4,
   };
 

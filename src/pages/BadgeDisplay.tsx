@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "antd";
-import Badge from "./components/badge/Badge"; 
-import Avatar from "./components/avatars/Avatar";
+import Badge from "../components/badge/Badge"; 
+import Avatar from "../components/avatars/Avatar";
 import { Icon } from "@iconify/react";
 
 const badgeSizes: (20 | 24)[] = [20, 24];
