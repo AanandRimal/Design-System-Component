@@ -1,0 +1,31 @@
+.scrollable-menu {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg); /* ✅ Uses dynamic colors */
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+.scrollable-menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Thumb (draggable part) */
+.scrollable-menu::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb); /* ✅ Uses dynamic color */
+    border-radius: 4px;
+}
+
+/* Track (background area) */
+.scrollable-menu::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg); /* ✅ Uses dynamic color */
+}
+
+/* Hide scrollbar by default */
+.scrollable-menu::-webkit-scrollbar {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Show scrollbar on hover */
+.scrollable-menu:hover::-webkit-scrollbar {
+    opacity: 1;
+}

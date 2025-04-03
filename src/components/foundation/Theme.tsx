@@ -239,10 +239,10 @@ const bw="#FFFFFF";
       },
 
       fill: {
-      f1:colors.ab[2],
-      f2:colors.ab[4],
-      f3:colors.ab[8],
-      f4:colors.ab[16],
+      f1:colors.aw[2],
+      f2:colors.aw[4],
+      f3:colors.aw[8],
+      f4:colors.aw[16],
 
       },
       

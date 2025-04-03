@@ -40,13 +40,10 @@ const TabDisplay: React.FC = () => {
   
     return (
       <div className="grid grid-cols-2 gap-6 p-4">
-        {/* Box Tabs Section */}
         <div>
           <h2 className="text-lg font-semibold mb-4">Box Tab</h2>
           <Tabs Customtype="box" items={tabItems} activeKey={boxactiveKey} onChange={setboxActiveKey} ></Tabs>
         </div>
-  
-        {/* Underline Tabs Section */}
         <div>
           <h2 className="text-lg font-semibold mb-4">Underline Tab</h2>
           <Tabs Customtype="underline" items={tabItems} activeKey={underlineactiveKey} onChange={setunderlineActiveKey} />

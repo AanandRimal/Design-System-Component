@@ -48,7 +48,7 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
         padding: `${sizeConfig.paddingY}px ${sizeConfig.paddingX}px`,
         display: 'inline-flex',
         alignItems: 'center',
-        borderRadius: size=== 20 ? "8px" : "12px",
+        borderRadius: size=== 20 ? "4px" : "6px",
       }}
     >
       {icon ? (

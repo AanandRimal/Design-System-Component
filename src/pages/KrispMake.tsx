@@ -19,12 +19,13 @@ import Alert from "../components/alerts/Alerts"
 import { ExtendedAlertType } from "../components/alerts/Alerts";
 import Breadcrumb from "../components/breadcrumbs/BreadCrumbs";
 import Avatar from "../components/avatars/Avatar";
-import Badge from "../components/badge/Badge";
 import BadgeTable from "./BadgeDisplay";
 import TabDisplay from "./TabDisplay";
 import Pagination from "../components/pagination/Pagination";
+import "./scrollbar.css"
+import ModalDisplay from "./ModalDisplay";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal"];
 export default function KrispMake() {
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
@@ -333,6 +334,7 @@ const avatarData = avatarSizesList.map((size) => ({
       },
       Menu:{
         darkItemBg:currentTheme.background.bg1
+
       }
     },
   }}
@@ -345,7 +347,7 @@ const avatarData = avatarSizesList.map((size) => ({
       marginLeft: "250px", 
       overflowY:"auto"
     }}>
-     <div style={{ 
+<div style={{ 
     minWidth: "250px", 
     height: "100vh", 
     display: "flex",
@@ -362,13 +364,18 @@ const avatarData = avatarSizesList.map((size) => ({
         <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>KrispMake</Title>
     </div>
     <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
-    <div style={{ 
-        flexGrow: 1, 
-        overflowY: "auto", 
-        background: currentTheme.background.bg1, 
-        paddingBottom: "10px", 
-        color:currentTheme.text.t1Title
-    }}>
+    <div       className="scrollable-menu" //scroll bar lai color dina classname
+
+        style={{ 
+            flexGrow: 1, 
+            overflowY: "auto",
+            paddingBottom: "10px",
+            "--scrollbar-bg": currentTheme.background.bg1,  
+            "--scrollbar-thumb": currentTheme.fill.f2, 
+        } as React.CSSProperties}
+           
+  
+    >
         <Menu
             selectedKeys={[selectedComponent]} 
             onClick={(e) => setSelectedComponent(e.key)} 
@@ -388,6 +395,7 @@ const avatarData = avatarSizesList.map((size) => ({
     </div>
 </div>
 
+
       
       <div style={{ flex: 1, padding: "16px", background:currentTheme.background.bg1 }}>
         <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>{selectedComponent}</Title>
@@ -396,7 +404,7 @@ const avatarData = avatarSizesList.map((size) => ({
         {selectedComponent === "Button" && (
 <>
  <Table columns={columns} dataSource={data} pagination={false} bordered  />
-
+<Button type="primary">hllo</Button>
 </>
 )}
    <div>
@@ -490,9 +498,19 @@ const avatarData = avatarSizesList.map((size) => ({
 )
 }
 {selectedComponent==="Pagination"&& (
-<Pagination defaultCurrent={1} total={50} />
+  <> 
+  <Pagination defaultCurrent={1} total={50} />
+        
+        </>
+
 )
 }
+{selectedComponent === "Modal" && (
+  <>
+<ModalDisplay/>
+  </>
+)}
+
         </div>
         </div>
 

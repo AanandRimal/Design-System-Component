@@ -10,27 +10,29 @@ interface TabsProps extends AntTabsProps {
   Customtype?: CustomType;
 }
 
-const TabLabel = styled.div<{ isBox: boolean; isActive: boolean ;boxBgColor: string;underlineBgColor:string }>`
+const TabLabel = styled.div<{ isBox: boolean; isActive: boolean; theme: any }>`
   display: flex;
   align-items: center;
   gap: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding:12px;
-    background: ${(props) =>  props.isActive? props.underlineBgColor :"none"};
- &:hover {
-      background: #17171C0A; // Light grayish hover effect
-    }
-  
+  padding: 12px;
+  background: ${(props) => (props.isActive ? props.theme.background.bg1 : "none")};
+
+  &:hover {
+    background: ${(props) => props.theme.fill.f2}; 
+  }
+
   ${(props) =>
-    props.isBox &&//1px solid trabparent if removed jitter the compeont 
+    props.isBox &&
     `
     padding: 8px 16px;
     border-radius: 8px;
-    background: ${props.isActive ? props.boxBgColor : "none"};
-    border: ${props.isActive ? "1px solid  #17171C1F" : "1px solid transparent"}; 
-        &:hover {
-      background: #17171C0A; // Light grayish hover effect
+    background: ${props.isActive ? props.theme.background.bg2 : "none"};
+    border: ${props.isActive ? "1px solid #17171C1F" : "1px solid transparent"};
+
+    &:hover {
+      background: ${props.theme.fill.f2}; 
     }
   `}
 `;
@@ -46,14 +48,12 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
       theme={{
         components: {
           Tabs: {
-
             itemSelectedColor: currentTheme.text.t1Title,
-            inkBarColor:isBox?  "transparent": currentTheme.primary.default, // Hide underline
+            inkBarColor: isBox ? "transparent" : currentTheme.primary.default,
             colorText: currentTheme.text.t2Component,
-            horizontalItemGutter:1,
-itemHoverColor:currentTheme.text.t2Component,
-paddingSM:1
-
+            horizontalItemGutter: 1,
+            itemHoverColor: currentTheme.text.t2Component,
+            paddingSM: 1,
           },
         },
       }}
@@ -65,10 +65,14 @@ paddingSM:1
           return {
             ...rest,
             label: (
-              <TabLabel isBox={isBox} isActive={props.activeKey === tab.key} boxBgColor={currentTheme.background.bg1|| "#FFFFFF"} underlineBgColor={currentTheme.background.bg2|| "#FFFFFF"}>           
-               <span>{label}</span> 
-               {icon}     
-               </TabLabel>
+              <TabLabel
+                isBox={isBox}
+                isActive={props.activeKey === tab.key}
+                theme={currentTheme} 
+              >
+                <span>{label}</span>
+                {icon}
+              </TabLabel>
             ),
           };
         })}

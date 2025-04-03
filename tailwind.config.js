@@ -93,6 +93,7 @@ module.exports = {
      900:"#8A191C",
      950:"#4A0D0F",
   },
+  "t3subtitle": "#6C6C7F", 
     },
     borderRadius: {
       lg: "16px",
