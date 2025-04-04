@@ -1,17 +1,11 @@
 import { useState } from "react";
-import { ReactNode } from "react";
 import {  Typography as Type, Divider, Menu, Table,ConfigProvider,Space} from "antd";
 import { Icon } from "@iconify/react";
-import Button from "../components/button/Button"; 
 import { useTheme } from "../contexthook/ThemeProvider";
 import ColorPalette from "../components/foundation/ColorPalette";
+import Button from "../components/button/Button";
 import CheckBox from "../components/checkbox/CheckBox";
-import Input from "../components/input/Input";
 import Typography from "../components/foundation/Typography";
-import PasswordInput from "../components/input/PasswordInput";
-import CustomInput from "../components/input/CustomInput";
-import {LeftIcon,RightIcon} from "../components/icons/LeftIcon";
-import { GoogleIcon,AppleIcon } from "../components/icons/Icon";
 import { Themes } from "../components/foundation/Theme";
 import Radio from "../components/Radio";
 import Switch from "../components/switch/Switch"
@@ -24,54 +18,16 @@ import TabDisplay from "./TabDisplay";
 import Pagination from "../components/pagination/Pagination";
 import "./scrollbar.css"
 import ModalDisplay from "./ModalDisplay";
+import DrawerDisplay from "./DrawerDisplay";
+import ButtonDisplay from "./ButtonDisplay";
+import InputDisplay from "./InputDisplay";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer"];
 export default function KrispMake() {
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
-  const [showBottomLabel, setShowBottomLabel] = useState<boolean>(true);
-
-  const sizes: number[] = [32, 36, 40, 44, 48];
-  type CustomButtonType = "primary" | "secondary" | "success" | "info" | "destructive" | "warning" |"social" ;
-  type CustomInputType = "text"|"password"| "search"|"otp"| "textarea" | "select" | "card";
-  const inputSizes : number[] =[32, 36, 40, 44, 48];
-const buttonTypes: CustomButtonType[] = ['primary', 'secondary', 'success', 'info', 'destructive', 'warning'] 
-const inputTypes:CustomInputType[]= ['text', 'password', 'search', 'otp', 'textarea','select','card']
 const alertTypes: ExtendedAlertType[] = ["neutral", "info", "success", "warning", "error", "primary"];
-
-
 const currentTheme=Themes[themeMode]
-const inputColumns = [
-  { 
-    title: (
-      <Space>
-        <span>Type</span>
-        <Switch 
-          checked={showBottomLabel} 
-          onChange={(checked) => setShowBottomLabel(checked)} 
-        />
-      </Space>
-    ), 
-    dataIndex: "type", 
-    key: "type", 
-    width: 150 
-  },
-  { title: "Size", dataIndex: "size", key: "size", width: 100 },
-  { title: "Default", dataIndex: "default", key: "default"  },
-  { title: "Filled", dataIndex: "filled", key: "filled" },
-  { title: "Disabled", dataIndex: "disabled", key: "disabled"},
-  { title: "Error", dataIndex: "error", key: "error"}
-];
-
-  const columns = [
-    { title: "Type", dataIndex: "Customtype", key: "type", width: 150 },
-    { title: "Size", dataIndex: "Customsize", key: "size", width: 100 },
-    { title: "Default", dataIndex: "default", key: "default" },
-    { title: "Hover", dataIndex: "hover", key: "hover" },
-    { title: "Clicked", dataIndex: "clicked", key: "clicked" },
-    { title: "Loading", dataIndex: "loading", key: "loading" },
-    { title: "Disabled", dataIndex: "disabled", key: "disabled" },
-  ];
   const checkboxSizes = [16, 20, 24];
   const checkboxColumns = [
     { title: "Size", dataIndex: "size", key: "size", width: 100 },
@@ -80,16 +36,13 @@ const inputColumns = [
     { title: "Disabled", dataIndex: "disabled", key: "disabled" },
   ];
   const radioSizes = [16, 20, 24];
-
 const radioColumns = [
   { title: "Size", dataIndex: "size", key: "size", width: 100 },
   { title: "Default", dataIndex: "default", key: "default" },
   { title: "Checked", dataIndex: "checked", key: "checked" },
   { title: "Disabled", dataIndex: "disabled", key: "disabled" },
 ];
-
 const switchSizes = [20, 24];
-
 const switchColumns = [
   { title: "Size", dataIndex: "size", key: "size", width: 100 },
   { title: "Default", dataIndex: "default", key: "default" },
@@ -97,7 +50,6 @@ const switchColumns = [
   { title: "Default: Disabled", dataIndex: "defaultDisabled", key: "defaultDisabled" },
   { title: "Checked: Disabled", dataIndex: "checkedDisabled", key: "checkedDisabled" },
 ];
-
 const alertColumns = [
   { title: "Condition", dataIndex: "condition", key: "condition", width: 150 },
   { title: "Type", dataIndex: "type", key: "type", width: 150 },
@@ -110,149 +62,7 @@ const avatarColumns = [
   { title: "Initials", dataIndex: "initials", key: "initials" },
   { title: "Avatar", dataIndex: "avatar", key: "avatar" },
 ];
-  const countryOptions = [
-    { value: "us", label: "+997 United States", img: "https://flagcdn.com/w40/us.png" },
-    { value: "gb", label: "United Kingdom", img: "https://flagcdn.com/w40/gb.png" },
-    { value: "in", label: "India", img: "https://flagcdn.com/w40/in.png" },
-  ];
-  interface ButtonData {
-    key: string;
-    Customtype: string;
-    Customsize: number | string;
-    default:ReactNode,
-    hover: ReactNode;
-    clicked: ReactNode;
-    loading: ReactNode;
-    disabled: ReactNode;
-  }
 
-  interface InputData {
-    key: string;
-    type: string;
-    size: number | string;
-    default: ReactNode;
-    filled: ReactNode;
-    disabled: ReactNode;
-    error: ReactNode;
-  }
-  
-  const data: ButtonData[] = [];
-  buttonTypes.forEach((type) => {
-    sizes.forEach((size, index) => {
-      data.push({
-        key: `${type}-${size}`,
-        Customtype: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "", 
-        Customsize:size,
-        default: <Button Customtype={type} Customsize={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
-        hover: <Button Customtype={type} Customsize={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
-        clicked: <Button Customtype={type} Customsize={size} leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>,
-        loading: <Button Customtype={type} Customsize={size} loading>Button Label</Button>,
-        disabled: <Button Customtype={type} Customsize={size} disabled leftIcon={<LeftIcon />} rightIcon={<RightIcon />}>Button Label</Button>
-      });
-    });
-    data.push({ key: `${type}-spacer`, Customtype: "", Customsize: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
-  });
-
-  sizes.forEach((size, index) => {
-    data.push({
-      key: `social-google-${size}`,
-      Customtype: index === 0 ? "Social (Google)" : "", 
-      Customsize:size,
-      default: <Button Customtype="social" Customsize={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
-      hover: <Button Customtype="social" Customsize={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
-      clicked: <Button Customtype="social" Customsize={size} leftIcon={<GoogleIcon />}>Sign in with Google</Button>,
-      loading: "", 
-      disabled: <Button Customtype="social" Customsize={size} disabled leftIcon={<GoogleIcon />}>Sign in with Google</Button>
-    });
-  });
-  data.push({ key: "social-google-spacer", Customtype: "", Customsize: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
-  sizes.forEach((size, index) => {
-    data.push({
-      key: `social-apple-${size}`,
-      Customtype: index === 0 ? "Social (Apple)" : "", 
-      Customsize:size,
-      default: <Button Customtype="social" Customsize={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
-      hover: <Button Customtype="social" Customsize={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
-      clicked: <Button Customtype="social" Customsize={size} leftIcon={<AppleIcon />}>Sign in with Apple</Button>,
-      loading: "",
-      disabled: <Button Customtype="social" Customsize={size} disabled leftIcon={<AppleIcon />}>Sign in with Apple</Button>
-    });
-  });
-  data.push({ key: "social-apple-spacer", Customtype: "", Customsize: "", default: <></>, hover: <></>, clicked: <></>, loading: <></>, disabled: <></> });
-  const inputData: InputData[] = [];
-
-inputTypes.forEach((type, typeIndex) => {
-  if (typeIndex !== 0) {
-    inputData.push({
-      key: `spacer-${type}`,
-      type: "",
-      size: "",
-      default: <div className="h-8" />,
-      filled: "",
-      disabled: "",
-      error: "",
-    });
-  }
-
-  if (type === "otp" || type === "textarea") {
-    inputData.push({
-      key: `${type}-no-size`,
-      type: type.charAt(0).toUpperCase() + type.slice(1),
-      size: "-",
-      default: <CustomInput type={type} placeholder="Place Holder Text" label="Label"bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-      filled: <CustomInput type={type} value="Place Holder Text" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-      disabled: <CustomInput type={type} disabled placeholder="Place Holder Text" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-      error: <CustomInput type={type} status="error" placeholder="Error" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} />,
-    });
-  } else if (type === "search") {
-    inputSizes.forEach((size, index) => {
-      inputData.push({
-        key: `${type}-${size}`,
-        type: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "",
-        size,
-        default: <Input type="search" size={size} placeholder="Search..." />,
-        filled: <Input type="search" size={size} value="Search Query" />,
-        disabled: <Input type="search" size={size} disabled placeholder="Search..." />,
-        error: "-",
-      });
-    });
-  } else if (type === "card") {
-    inputData.push({
-      key: `${type}-no-size`,
-      type: type.charAt(0).toUpperCase() + type.slice(1),
-      size: "-",
-      default: <Input type="card" placeholder="7777786766" />,
-      filled: <Input type="card" value="7777786766" />,
-      disabled: <Input type="card" disabled placeholder="7777786766" />,
-      error: <Input type="card" status="error" placeholder="Invalid Card" />,
-    });
-  
-  } else if (type === "select") {
-    inputSizes.forEach((size, index) => {
-      inputData.push({
-        key: `${type}-${size}`,
-        type: index === 0 ? "Select" : "",
-        size,
-        default: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-        filled: <CustomInput type={type} size={size} defaultValue="Text Placeholder" options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-        disabled:  <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} />,
-        error:   <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} status="error" options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-      });
-    });
-  } else {
-    inputSizes.forEach((size, index) => {
-      inputData.push({
-        key: `${type}-${size}`,
-        type: index === 0 ? type.charAt(0).toUpperCase() + type.slice(1) : "",
-        size,
-        default: type === "password" ? <PasswordInput size={size} placeholder="Enter your Password" /> : <CustomInput type={type} size={size} placeholder="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-        filled: type === "password" ? <PasswordInput size={size} value="Enter your Password" /> : <CustomInput type={type} size={size} value="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-        disabled: type === "password" ? <></> : <CustomInput type={type} size={size} disabled placeholder="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} />,
-        error: type === "password" ? <PasswordInput size={size} status="error" placeholder="Error" /> : <CustomInput type={type} size={size} status="error" placeholder="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-      });
-    });
-  }
-});
 const checkboxData = checkboxSizes.map((size) => ({
   key: `checkbox-${size}`,
   size,
@@ -277,7 +87,6 @@ const switchData = switchSizes.map((size) => ({
   defaultDisabled: <Switch size={size} disabled />,
   checkedDisabled: <Switch size={size} checked disabled />,
 }));
-
 const generateAlertData = (condition: "filled" | "stroke") => {
   return alertTypes.map((type) => {
     const buttonType =  condition === "stroke" ? "secondary" : type === "error" ? "destructive" : type === "neutral" ? "secondary" : type;
@@ -303,13 +112,11 @@ const generateAlertData = (condition: "filled" | "stroke") => {
     };
   });
 };
-
 const alertData = [
   ...generateAlertData("filled"),
   { key: "separator", condition: "", type: "", alert: <Divider /> },
   ...generateAlertData("stroke"),
 ];
-
 const avatarData = avatarSizesList.map((size) => ({
   key: `avatar-${size}`,
   size,
@@ -319,7 +126,6 @@ const avatarData = avatarSizesList.map((size) => ({
     icon="mage:user-fill"
   />}  dot/>, 
 }));
-
   return (
     <ConfigProvider
   theme={{
@@ -334,7 +140,6 @@ const avatarData = avatarSizesList.map((size) => ({
       },
       Menu:{
         darkItemBg:currentTheme.background.bg1
-
       }
     },
   }}
@@ -387,24 +192,26 @@ const avatarData = avatarSizesList.map((size) => ({
             ))}
         </Menu>
     </div>
-
     <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd", margin: "10px 0" }} />
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
         <p style={{ margin: 0 }}>Dark Mode</p>
         <Switch checked={themeMode === "dark"} onChange={toggleTheme} />
     </div>
 </div>
-
-
-      
       <div style={{ flex: 1, padding: "16px", background:currentTheme.background.bg1 }}>
         <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>{selectedComponent}</Title>
         <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
         
-        {selectedComponent === "Button" && (
+
+
+
+
+
+
+{selectedComponent === "Button" && (
 <>
- <Table columns={columns} dataSource={data} pagination={false} bordered  />
-<Button type="primary">hllo</Button>
+<ButtonDisplay/>
+
 </>
 )}
    <div>
@@ -415,14 +222,7 @@ const avatarData = avatarSizesList.map((size) => ({
         <div >
         {selectedComponent === "Input" && (
           <>
-         <Table
-  columns={inputColumns}
-  dataSource={inputData}
-  pagination={false}
-  bordered
-  scroll={{ x: "100%" }} 
-  style={{ maxWidth: "100%" }} 
-/>
+<InputDisplay/>
           </>
           
 )}
@@ -502,7 +302,6 @@ const avatarData = avatarSizesList.map((size) => ({
   <Pagination defaultCurrent={1} total={50} />
         
         </>
-
 )
 }
 {selectedComponent === "Modal" && (
@@ -510,10 +309,14 @@ const avatarData = avatarSizesList.map((size) => ({
 <ModalDisplay/>
   </>
 )}
-
+{selectedComponent === "Drawer" && (
+  <>
+  <p className="text-medium-bold font-semibold">hhhh</p>
+<DrawerDisplay/>
+  </>
+)}
         </div>
         </div>
-
       </div>
     </div>
     </ConfigProvider>

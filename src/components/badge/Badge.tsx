@@ -2,9 +2,7 @@ import React from 'react';
 import { Themes} from "../foundation/Theme";
 import { badgeSizes } from './BadgeSizes';
 import { useTheme } from "../../contexthook/ThemeProvider";
-
 type CustomStatus = 'success' | 'warning' | 'destructive' | 'info' | 'primary' ;
-
 interface BadgeProps {
   size?: number;
   type?: 'solid' | 'filled' | 'stroke';
@@ -13,7 +11,6 @@ interface BadgeProps {
   dot?: boolean; 
   children?: React.ReactNode;
 }
-
 const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'primary', icon, dot = false, children }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];

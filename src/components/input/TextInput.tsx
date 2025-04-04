@@ -2,7 +2,7 @@ import { Input as AntInput, InputProps } from "antd";
 import InputConfigProvider from "./InputConfigProvider";
 
 interface CustomInputProps extends InputProps {
-  customSize?: number; 
+  customSize?: number;
 }
 
 const TextInput: React.FC<CustomInputProps> = ({ customSize, ...props }) => {

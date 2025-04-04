@@ -1,6 +1,7 @@
 import React from "react";
 import {ConfigProvider, Alert as AntAlert } from "antd";
 import { AlertProps as AntAlertProps } from "antd/lib/alert";
+import styled from "styled-components";
 import { Themes} from "../foundation/Theme";
 import { useTheme } from "../../contexthook/ThemeProvider";
 type CustomAlertType = "primary" | "neutral";
@@ -22,13 +23,29 @@ const Alert: React.FC<AlertProps> = ({
     // const customSize = size && !isAntDSize && Sizes.hasOwnProperty(size as keyof typeof Sizes)
     //   ? Sizes[size as keyof typeof Sizes]
     //   : Sizes[32];
-  const alert = (
-    <AntAlert
-      type="info"
-      {...props}
-   />
+
+    const StyledAlert = styled(AntAlert)`
+  .ant-alert-icon {
+    position: relative;
+    top: 8px; 
+  }
+
+  .ant-alert-close-icon {
+    position: relative;
+    top: 8px;
+    margin-left:10px;
+  }
+
+`;
+const alert = (
+  <StyledAlert
+    type="info"
+    {...props}
+    message={<span className="text-medium-semibold font-semibold">{props.message}</span>}
+    description={<span className="text-base-regular font-regular">{props.description}</span>}
+  />
+);
         
-  );
   return (
     <ConfigProvider
       theme={{
@@ -47,6 +64,7 @@ const Alert: React.FC<AlertProps> = ({
           colorIcon:colorInfo.stroke,
           fontSizeIcon:16,
           withDescriptionPadding:"12px 14px",
+          marginXS:2,
         
             // colorInfoBorder:colorInfo.focus,
             // colorTextDisabled: currentTheme.Text3Disabled,
@@ -59,7 +77,7 @@ const Alert: React.FC<AlertProps> = ({
         },
       }}
     >
-      {alert}
+    {alert}
     </ConfigProvider>
   );
 };

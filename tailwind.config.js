@@ -2,7 +2,8 @@ module.exports = {
   purge: [],
   darkMode: false,
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Tailwind should scan all these files
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}", // Tailwind should scan all these files
   ], // or 'media' or 'class'
   theme: {
     extend: {    colors: {
