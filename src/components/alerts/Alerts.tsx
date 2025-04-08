@@ -4,21 +4,20 @@ import { AlertProps as AntAlertProps } from "antd/lib/alert";
 import styled from "styled-components";
 import { Themes} from "../foundation/Theme";
 import { useTheme } from "../../contexthook/ThemeProvider";
-type CustomAlertType = "primary" | "neutral";
-type ExtendedAlertType = AntAlertProps["type"] | CustomAlertType;
-interface AlertProps extends Omit<AntAlertProps, "type" > {
-  type?: ExtendedAlertType;
+type CustomAlertType = "primary" | "neutral" | "info" | "success" | "warning" | "error";
+interface AlertProps extends AntAlertProps {
+  Customtype?:CustomAlertType
   stroke?:boolean;
 }
 const Alert: React.FC<AlertProps> = ({
-  type = "info",
+  Customtype,
   stroke=false,
   ...props
 }) => {
   const { themeMode } = useTheme();
   const currentTheme=Themes[themeMode];
-  const themeType = type === "error" ? "destructive" : type;
-  const colorInfo = (currentTheme as any)[themeType as CustomAlertType] || currentTheme?.secondary;
+  const themeType = Customtype === "error" ? "destructive" : Customtype;
+  const themeTypeKey = (currentTheme as any)[themeType as CustomAlertType] || currentTheme?.secondary;
 
     // const customSize = size && !isAntDSize && Sizes.hasOwnProperty(size as keyof typeof Sizes)
     //   ? Sizes[size as keyof typeof Sizes]
@@ -39,7 +38,7 @@ const Alert: React.FC<AlertProps> = ({
 `;
 const alert = (
   <StyledAlert
-    type="info"
+    type={props.type || "info"}
     {...props}
     message={<span className="text-medium-semibold font-semibold">{props.message}</span>}
     description={<span className="text-base-regular font-regular">{props.description}</span>}
@@ -53,15 +52,15 @@ const alert = (
         },
         components: {
           Alert: {
-            colorInfo: colorInfo.default,
-            colorInfoHover: colorInfo.hover,
-            colorInfoActive: colorInfo.default,
-            colorInfoBg: stroke? "none" :colorInfo.focus,
-            colorInfoBorder:stroke? colorInfo.stroke: "none",
-            colorText:colorInfo.dark,
-            colorTextHeading:colorInfo.dark,
+            colorInfo: themeTypeKey.default,
+            colorInfoHover: themeTypeKey.hover,
+            colorInfoActive: themeTypeKey.default,
+            colorInfoBg: stroke? "none" :themeTypeKey.focus,
+            colorInfoBorder:stroke? themeTypeKey.stroke: "none",
+            colorText:themeTypeKey.dark,
+            colorTextHeading:themeTypeKey.dark,
             withDescriptionIconSize:20,
-          colorIcon:colorInfo.stroke,
+          colorIcon:themeTypeKey.stroke,
           fontSizeIcon:16,
           withDescriptionPadding:"12px 14px",
           marginXS:2,
@@ -82,4 +81,4 @@ const alert = (
   );
 };
 export default Alert;
-export type {ExtendedAlertType};
+export type {CustomAlertType};

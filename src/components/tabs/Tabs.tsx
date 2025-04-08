@@ -11,11 +11,6 @@ interface TabsProps extends AntTabsProps {
 }
 
 const TabLabel = styled.div<{ isBox: boolean; isActive: boolean; theme: any }>`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
   padding: 12px;
   background: ${(props) => (props.isActive ? props.theme.background.bg1 : "none")};
 

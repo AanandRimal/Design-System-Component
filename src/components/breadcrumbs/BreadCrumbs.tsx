@@ -4,15 +4,10 @@ import { Icon } from "@iconify/react";
 import { useTheme } from "../../contexthook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 
-interface BreadcrumbsProps {
-  items: BreadcrumbProps["items"];
-}
-
-const Breadcrumb: React.FC<BreadcrumbsProps> = ({ items }) => {
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ ...props}) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-
-  const breadcrumbItems: BreadcrumbProps["items"] = [
+  const breadcrumbItems= [
     {
       href: "",
       title: (
@@ -24,9 +19,8 @@ const Breadcrumb: React.FC<BreadcrumbsProps> = ({ items }) => {
         />
       ),
     },
-    ...(items || []),
+    ...(props.items || []),
   ];
-
   return (
     <ConfigProvider
       theme={{

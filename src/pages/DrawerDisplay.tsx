@@ -11,6 +11,7 @@ const DrawerDisplay: React.FC = () => {
       <Button Customtype="primary" onClick={() => setIsDrawerOpen(true)}>Open Drawer</Button>
 
       <Drawer
+       
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         icon={<Button Customtype="secondary" leftIcon={<LeftIcon/>}/>}

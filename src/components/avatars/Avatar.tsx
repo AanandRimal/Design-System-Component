@@ -11,18 +11,17 @@ interface CustomAvatarProps extends AvatarProps {
   dot?:boolean;
 }
 
-const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
-  height: ${(props) => props.iconSize}px;
-  width: ${(props) => props.iconSize}px;
-  transform: translateY(${(props) => props.translateY}px);
-`;
+// const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
+//   height: ${(props) => props.iconSize}px;
+//   width: ${(props) => props.iconSize}px;
+//   transform: translateY(${(props) => props.translateY}px);
+// `;
 
 const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-
   const avatarSizeobj = avatarSizes[customSize as keyof typeof avatarSizes] || avatarSizes[120];
-  const iconSize = avatarSizeobj.base * 0.8;
+  const userIconSize = avatarSizeobj.base * 0.8;
   const translateY = avatarSizeobj.base * 0.19;
 
   return (
@@ -35,7 +34,7 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
             colorTextLightSolid: icon ? currentTheme.background.bg2Hover : currentTheme.text.staticWhite,
             colorBorder: "#ffff",
             containerSize: avatarSizeobj.base,
-            textFontSize: iconSize,
+            textFontSize: userIconSize,
           },
         },
       }}
@@ -43,13 +42,13 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
       <Badge dot={props.dot} customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]} customStatus="online">
         <AntAvatar
           icon={
-            React.isValidElement(icon) ? (
-              <StyledIconWrapper iconSize={iconSize} translateY={translateY}>
-                {React.cloneElement(icon as React.ReactElement<any>)}
-              </StyledIconWrapper>
-            ) : (
+            // React.isValidElement(icon) ? (
+            //   <StyledIconWrapper iconSize={userIconSize} translateY={translateY}>
+            //     {React.cloneElement(icon as React.ReactElement<any>)}
+            //   </StyledIconWrapper>
+            // ) : (
               icon
-            )
+            
           }
           {...props}
         />

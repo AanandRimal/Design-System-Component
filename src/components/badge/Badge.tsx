@@ -14,23 +14,23 @@ interface BadgeProps {
 const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'primary', icon, dot = false, children }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-  const themeStatus = currentTheme[status];
-  const sizeConfig = badgeSizes[size] || badgeSizes[20];
+  const themeTypeKey = currentTheme[status];
+  const badgeSizeKey = badgeSizes[size] || badgeSizes[20];
   const bgColor =
-    type === 'solid' ? themeStatus?.default ?? 'transparent' :
-    type === 'filled' ? themeStatus?.focus ?? 'transparent' :
+    type === 'solid' ? themeTypeKey?.default ?? 'transparent' :
+    type === 'filled' ? themeTypeKey?.focus ?? 'transparent' :
     'transparent';
   const borderColor = type === 'stroke' ? currentTheme.stroke.strong : 'transparent';
   const textColor =
     type === 'stroke' ? currentTheme?.text.t2Component :
     type === 'solid' ? currentTheme.text.staticWhite :
-    themeStatus?.dark ?? 'inherit';
-  const iconStyles = { color: type === 'solid' ? currentTheme.text.staticWhite : themeStatus?.default ?? 'inherit' };
+    themeTypeKey?.dark ?? 'inherit';
+  const iconStyles = { color: type === 'solid' ? currentTheme.text.staticWhite : themeTypeKey?.default ?? 'inherit' };
   const dotStyles = {
     width: 6,
     height: 6,
     borderRadius: '50%',
-    backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:themeStatus?.default ?? 'inherit',
+    backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:themeTypeKey?.default ?? 'inherit',
     marginRight: 4,
   };
 
@@ -41,15 +41,15 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
       style={{
         backgroundColor: bgColor,
         borderColor,
-        height: sizeConfig.height,
-        padding: `${sizeConfig.paddingY}px ${sizeConfig.paddingX}px`,
+        height: badgeSizeKey.height,
+        padding: `${badgeSizeKey.paddingY}px ${badgeSizeKey.paddingX}px`,
         display: 'inline-flex',
         alignItems: 'center',
         borderRadius: size=== 20 ? "4px" : "6px",
       }}
     >
       {icon ? (
-        <span style={{ ...iconStyles, fontSize: sizeConfig.iconSize, marginRight: 4 }}>{icon}</span>
+        <span style={{ ...iconStyles, fontSize: badgeSizeKey.iconSize, marginRight: 4 }}>{icon}</span>
       ) : dot ? (
         <span style={dotStyles}></span>
       ) : null}

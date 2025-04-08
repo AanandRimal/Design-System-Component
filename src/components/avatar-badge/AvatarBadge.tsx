@@ -6,10 +6,10 @@ interface CustomBadgeProps extends BadgeProps{
   customStatus?:string
   customSize?:number
 }
-const Badge: React.FC<CustomBadgeProps> = ({customSize=16,...props }) => {
+const Badge: React.FC<CustomBadgeProps> = ({customSize=16, customStatus="online" ,...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-  const isOnlineStatus=props.customStatus === "online";
+  const isOnlineStatus=customStatus === "online";
   return (
     <ConfigProvider
       theme={{

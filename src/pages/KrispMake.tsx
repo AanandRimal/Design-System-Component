@@ -10,7 +10,7 @@ import { Themes } from "../components/foundation/Theme";
 import Radio from "../components/Radio";
 import Switch from "../components/switch/Switch"
 import Alert from "../components/alerts/Alerts"
-import { ExtendedAlertType } from "../components/alerts/Alerts";
+import { CustomAlertType } from "../components/alerts/Alerts";
 import Breadcrumb from "../components/breadcrumbs/BreadCrumbs";
 import Avatar from "../components/avatars/Avatar";
 import BadgeTable from "./BadgeDisplay";
@@ -21,12 +21,19 @@ import ModalDisplay from "./ModalDisplay";
 import DrawerDisplay from "./DrawerDisplay";
 import ButtonDisplay from "./ButtonDisplay";
 import InputDisplay from "./InputDisplay";
+import ToasterDisplay from "./ToasterDisplay";
+import Dropdown from "../components/drop-down/Dropdown";
+import DropdownDisplay from "./Dropdowndisplay"
+import type { MenuProps } from 'antd';
+import Banner from "../components/banner/Banner";
+import BannerGrid from "./BannerDisplay";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown"];
 export default function KrispMake() {
+ 
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
-const alertTypes: ExtendedAlertType[] = ["neutral", "info", "success", "warning", "error", "primary"];
+const alertTypes: CustomAlertType[] = ["neutral", "info", "success", "warning", "error", "primary"];
 const currentTheme=Themes[themeMode]
   const checkboxSizes = [16, 20, 24];
   const checkboxColumns = [
@@ -104,7 +111,7 @@ const generateAlertData = (condition: "filled" | "stroke") => {
           <Button Customtype={buttonType}>Button Label</Button>
           </Space>}
           closable
-          type={type}
+          Customtype={type}
           showIcon
           {...(condition === "stroke" ? { stroke: true } : {})}
         />
@@ -311,10 +318,26 @@ const avatarData = avatarSizesList.map((size) => ({
 )}
 {selectedComponent === "Drawer" && (
   <>
-  <p className="text-medium-bold font-semibold">hhhh</p>
 <DrawerDisplay/>
   </>
 )}
+{selectedComponent=== "Toaster" && (
+  <>
+<ToasterDisplay/>
+  </>
+) }
+{selectedComponent=== "Dropdown" && (
+  <>
+
+<DropdownDisplay/>
+  </>
+) }
+{selectedComponent=== "Banner" && (
+  <>
+
+<BannerGrid />
+  </>
+) }
         </div>
         </div>
       </div>

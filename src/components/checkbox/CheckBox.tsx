@@ -7,12 +7,10 @@ import "./check.css";
 interface CustomCheckBoxProps extends CheckboxProps {
   size?: number;
 }
-const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16, children, ...props }) => {
+const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16,  ...props }) => {
   const { themeMode } = useTheme(); 
   const currentTheme=Themes[themeMode];
-  const primaryColor = Themes[themeMode]?.primary?.default;
   const disabledColor = "#F1F1F3";
-  const disabledText = currentTheme.text.t3Disabled;
   const checksize=checkSizes[size];
   const indeterminateWidth = checksize.linewidth
   const indeterminateborderwidth=checksize.linewidthbold
@@ -21,13 +19,13 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16, children, ...props
       theme={{
         components: {
           Checkbox: {
-            colorPrimary: primaryColor,
-            colorPrimaryHover: primaryColor,
+            colorPrimary: currentTheme.primary.default,
+            colorPrimaryHover: currentTheme.primary.default,
             colorPrimaryBorder:currentTheme.background.bg5TableActive,//THIS IS FOCUS COLOR 
             colorBgContainer:currentTheme.background.bg1,
             colorBorder:currentTheme.stroke.strong,
             colorBgContainerDisabled: disabledColor,
-            colorTextDisabled: disabledText,
+            colorTextDisabled:currentTheme.text.t3Disabled,
             colorText:currentTheme.text.t2Component,
             colorWhite:currentTheme.text.staticWhite,
             borderRadiusSM: checksize.borderadius,
@@ -43,7 +41,7 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16, children, ...props
         } as React.CSSProperties} className={props.indeterminate ? "custom-indeterminate" : " "}   
       {...props}>
         
-        {children}
+        {props.children}
       </Checkbox>
     </ConfigProvider>
     
