@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { CircleCheck } from "lucide-react";
 import Input from "./Input"; // Import your custom Input component
+import { Themes } from "../foundation/Theme";
+import { useTheme } from "../../contexthook/ThemeProvider";
+
 interface PasswordInputProps extends React.ComponentProps<typeof Input> {
   label?: string;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value, onChange, ...props }) => {
   const [password, setPassword] = useState<string>(String(value || "")); // Ensure value is a string
-
+  const { themeMode } = useTheme();
+  const currentTheme = Themes[themeMode];
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
     setPassword(newPassword); // Update state
@@ -24,7 +28,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       {/* Label */}
-      {label && <label style={{ fontSize: "14px", fontWeight: "500" }}>{label}</label>}
+      {label && <label style={{ fontSize: "14px", fontWeight: "500" ,color: currentTheme.text.t2Component}}>{label}</label>}
 
       {/* Password Input (Fix: Ensure value is a string) */}
       <Input type="password" value={password} onChange={handleChange} {...props} />
