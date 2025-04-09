@@ -10,7 +10,6 @@ interface CustomCheckBoxProps extends CheckboxProps {
 const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16,  ...props }) => {
   const { themeMode } = useTheme(); 
   const currentTheme=Themes[themeMode];
-  const disabledColor = "#F1F1F3";
   const checksize=checkSizes[size];
   const indeterminateWidth = checksize.linewidth
   const indeterminateborderwidth=checksize.linewidthbold
@@ -24,7 +23,7 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16,  ...props }) => {
             colorPrimaryBorder:currentTheme.background.bg5TableActive,//THIS IS FOCUS COLOR 
             colorBgContainer:currentTheme.background.bg1,
             colorBorder:currentTheme.stroke.strong,
-            colorBgContainerDisabled: disabledColor,
+            colorBgContainerDisabled: currentTheme.background.bg3,
             colorTextDisabled:currentTheme.text.t3Disabled,
             colorText:currentTheme.text.t2Component,
             colorWhite:currentTheme.text.staticWhite,

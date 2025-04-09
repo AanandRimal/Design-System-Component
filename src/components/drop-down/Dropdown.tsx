@@ -14,6 +14,8 @@ const Dropdown: React.FC<AntDropdownProps> = ({  ...dropdownProps }) => {
       .ant-dropdown-menu-item-icon {
         color:${currentTheme.text.t3Subtitle}
       }
+        .ant-dropdown-menu{
+        border:1px solid ${currentTheme.stroke.strong}}
     `}
   </style>
     <ConfigProvider
@@ -29,7 +31,9 @@ const Dropdown: React.FC<AntDropdownProps> = ({  ...dropdownProps }) => {
         marginXS:8,
         paddingXXS:4,
         paddingBlock:6,
-        controlPaddingHorizontal:8
+        controlPaddingHorizontal:8,
+             boxShadowSecondary: '0px 3px 4px 0px rgba(0, 0, 0, 0.12)',
+             colorPrimaryBorder:currentTheme.stroke.strong
           },
         },
       }}

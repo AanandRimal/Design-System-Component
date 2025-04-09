@@ -24,7 +24,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       {label && (
         <label
           className="text-base-medium font-medium mb-1"
-          style={{ color: currentTheme.text.t3Disabled }} 
+          style={{ color: currentTheme.text.t2Component }} 
         >
           {label}
         </label>

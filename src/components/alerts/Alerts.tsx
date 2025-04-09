@@ -26,14 +26,17 @@ const Alert: React.FC<AlertProps> = ({
     const StyledAlert = styled(AntAlert)`
   .ant-alert-icon {
     position: relative;
-    top: 8px; 
+    top: 14px; 
   }
 
   .ant-alert-close-icon {
     position: relative;
-    top: 8px;
+    top: 14px;
     margin-left:10px;
   }
+    .ant-alert-action {
+  margin-top: 6px;
+}
 
 `;
 const alert = (

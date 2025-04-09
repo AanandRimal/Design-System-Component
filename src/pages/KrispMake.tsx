@@ -22,11 +22,9 @@ import DrawerDisplay from "./DrawerDisplay";
 import ButtonDisplay from "./ButtonDisplay";
 import InputDisplay from "./InputDisplay";
 import ToasterDisplay from "./ToasterDisplay";
-import Dropdown from "../components/drop-down/Dropdown";
 import DropdownDisplay from "./Dropdowndisplay"
-import type { MenuProps } from 'antd';
-import Banner from "../components/banner/Banner";
 import BannerGrid from "./BannerDisplay";
+import { LeftIcon } from "../components/icons/LeftIcon";
 const { Title } = Type;
 const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown"];
 export default function KrispMake() {
@@ -146,7 +144,14 @@ const avatarData = avatarSizesList.map((size) => ({
         borderColor: currentTheme.stroke.strong,
       },
       Menu:{
-        darkItemBg:currentTheme.background.bg1
+        darkItemBg:currentTheme.background.bg1,
+        darkItemSelectedBg:currentTheme.primary.default,
+        itemSelectedBg:currentTheme.primary.accentBg,
+        itemActiveBg:currentTheme.primary.focus,
+        itemSelectedColor:currentTheme.primary.stroke
+
+
+        
       }
     },
   }}
@@ -218,6 +223,7 @@ const avatarData = avatarSizesList.map((size) => ({
 {selectedComponent === "Button" && (
 <>
 <ButtonDisplay/>
+<Button Customtype="primary" Customsize={40} leftIcon={<LeftIcon/>}></Button>
 
 </>
 )}

@@ -10,12 +10,19 @@ interface CustomAvatarProps extends AvatarProps {
   customSize?: number;
   dot?:boolean;
 }
+//****Used absolute and top and left as with offsett leftt was not applied and added div to make exact container  if just offset then form left it was not applied like it was but form badge not frm avater look women shouder justtt touched not touched body but with top and left it touched  */
+const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
 
-// const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
-//   height: ${(props) => props.iconSize}px;
-//   width: ${(props) => props.iconSize}px;
-//   transform: translateY(${(props) => props.translateY}px);
-// `;
+  height: ${(props) => props.iconSize}px;
+  width: ${(props) => props.iconSize}px;
+  transform: translateY(${(props) => props.translateY}px);
+`;
+const Wrapper = styled.div<{ margin:number; size:number; }>`
+    position: relative;
+    height: ${(props) => props.size}px;
+  width: ${(props) => props.size}px;
+
+`;
 
 const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => {
   const { themeMode } = useTheme();
@@ -34,25 +41,29 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
             colorTextLightSolid: icon ? currentTheme.background.bg2Hover : currentTheme.text.staticWhite,
             colorBorder: "#ffff",
             containerSize: avatarSizeobj.base,
-            textFontSize: userIconSize,
+            textFontSize: userIconSize, //icon size
+            fontSize:userIconSize,//textlabel size
+         
           },
         },
       }}
     >
-      <Badge dot={props.dot} customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]} customStatus="online">
+   <Wrapper margin={avatarSizeobj.dotplacement} size={avatarSizeobj.base}>
+      <Badge dot={props.dot} customSize={avatarSizeobj.status}  customStatus="online" style={{position:"absolute",top:avatarSizeobj.dotplacement, left:avatarSizeobj.dotplacement }}>
         <AntAvatar
           icon={
-            // React.isValidElement(icon) ? (
-            //   <StyledIconWrapper iconSize={userIconSize} translateY={translateY}>
-            //     {React.cloneElement(icon as React.ReactElement<any>)}
-            //   </StyledIconWrapper>
-            // ) : (
+            React.isValidElement(icon) ? (
+              <StyledIconWrapper iconSize={userIconSize} translateY={translateY}>
+                {React.cloneElement(icon as React.ReactElement<any>)}
+              </StyledIconWrapper>
+            ) : (
               icon
             
-          }
+   ) }
           {...props}
         />
       </Badge>
+      </Wrapper>
     </ConfigProvider>
   );
 };

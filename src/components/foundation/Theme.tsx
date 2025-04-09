@@ -39,6 +39,10 @@ interface FillColor {
   f3?: string;
   f4?:string;
 }
+interface Inverse{
+  inverseblack?:string;
+  inversewhite?:string;
+}
 
 interface ThemeType {
   primary: ThemeColor;
@@ -51,7 +55,7 @@ interface ThemeType {
   background: BackgroundColor;
   text: TextColor;
   fill: FillColor;
-  Inverse:string;
+  inverse:Inverse
 }
 
   
@@ -186,8 +190,12 @@ const bw="#FFFFFF";
       f4:colors.ab[16],
 
       },
-      
-      Inverse: colors.grey[950], 
+      inverse:{
+    
+        inverseblack: colors.grey[900],
+        inversewhite:bw
+      }
+   
     },
     dark: {
       primary: { 
@@ -246,7 +254,10 @@ const bw="#FFFFFF";
 
       },
       
-      Inverse: bw, 
+      inverse:{
+        inverseblack:bw,
+        inversewhite:colors.grey[900]
+      } 
  
   
     },

@@ -1,7 +1,6 @@
 import Dropdown from "../components/drop-down/Dropdown"; // adjust path as needed
 import Button from "../components/button/Button";
 import {LeftIcon }from "../components/icons/LeftIcon"; // adjust the import path to match your project
-
 const items = [
   {
     key: '1',
@@ -34,6 +33,7 @@ const itemsWithIcon = [
   },
 ];
 
+
 const ExampleComponent = () => {
   return (
     <div className="flex items-center gap-4">
@@ -52,6 +52,7 @@ const ExampleComponent = () => {
       >
         <Button Customtype="secondary" icon={<LeftIcon />} > Open Dropdown with icon </Button>
       </Dropdown>
+
     </div>
   );
 };

@@ -42,7 +42,7 @@ const ColorPalette: React.FC = () => {
     button: {
       width: "100%",
       padding: "8px",
-      backgroundColor: "#007AFF",
+      backgroundColor: currentTheme.primary.default,
       color: "white",
       border: "none",
       borderRadius: "4px",

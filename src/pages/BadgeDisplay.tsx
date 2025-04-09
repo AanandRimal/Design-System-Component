@@ -4,7 +4,7 @@ import Badge from "../components/badge/Badge";
 import Avatar from "../components/avatars/Avatar";
 import { Icon } from "@iconify/react";
 
-const badgeSizes: (20 | 24)[] = [20, 24];
+const badgeSizes: (20 | 24 |28)[] = [20, 24,28];
 const badgeTypes: ("stroke" | "filled" | "solid")[] = ["stroke", "filled", "solid"];
 const badgeStatuses: ("success" | "info" | "warning" | "destructive")[] = ["success", "info", "warning", "destructive"];
 
