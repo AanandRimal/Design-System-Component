@@ -25,8 +25,11 @@ import ToasterDisplay from "./ToasterDisplay";
 import DropdownDisplay from "./Dropdowndisplay"
 import BannerGrid from "./BannerDisplay";
 import { LeftIcon } from "../components/icons/LeftIcon";
+import TooltipDisplay from "./TooltipDisplay";
+import ProgressWithLabel from "../components/progress-bar/ProgressWithLabel";
+import SpinnerDisplay from "./SpinnerDisplay";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner"];
 export default function KrispMake() {
  
   const { themeMode, toggleTheme } = useTheme();
@@ -342,6 +345,27 @@ const avatarData = avatarSizesList.map((size) => ({
   <>
 
 <BannerGrid />
+  </>
+) }
+{selectedComponent=== "ToolTip" && (
+  <>
+<TooltipDisplay/>
+  </>
+) }
+{selectedComponent=== "ProgressBar" && (
+  <>
+ <Space direction="vertical" size={50} style={{ width: 500 }}>
+  <ProgressWithLabel percent={70} label="Label" />
+  <ProgressWithLabel percent={50} bottomLabel="Help Text" />
+  <ProgressWithLabel percent={85} label="Label" bottomLabel="HelpText" />
+  <ProgressWithLabel percent={40} />
+</Space>
+
+  </>
+) }
+{selectedComponent=== "Spinner" && (
+  <>
+<SpinnerDisplay/>
   </>
 ) }
         </div>
