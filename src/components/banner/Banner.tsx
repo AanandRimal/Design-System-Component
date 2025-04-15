@@ -15,25 +15,29 @@ const StyledBannerWrapper = styled.div`
       text-align: center; 
       gap:8px
     }
-
+.ant-alert-content {
+    flex: initial;
+}
     .ant-alert-icon,
     .ant-alert-close-icon {
       position: static;
       top: auto;
       align-self: center;
-      margin-left:400px
+      margin-left:420px
 
     }
 
     .ant-alert-action {
       margin-top: 0;
       align-self: center;
+   margin-left: 4px;
     }
   }
 
   .ant-alert-icon {
-    position: relative;
-    top: 13px;
+   display: flex;
+    align-items: center;  
+    justify-content: center;
   }
 
   .ant-alert-close-icon {
@@ -65,6 +69,7 @@ token:{
 components:{
     Alert:{
         colorInfo: themeTypeKey.textcolor,
+        
         colorInfoHover: themeTypeKey.hover,
         colorInfoActive: themeTypeKey.default,
         colorInfoBg: themeTypeKey.default,
@@ -75,7 +80,7 @@ components:{
       colorIcon:themeTypeKey.textcolor,
       fontSizeIcon:16,
       withDescriptionPadding:"10px 12px",
-      marginSM:8,
+      marginSM:isSingleContent? 0: 8,
       marginXS:0,
     },
 },
@@ -86,6 +91,7 @@ components:{
       <Alert
         type={bannerprops.type || "info"}
         {...bannerprops}
+        icon={ isSingleContent? bannerprops.icon:<div style={{borderRadius:"99px",height:"40px", width:"40px",backgroundColor:themeTypeKey.hover}}>{bannerprops.icon}</div>}
         message={
           bannerprops.message && (
             <span className="text-large-semibold font-semibold">{bannerprops.message}</span>

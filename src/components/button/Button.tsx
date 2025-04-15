@@ -30,8 +30,8 @@ const Button: React.FC<ButtonProps> = ({
   const socialPadding =  butttonSocialSizePadding[Customsize as number] ||  butttonSocialSizePadding[36];
   const iconButtonPadding=IconButtonPadding[Customsize as number] || IconButtonPadding[36] // ivon Button padding
   const finalPaddingY = isSocialType
-  ? socialPadding?.paddingY
-  : props.children
+    ? socialPadding?.paddingY
+    : props.children
     ? buttonSizeKey?.paddingY
     : iconButtonPadding?.paddingY;
 
@@ -45,7 +45,7 @@ const finalPaddingX = isSocialType
   const buttonStyle: React.CSSProperties = {
     borderColor: (Customtype === "secondary" || Customtype === "social") ? currentTheme.stroke.strong : undefined, // as border color is there for social and soecndary so used css
     ...(props.loading && { // loading case we dont have token so handled with css for all button
-      backgroundColor: currentTheme.background.bg2Hover,
+      backgroundColor: currentTheme.fill.f3,
       color: currentTheme.text.t3Disabled,
   
     }),

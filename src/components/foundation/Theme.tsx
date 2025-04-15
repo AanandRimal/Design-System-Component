@@ -120,7 +120,6 @@ ab:{
   8:"#17171C14",
   12:"#17171C1F",
   16:"#17171C29",
-
 },
 aw: {
   2: "#FFFFFF05",
@@ -132,19 +131,57 @@ aw: {
 },
 };
 const bw="#FFFFFF";
-  
+const background = {
+  bg0: colors.grey[50],
+  bg1: bw,
+  bg2: bw,
+  bg2Hover: colors.grey[50],
+  bg3: bw,
+  bg4: colors.grey[200],
+  bg5: colors.grey[300],
+  bg5TableActive: colors.grey[300],
+  tabBg: colors.grey[50],
+};
+const text = {
+  t1Title: colors.grey[950],
+  t2Subtitle: colors.grey[500],
+  t2Component: colors.grey[700],
+  t3Subtitle:colors.grey[500],
+  t3Disabled: colors.grey[400],
+  inverse: bw,
+  staticWhite: bw
+};
+const fill = {
+  f1:colors.ab[2],  
+  f2:colors.ab[4],
+  f3:colors.ab[8],
+  f4:colors.ab[16],
+};
+const stroke = {  
+  strong: colors.ab[12],
+  decorative: colors.ab[6],
+};
+const inverse={
+    
+  inverseblack: colors.grey[900],
+  inversewhite:bw
+};
+
   const Themes: Record<string, ThemeType> = {
     light: {
+      ...{
+        background, 
+        text,
+        fill,
+        stroke,
+        inverse,
       primary: { 
         default: colors.primary[700], hover: colors.primary[600], focus: colors.primary[100],
         accentBg: colors.primary[200], stroke: colors.primary[400], dark: colors.primary[900],textcolor:"#FFFFFF"
       },
       secondary: { 
-        default: "#FFFFFF", hover: "#F9F9FA", focus: "#F4F4F6",
+        default:background.bg1 , hover: fill.f2, focus: "#F4F4F6",
         accentBg: "#E3E3E8", stroke: "#D3D3DA", dark: "#3D3D48",textcolor:colors.grey[700]
-      },
-      stroke: { 
-        strong: colors.ab[12], decorative: colors.ab[6]
       },
       success: { 
         default: colors.green[700], hover: colors.green[600], focus: colors.green[100],
@@ -162,40 +199,8 @@ const bw="#FFFFFF";
         default: colors.orange[700], hover: colors.orange[600], focus: colors.orange[100],
         accentBg: colors.orange[200], stroke: colors.orange[400], dark: colors.orange[900],textcolor:"#FFFFFF"
       },
-      background: {
-        bg0: colors.grey[50],
-        bg1: bw,
-        bg2: bw,
-        bg2Hover: colors.grey[50],
-        bg3: bw,
-        bg4:colors.grey[200],
-        bg5:colors.grey[300],
-        bg5TableActive: colors.grey[300],
-        tabBg: colors.grey[50]
-      },
-      text: {
-        t1Title: colors.grey[950],
-        t2Subtitle: colors.grey[500],
-        t2Component: colors.grey[700],
-        t3Subtitle:colors.grey[500],
-        t3Disabled: colors.grey[400],
-        inverse: bw,
-        staticWhite: bw
-      },
 
-      fill: {
-      f1:colors.ab[2],
-      f2:colors.ab[4],
-      f3:colors.ab[8],
-      f4:colors.ab[16],
-
-      },
-      inverse:{
-    
-        inverseblack: colors.grey[900],
-        inversewhite:bw
-      }
-   
+    },
     },
     dark: {
       primary: { 
@@ -225,6 +230,7 @@ const bw="#FFFFFF";
         default: colors.orange[600], hover: colors.orange[500], focus: colors.orange[950],
         accentBg: colors.orange[950], stroke: colors.orange[600], dark: colors.orange[500],textcolor:"#FFFFFF"
       },
+
       background: {
         bg0: colors.grey[950],
         bg1: colors.grey[900],

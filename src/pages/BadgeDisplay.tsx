@@ -36,7 +36,7 @@ badgeSizes.forEach((size) => {
         } else if (variation === "icon") {
           badgeContent = <Badge type={type} status={status} size={size} icon={<Icon icon="mage:select-box"/>}>Badge</Badge>;
         } else {
-          badgeContent = <Badge type={type} status={status} size={size} icon={<Avatar customSize={14} src={<img src={"./Female 2.png"} alt="avatar" />}  />}>Badge</Badge>;
+          badgeContent = <Badge type={type} status={status} size={size} icon={<Avatar customSize={16} src={<img src={"./Female 2.png"} alt="avatar" />}  />}>Badge</Badge>;
         }
         row[status] = badgeContent;
       });

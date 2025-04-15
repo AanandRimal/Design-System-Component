@@ -1,6 +1,7 @@
 import { Space } from "antd";
 import  Banner  from "../components/banner/Banner";
 import  Button  from "../components/button/Button";
+import { LeftIcon } from "../components/icons/LeftIcon";
 
 const bannerTypes = ["destructive", "success", "primary", "warning", "info"] as  const;
 
@@ -25,6 +26,7 @@ export default function BannerGrid() {
                   }
                   closable
                   showIcon
+                  icon={<LeftIcon />}
                 />
               </div>
             ))}
@@ -47,6 +49,7 @@ export default function BannerGrid() {
                   }
                   closable
                   showIcon
+                  icon={<LeftIcon />}
                 />
               </div>
             ))}

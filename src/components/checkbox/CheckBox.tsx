@@ -13,6 +13,7 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16,  ...props }) => {
   const checksize=checkSizes[size];
   const indeterminateWidth = checksize.linewidth
   const indeterminateborderwidth=checksize.linewidthbold
+  console.log(props.indeterminate)
   return (
     <ConfigProvider
       theme={{
@@ -29,6 +30,7 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16,  ...props }) => {
             colorWhite:currentTheme.text.staticWhite,
             borderRadiusSM: checksize.borderadius,
             lineWidthBold:checksize.linewidthbold,
+
             controlInteractiveSize: size, 
           },
         },
@@ -36,7 +38,9 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16,  ...props }) => {
     >
       <Checkbox      style={{ 
           "--indeterminate-width": `${indeterminateWidth}px`,
-          "--indeterminate-width-bold":`${indeterminateborderwidth}px` 
+          "--indeterminate-width-bold":`${indeterminateborderwidth}px`, 
+          display: "flex",
+          alignItems: "center",
         } as React.CSSProperties} className={props.indeterminate ? "custom-indeterminate" : " "}   
       {...props}>
         

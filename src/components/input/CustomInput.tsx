@@ -24,7 +24,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       {label && (
         <label
           className="text-base-medium font-medium mb-1"
-          style={{ color: currentTheme.text.t2Component }} 
+          style={{ color:props.disabled? currentTheme.text.t3Disabled: currentTheme.text.t2Component }} 
         >
           {label}
         </label>
@@ -35,7 +35,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
           className="text-xs mt-1.5"
           style={{
             color: isError
-              ? currentTheme.destructive.default 
+              ? currentTheme.destructive.default :
+              props.disabled? currentTheme.text.t3Disabled
               : currentTheme.text.t3Subtitle, 
           }}
         >

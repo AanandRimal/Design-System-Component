@@ -2,7 +2,7 @@ import React from 'react';
 import { Themes} from "../foundation/Theme";
 import { badgeSizes } from './BadgeSizes';
 import { useTheme } from "../../contexthook/ThemeProvider";
-type CustomStatus = 'success' | 'warning' | 'destructive' | 'info' | 'primary' ;
+type CustomStatus = 'success' | 'warning' | 'destructive' | 'info' | 'primary' ; 
 interface BadgeProps {
   size?: number;
   type?: 'solid' | 'filled' | 'stroke';
@@ -32,28 +32,32 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
     borderRadius: '50%',
     backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:themeTypeKey?.default ?? 'inherit',
     marginRight: 4,
+    display:"flex",
+    alignItems:"center",
   };
 
   return (
     <div
-    className={`inline-flex items-center justify-center border rounded-full  
-      ${type === 'solid' ? 'text-small-semibold font-semibold' : 'text-x-small-medium font-medium'}`}    
+    className={`inline-flex items-center justify-center border rounded-full   
+      ${type === 'solid' ?  'font-semibold' : 'font-medium'}`}    
       style={{
         backgroundColor: bgColor,
         borderColor,
         height: badgeSizeKey.height,
         padding: `${badgeSizeKey.paddingY}px ${badgeSizeKey.paddingX}px`,
-        display: 'inline-flex',
-        alignItems: 'center',
-        borderRadius: `${badgeSizeKey.borderadius}px`
+        borderRadius: `${badgeSizeKey.borderadius}px`,
+        // lineHeight:"18px", // because of lineheightt icon adn label is not laigned  ********* PREVIOUSLY AVATR WAS MISLAIGNED AS I CHEANGED AVATR COMPONET AND ADDED BLOCK LEVEL DIV SO BECUASE OF IT IT WAS SLIGHTTLY LOWER SO I DID DEFUALT AVATAR WITH BADGEOFFSET AND CANCELD WRAPPED 
+        fontSize: badgeSizeKey.fontSize,
+
       }}
     >
       {icon ? (
-        <span style={{ ...iconStyles, fontSize: badgeSizeKey.iconSize, marginRight: 4 }}>{icon}</span>
+        <span style={{ ...iconStyles, marginRight: 4, display: 'flex',
+          alignItems: 'center' }}>{icon}</span>
       ) : dot ? (
         <span style={dotStyles}></span>
       ) : null}
-      <span style={{ color: textColor }}>{children}</span>
+            <span style={{ color: textColor  }}>{children}</span>
     </div>
   );
 };

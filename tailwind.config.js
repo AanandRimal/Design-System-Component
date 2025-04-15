@@ -116,7 +116,7 @@ module.exports = {
 
       "h4-medium": ["20px", { lineHeight: "130%", fontWeight: "500" }],
       "h4-semibold": ["20px", { lineHeight: "130%", fontWeight: "600" }],
-      "h4-medium": ["20px", { lineHeight: "130%", fontWeight: "700" }],
+      "h4-bold": ["20px", { lineHeight: "130%", fontWeight: "700" }],
 
       "h5-medium": ["18px", { lineHeight: "130%", fontWeight: "500" }],
       "h5-semibold": ["18px", { lineHeight: "130%", fontWeight: "600" }],

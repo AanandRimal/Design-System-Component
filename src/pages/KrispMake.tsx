@@ -28,6 +28,10 @@ import { LeftIcon } from "../components/icons/LeftIcon";
 import TooltipDisplay from "./TooltipDisplay";
 import ProgressWithLabel from "../components/progress-bar/ProgressWithLabel";
 import SpinnerDisplay from "./SpinnerDisplay";
+import CheckboxDisplay from "./CheckBoxDisplay";
+import Spin from "../components/spinner/Spin";
+import { LoaderCircle } from "lucide-react";
+import LoadingCircle from "../components/icons/LoadingCircle";
 const { Title } = Type;
 const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner"];
 export default function KrispMake() {
@@ -129,7 +133,7 @@ const avatarData = avatarSizesList.map((size) => ({
   key: `avatar-${size}`,
   size,
   image: <Avatar customSize={size} src={<img src={"./Female 2.png"} alt="avatar" />} dot />,
-  initials: <Avatar customSize={size} dot>K</Avatar >,
+  initials: <Avatar customSize={size} dot>Kdssdcsdcsdds</Avatar >,
   avatar: <Avatar customSize={size} icon={  <Icon
     icon="mage:user-fill"
   />}  dot/>, 
@@ -149,9 +153,10 @@ const avatarData = avatarSizesList.map((size) => ({
       Menu:{
         darkItemBg:currentTheme.background.bg1,
         darkItemSelectedBg:currentTheme.primary.default,
-        itemSelectedBg:currentTheme.primary.accentBg,
+        itemSelectedBg:currentTheme.primary.default,
         itemActiveBg:currentTheme.primary.focus,
-        itemSelectedColor:currentTheme.primary.stroke
+        itemSelectedColor:currentTheme.background.bg1,
+        
 
 
         
@@ -232,7 +237,9 @@ const avatarData = avatarSizesList.map((size) => ({
 )}
    <div>
    {selectedComponent === "Checkbox" && (
-  <Table columns={checkboxColumns} dataSource={checkboxData} pagination={false} bordered />
+    <>
+<CheckboxDisplay/>
+  </>
 )}
         </div>
         <div >
@@ -365,6 +372,7 @@ const avatarData = avatarSizesList.map((size) => ({
 ) }
 {selectedComponent=== "Spinner" && (
   <>
+  <Spin indicator={<LoadingCircle/> } />
 <SpinnerDisplay/>
   </>
 ) }

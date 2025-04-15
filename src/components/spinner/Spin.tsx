@@ -24,7 +24,7 @@ const Spin: React.FC<CustomSpinProps> = ({ customSize, ...props }) => {
         },
       }}
     >
-      <AntSpin {...props} />
+      <AntSpin indicator={props.indicator} {...props} />
     </ConfigProvider>
   );
 };

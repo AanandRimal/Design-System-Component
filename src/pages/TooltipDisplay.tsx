@@ -21,9 +21,10 @@ const TooltipDisplay = () => {
         <h3>Title Only</h3>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
 
-          <Tooltip customTitle="Hello" arrow={false}>
+          <Tooltip customTitle="Hello" arrow={false} open>
             <Button Customtype="primary">no-arrow</Button>
           </Tooltip>
+          <Tooltip title="hello">test</Tooltip>
 
           {positions.map((placement) => (
             <Tooltip key={placement} customTitle={`Hello (${placement})`} placement={placement as any}>
@@ -40,6 +41,7 @@ const TooltipDisplay = () => {
             customTitle="Hello"
             customDescription="This is a description"
             arrow={false}
+            open
           >
             <Button Customtype="primary">no-arrow</Button>
           </Tooltip>

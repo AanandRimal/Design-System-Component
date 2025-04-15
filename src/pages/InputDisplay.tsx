@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Table, Space, Switch } from "antd";
+import { ChevronDown } from 'lucide-react';
 import Input from "../components/input/Input";
 import CustomInput from "../components/input/CustomInput";
 import PasswordInput from "../components/input//PasswordInput";
@@ -97,10 +98,10 @@ const InputDisplay = () => {
           key: `${type}-${size}`,
           type: index === 0 ? "Select" : "",
           size,
-          default: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-          filled: <CustomInput type={type} size={size} defaultValue="Text Placeholder" options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
-          disabled:  <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} />,
-          error:   <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} status="error" options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
+          default: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}   label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} suffixIcon={<ChevronDown  size={16} />}/>,
+          filled: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }}  options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} suffixIcon={<ChevronDown  size={16} />} />,
+          disabled:  <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} disabled  suffixIcon={<ChevronDown  size={16} />}/>,
+          error:   <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} status="error" options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}  suffixIcon={<ChevronDown  size={16} />}/>,
         });
       });
     } else {

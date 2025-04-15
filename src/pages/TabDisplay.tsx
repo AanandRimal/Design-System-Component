@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Tabs from "../components/tabs/Tabs"; // Import the custom Tabs component
 import Badge from "../components/badge/Badge"; // Import Badge component
+import TabCustomIcon from "../components/icons/TabCustomIcon";
 
 const TabDisplay: React.FC = () => {
   const [boxactiveKey,setboxActiveKey]=useState<string>("1");
@@ -10,6 +11,7 @@ const TabDisplay: React.FC = () => {
         key: "1",
         label: "Home",
         icon: <Badge  > 22 </Badge>,
+        customIcon: <TabCustomIcon/>,
         children:"Content for Settingshome" ,
       },
       {
@@ -39,13 +41,13 @@ const TabDisplay: React.FC = () => {
     ];
   
     return (
-      <div className="grid grid-cols-2 gap-6 p-4">
+      <div className="grid grid-cols-2 gap-6 p-4  " >
         <div>
           <h2 className="text-lg font-semibold mb-4">Box Tab</h2>
           <Tabs Customtype="box" items={tabItems} activeKey={boxactiveKey} onChange={setboxActiveKey} ></Tabs>
         </div>
-        <div>
-          <h2 className="text-lg font-semibold mb-4">Underline Tab</h2>
+        <div className="">
+          <h2 className="text-lg font-semibold mb-2">Underline Tab</h2>
           <Tabs Customtype="underline" items={tabItems} activeKey={underlineactiveKey} onChange={setunderlineActiveKey} />
         </div>
       </div>

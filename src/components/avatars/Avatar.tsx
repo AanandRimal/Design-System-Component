@@ -17,19 +17,29 @@ const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
   width: ${(props) => props.iconSize}px;
   transform: translateY(${(props) => props.translateY}px);
 `;
-const Wrapper = styled.div<{ margin:number; size:number; }>`
-    position: relative;
-    height: ${(props) => props.size}px;
-  width: ${(props) => props.size}px;
+// const Wrapper = styled.div<{ size:number; }>`
+//     position: relative;
+//     height: ${(props) => props.size}px;
+//   width: ${(props) => props.size}px;
 
-`;
 
+// `;
+
+const getChildrenLabel = (children: React.ReactNode, maxChars: number) => {
+  if (typeof children === "string") {
+    return children.slice(0, maxChars).toUpperCase();
+  }
+  return children;
+};
 const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
   const avatarSizeobj = avatarSizes[customSize as keyof typeof avatarSizes] || avatarSizes[120];
-  const userIconSize = avatarSizeobj.base * 0.8;
+  const userIconSize =  icon ?  avatarSizeobj.base * 1: avatarSizeobj.base *0.5  ;
   const translateY = avatarSizeobj.base * 0.19;
+
+  const allowedChars = avatarSizeobj.base <= 24 ? 1 : 2;
+  
 
   return (
     <ConfigProvider
@@ -48,22 +58,23 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
         },
       }}
     >
-   <Wrapper margin={avatarSizeobj.dotplacement} size={avatarSizeobj.base}>
-      <Badge dot={props.dot} customSize={avatarSizeobj.status}  customStatus="online" style={{position:"absolute",top:avatarSizeobj.dotplacement, left:avatarSizeobj.dotplacement }}>
-        <AntAvatar
-          icon={
-            React.isValidElement(icon) ? (
-              <StyledIconWrapper iconSize={userIconSize} translateY={translateY}>
-                {React.cloneElement(icon as React.ReactElement<any>)}
-              </StyledIconWrapper>
-            ) : (
-              icon
-            
-   ) }
-          {...props}
-        />
+   {/* <Wrapper  size={avatarSizeobj.base}> */}
+     <Badge dot={props.dot} customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]} customStatus="online">
+      <AntAvatar
+  icon={
+    React.isValidElement(icon) ? (
+      <StyledIconWrapper iconSize={userIconSize} translateY={translateY}>
+        {React.cloneElement(icon as React.ReactElement<any>)}
+      </StyledIconWrapper>
+    ) : undefined // only pass icon if it's valid
+  }
+  {...props}
+>
+  {getChildrenLabel(props.children, allowedChars)}
+</AntAvatar>
+
       </Badge>
-      </Wrapper>
+      {/* </Wrapper> */}
     </ConfigProvider>
   );
 };

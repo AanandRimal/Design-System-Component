@@ -1,5 +1,6 @@
 export const avatarSizes: Record<number, { base: number; status: number; dotplacement:number}> = {
     14: {  base: 14,status:4,dotplacement:10 },
+    16: {  base: 16,status:4,dotplacement:12 },
     20: {  base: 20,status:6 ,dotplacement:14},
     24: {  base: 24,status:6 ,dotplacement:18},
     32: {  base: 32,status:8,dotplacement:24 },
