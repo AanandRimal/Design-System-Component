@@ -31,8 +31,10 @@ import CheckboxDisplay from "./CheckBoxDisplay";
 import TableDisplayComponent from "../components/table/TableDisplay";
 import Table from "../components/table/Table";
 import Slider from "../components/sliders/Slider";
+import ButtonGroup from "../components/button-group/ButtonGroup";
+import ButtonGroupDisplay from "./ButtonGroupDisplay";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner","Table","Slider"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner","Table","Slider","ButtonGroup"];
 export default function KrispMake() {
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
@@ -183,7 +185,9 @@ const avatarData = avatarSizesList.map((size) => ({
 }}>
     <div style={{ display: "flex", alignItems: "center" }}>
         <img src="/krispmake.png" alt="Logo" style={{ width: "30px", height: "30px", marginRight: "5px"}} />
-        <Title level={3} style={{ margin: 0, color: currentTheme.text.t1Title }}>KrispMake</Title>
+        <Title level={3} style={{ margin: 0, background: "linear-gradient(90deg, #8548FF, #EA66FF)", WebkitBackgroundClip: "text",WebkitTextFillColor: "transparent", }}>
+       KrispMake
+      </Title>
     </div>
     <Divider style={{ background: themeMode === "dark" ? "#444" : "#ddd" }} />
     <div       className="scrollable-menu" //scroll bar lai color dina classname
@@ -378,9 +382,17 @@ const avatarData = avatarSizesList.map((size) => ({
 ) }
 {selectedComponent=== "Slider" && (
   <>
+
 <Slider defaultValue={50}  />
   </>
 ) }
+{selectedComponent=== "ButtonGroup" && (
+
+  <>  
+<ButtonGroupDisplay/>
+
+  </>  
+)}
         </div>
         </div>
       </div>

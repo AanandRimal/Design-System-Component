@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import {  Space, Switch } from "antd";
+import {  Space } from "antd";
 import Table from "../components/table/Table";
 import { ChevronDown } from 'lucide-react';
 import Input from "../components/input/Input";
 import CustomInput from "../components/input/CustomInput";
 import PasswordInput from "../components/input//PasswordInput";
+import Switch from "../components/switch/Switch";
+
 
 const InputDisplay = () => {
   const [showBottomLabel, setShowBottomLabel] = useState<boolean>(true);
@@ -144,7 +146,7 @@ const InputDisplay = () => {
           default: type === "password" ? <PasswordInput size={size} placeholder="Enter your Password" /> : <CustomInput type={type} size={size} placeholder="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
           filled: type === "password" ? <PasswordInput size={size} value="Enter your Password" /> : <CustomInput type={type} size={size} value="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
           disabled: type === "password" ? <></> : <CustomInput type={type} size={size} disabled placeholder="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} />,
-          error: type === "password" ? <PasswordInput size={size} status="error" placeholder="Error" /> : <CustomInput type={type} size={size} status="error" placeholder="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
+          error: type === "password" ? <PasswordInput size={size} status="error" placeholder="Enter your Password"  bottomLabel={showBottomLabel ? "Error Text" : undefined}/> : <CustomInput type={type} size={size} status="error" placeholder="Text Placeholder" label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}/>,
         });
       });
     }

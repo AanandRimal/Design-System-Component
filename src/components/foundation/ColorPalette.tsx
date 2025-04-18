@@ -32,7 +32,7 @@ const ColorPalette: React.FC = () => {
       width: "250px",
       padding: "16px",
       background:currentTheme.background.bg1,
-      borderRight: "1px solid #ddd",
+      borderRight: "1px solid ${}}",
     },
     mainContent: {
       flex: 1,

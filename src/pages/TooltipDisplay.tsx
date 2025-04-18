@@ -24,7 +24,6 @@ const TooltipDisplay = () => {
           <Tooltip customTitle="Hello" arrow={false} open>
             <Button Customtype="primary">no-arrow</Button>
           </Tooltip>
-          <Tooltip title="hello">test</Tooltip>
 
           {positions.map((placement) => (
             <Tooltip key={placement} customTitle={`Hello (${placement})`} placement={placement as any}>

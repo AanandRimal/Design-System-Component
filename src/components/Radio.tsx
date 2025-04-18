@@ -35,6 +35,8 @@ interface CustomRadioProps extends RadioProps {
       }}
     >
       <AntRadio
+      style={{display: "flex",
+        alignItems: "center",}}
      {... props} >
         {children}
       </AntRadio>

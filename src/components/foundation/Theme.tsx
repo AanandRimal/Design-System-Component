@@ -66,14 +66,14 @@ interface ThemeType {
     800: "#6322BF", 900: "#492183", 950: "#281641",
   },
   green: {
-    50: "#F5FFF8", 100: "#E5FFEF", 200: "#CCFFDF", 300: "#99FFBE",
-    400: "#6EF790", 500: "#1AE561", 600: "#15C14F", 700: "#09AE43",
-    800: "#157939", 900: "#194D2C", 950: "#0F2E1A",
+    50: "#F6FEF8", 100: "#E6FEEF", 200: "#CFFCDF", 300: "#9EFABF",
+    400: "#77EE94", 500: "#21DE64", 600: "#15C14F", 700: "#09AE43",
+    800: "#157939", 900: "#194D2C", 950: "#143E22",
   },
   red: {
     50: "#FFF5F5", 100: "#FFE5E6", 200: "#FFD6D7", 300: "#FFB8BA",
     400: "#FF8588", 500: "#F65055", 600: "#DD4145", 700: "#CF252A",
-    800: "#AD1F23", 900: "#8A191C", 950: "#4A0D0F",
+    800: "#AD1F23", 900: "#8A191C", 950: "#570F12",
   },
   grey: {
     50: "#F9F9FA",
@@ -228,7 +228,7 @@ const darkInverse = {
       },
       success: { 
         default: colors.green[700], hover: colors.green[600], focus: colors.green[100],
-        accentBg: colors.green[200], stroke: colors.green[400], dark: colors.green[900],textcolor:"#FFFFFF"
+        accentBg: colors.green[200], stroke: colors.green[500], dark: colors.green[900],textcolor:"#FFFFFF"
       },
       destructive: { 
         default: colors.red[700], hover: colors.red[600], focus: colors.red[100],
@@ -296,10 +296,7 @@ const darkInverse = {
     lineheight: number;
     fontWeight: number;
   }
-  interface SocialMediaSize{
-    paddingY:number | string,
-    paddingX:number | string,
-  }
+
   const Sizes: Record<number, SizeType> = {   
   32: { height: 32, width: "auto", fontSize: 14, iconSize: 20, paddingY: 6, paddingX: 10 ,lineheight:20, fontWeight:600, },
   36: { height: 36, width: "auto", fontSize: 14, iconSize: 20, paddingY: 8, paddingX: 12, lineheight:20, fontWeight:600, },
@@ -307,14 +304,7 @@ const darkInverse = {
   44: { height: 44, width: "auto", fontSize: 16, iconSize: 20, paddingY: 12, paddingX: 14,lineheight:24,fontWeight:600, },
   48: { height: 48, width: "auto", fontSize: 16, iconSize: 24, paddingY: 14, paddingX: 14, lineheight:24,fontWeight:600, },  
   };
-  const socialSizePadding: Record<number,SocialMediaSize  > = {
-    32: { paddingY: 6, paddingX: 12 },
-    36: { paddingY: 8, paddingX: 12},
-    40: { paddingY: 10, paddingX: 12 },
-    44: {paddingY:10,paddingX:14},
-    48:{paddingY:12,paddingX:14},
 
-  };
   
-  export { Themes, Sizes, colors,socialSizePadding };
+  export { Themes, Sizes, colors };
   

@@ -6,10 +6,11 @@ import { useTheme } from "../../context-hook/ThemeProvider";
 
 interface PasswordInputProps extends React.ComponentProps<typeof Input> {
   label?: string;
+    bottomLabel?: string;
 
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value, onChange, ...props }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value,bottomLabel, onChange, ...props }) => {
   const [password, setPassword] = useState<string>(String(value || "")); // Ensure value is a string
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
@@ -34,17 +35,19 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value
 
       {/* Password Input (Fix: Ensure value is a string) */}
       <Input type="password" value={password} onChange={handleChange} {...props} />
-      <span
-          className="text-xs mt-1.5"
-          style={{
-            color: isError
-              ? currentTheme.destructive.default 
-              : currentTheme.text.t3Subtitle, 
-          }}
-        >
-          Error Text
-        </span>
+      {bottomLabel && (
+         <span
+         className="text-xs mt-1.5"
+         style={{
+           color: isError
+             ? currentTheme.destructive.default 
+             : currentTheme.text.t3Subtitle, 
+         }}
+       >
+          {bottomLabel}
 
+        </span>
+      )}
       {/* Password Validation Rules */}
       <div className="text-x-small-regular font-regular" style={{  color: currentTheme.text.t2Component, marginTop: "8px" }}>
         {passwordRules.map((rule, index) => (
