@@ -1,10 +1,9 @@
 import { useState } from "react";
-import {  Typography as Type, Divider, Menu, Table,ConfigProvider,Space} from "antd";
+import {  Typography as Type, Divider, Menu,ConfigProvider,Space} from "antd";
 import { Icon } from "@iconify/react";
-import { useTheme } from "../contexthook/ThemeProvider";
+import { useTheme } from "../context-hook/ThemeProvider";
 import ColorPalette from "../components/foundation/ColorPalette";
 import Button from "../components/button/Button";
-import CheckBox from "../components/checkbox/CheckBox";
 import Typography from "../components/foundation/Typography";
 import { Themes } from "../components/foundation/Theme";
 import Radio from "../components/Radio";
@@ -29,24 +28,16 @@ import TooltipDisplay from "./TooltipDisplay";
 import ProgressWithLabel from "../components/progress-bar/ProgressWithLabel";
 import SpinnerDisplay from "./SpinnerDisplay";
 import CheckboxDisplay from "./CheckBoxDisplay";
-import Spin from "../components/spinner/Spin";
-import { LoaderCircle } from "lucide-react";
-import LoadingCircle from "../components/icons/LoadingCircle";
+import TableDisplayComponent from "../components/table/TableDisplay";
+import Table from "../components/table/Table";
+import Slider from "../components/sliders/Slider";
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner"];
+const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner","Table","Slider"];
 export default function KrispMake() {
- 
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
 const alertTypes: CustomAlertType[] = ["neutral", "info", "success", "warning", "error", "primary"];
 const currentTheme=Themes[themeMode]
-  const checkboxSizes = [16, 20, 24];
-  const checkboxColumns = [
-    { title: "Size", dataIndex: "size", key: "size", width: 100 },
-    { title: "Default", dataIndex: "default", key: "default" },
-    { title: "Indeterminate", dataIndex: "indeterminate", key: "indeterminate" },
-    { title: "Disabled", dataIndex: "disabled", key: "disabled" },
-  ];
   const radioSizes = [16, 20, 24];
 const radioColumns = [
   { title: "Size", dataIndex: "size", key: "size", width: 100 },
@@ -75,13 +66,6 @@ const avatarColumns = [
   { title: "Avatar", dataIndex: "avatar", key: "avatar" },
 ];
 
-const checkboxData = checkboxSizes.map((size) => ({
-  key: `checkbox-${size}`,
-  size,
-  default: <CheckBox size={size} >This is the CheckBox Label</CheckBox>,
-  indeterminate: <CheckBox size={size} indeterminate > This is the CheckBox Label</CheckBox>,
-  disabled: <CheckBox size={size} disabled > This is the CheckBox Label</CheckBox>
-}));
 const radioData = radioSizes.map((size) => ({
   key: `radio-${size}`,
   size,
@@ -92,12 +76,30 @@ const radioData = radioSizes.map((size) => ({
 const switchData = switchSizes.map((size) => ({
   key: `switch-${size}`,
   size,
-  default:// <Space>
- <Switch size={size} />
-,
-  checked: <Switch size={size} checked />,
-  defaultDisabled: <Switch size={size} disabled />,
-  checkedDisabled: <Switch size={size} checked disabled />,
+  default: (
+    <Space size={8}>
+      <Switch size={size} />
+      <span>Switch Label Here</span>
+    </Space>
+  ),
+  checked: (
+    <Space size={8}>
+      <Switch size={size} checked />
+      <span>Switch Label Here</span>
+    </Space>
+  ),
+  defaultDisabled: (
+    <Space size={8}>
+      <Switch size={size} disabled />
+      <span>Switch Label Here</span>
+    </Space>
+  ),
+  checkedDisabled: (
+    <Space size={8}>
+      <Switch size={size} checked disabled />
+      <span>Switch Label Here</span>
+    </Space>
+  ),
 }));
 const generateAlertData = (condition: "filled" | "stroke") => {
   return alertTypes.map((type) => {
@@ -143,12 +145,7 @@ const avatarData = avatarSizesList.map((size) => ({
   theme={{
     components: {
       Table: {
-        colorText: currentTheme.text.t1Title, 
-        colorBgContainer: currentTheme.background.bg1,
-        headerBg: currentTheme.background.bg1,
-        headerColor: currentTheme.text.t1Title,
-        rowHoverBg: "none",
-        borderColor: currentTheme.stroke.strong,
+
       },
       Menu:{
         darkItemBg:currentTheme.background.bg1,
@@ -270,7 +267,6 @@ const avatarData = avatarSizesList.map((size) => ({
         <div>
    {selectedComponent === "Alert" && (
     <>
-    <Alert type="success" showIcon stroke></Alert>
      <Table
      columns={alertColumns}
      dataSource={alertData}
@@ -372,8 +368,17 @@ const avatarData = avatarSizesList.map((size) => ({
 ) }
 {selectedComponent=== "Spinner" && (
   <>
-  <Spin indicator={<LoadingCircle/> } />
 <SpinnerDisplay/>
+  </>
+) }
+{selectedComponent=== "Table" && (
+  <>
+<TableDisplayComponent/>
+  </>
+) }
+{selectedComponent=== "Slider" && (
+  <>
+<Slider defaultValue={50}  />
   </>
 ) }
         </div>

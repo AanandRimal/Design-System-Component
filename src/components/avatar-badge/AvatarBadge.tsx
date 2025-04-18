@@ -1,6 +1,6 @@
 import React from "react";
 import { Badge as AntBadge, ConfigProvider, BadgeProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 interface CustomBadgeProps extends BadgeProps{
   customStatus?:string

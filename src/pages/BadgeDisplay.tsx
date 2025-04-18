@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "antd";
+import Table from "../components/table/Table";
 import Badge from "../components/badge/Badge"; 
 import Avatar from "../components/avatars/Avatar";
 import { Icon } from "@iconify/react";

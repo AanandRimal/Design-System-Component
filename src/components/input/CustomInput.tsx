@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "./Input";
 import { Themes } from "../foundation/Theme";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 
 interface CustomInputProps extends React.ComponentProps<typeof Input> {
   label?: string;

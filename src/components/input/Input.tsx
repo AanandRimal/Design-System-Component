@@ -4,10 +4,11 @@ import {
   InputProps as AntInputProps,
   Select as AntSelect,
   SelectProps as AntSelectProps,} from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Sizes,Themes } from "../foundation/Theme";
 import SearchIcon from "../icons/SearchIcon";
 import CardInput from "./CardInput";
+import React from "react";
 type AntSize = "small" | "middle" | "large";
 type CustomSize = keyof typeof Sizes;
 type ExtendedSize = AntSize | CustomSize;
@@ -21,6 +22,8 @@ interface CustomComponentProps extends Omit<AntInputProps & AntSelectProps, "siz
   type?: "text" | "password" | "search" | "textarea" | "otp" | "select"|"card";
   autoSize?: boolean | { minRows?: number; maxRows?: number };
   options?:  CustomOption[];
+  placeholder?: string;
+selectPlaceholder?: React.ReactNode;
 }
 const antSizeMapping: AntSize[] = ["small", "middle", "large"];
 const Input: React.FC<CustomComponentProps> = ({
@@ -69,7 +72,7 @@ console.log(customSize);
           Select: {
             activeBorderColor:currentTheme.primary.stroke,
             colorText:currentTheme.text.t2Component,
-            colorTextPlaceholder: placeholderTextColor,
+            colorTextPlaceholder:placeholderTextColor,
             controlHeightLG: customSize?.height,
             borderRadiusLG: 10,
             colorBorder:borderColor,
@@ -97,8 +100,8 @@ console.log(customSize);
   labelInValue
   size={isAntDSize ? (size as AntSize) : "large"}
   status={isError ? "error" : undefined}
-  defaultValue={{ value: "us", label: "Textplaceholder" }}
   options={options}
+ placeholder={props.selectPlaceholder}
   optionRender={(option) => (
     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       {option.data.img && (
@@ -113,6 +116,10 @@ console.log(customSize);
   )}
   labelRender={(selected) => {
     const selectedOption = options?.find(option => option.value === selected.value);
+    if (selected.label) {
+    
+    
+   
     return (
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         {selectedOption?.img && (
@@ -124,7 +131,10 @@ console.log(customSize);
         )}
         <span> {selectedOption?.label}</span>
       </div>
+    
     );
+  }
+  return 
   }}
   {...(props as AntSelectProps)}
 />

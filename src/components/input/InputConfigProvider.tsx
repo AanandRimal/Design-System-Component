@@ -1,5 +1,5 @@
 import { ConfigProvider } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Sizes, Themes } from "../foundation/Theme";
 interface InputConfigProviderProps {
     CustomSize?: keyof typeof Sizes // Size is optional and should be a number

@@ -1,6 +1,6 @@
 import React from "react";
 import { Checkbox, ConfigProvider, CheckboxProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider"; 
+import { useTheme } from "../../context-hook/ThemeProvider"; 
 import { Themes } from "../foundation/Theme";
 import { checkSizes } from "./CheckSizes";
 import "./check.css";

@@ -1,6 +1,6 @@
 import React from "react";
 import { ConfigProvider, Spin as AntSpin, SpinProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 
 interface CustomSpinProps extends SpinProps {
@@ -20,11 +20,12 @@ const Spin: React.FC<CustomSpinProps> = ({ customSize, ...props }) => {
             colorPrimary: currentTheme.primary.default,
             colorFillSecondary: currentTheme.stroke.strong,
             dotSize: spinsize,
+
           },
         },
       }}
     >
-      <AntSpin indicator={props.indicator} {...props} />
+      <AntSpin {...props} />
     </ConfigProvider>
   );
 };

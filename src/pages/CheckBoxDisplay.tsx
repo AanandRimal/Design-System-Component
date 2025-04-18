@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Table, Checkbox } from "antd";
+import {  Checkbox } from "antd";
+import Table from "../components/table/Table";
 import CheckBox from "../components/checkbox/CheckBox"; // your custom checkbox component
 
 const CheckboxGroup = Checkbox.Group;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "../contexthook/ThemeProvider";
+import { useTheme } from "../context-hook/ThemeProvider";
 import { Themes } from "../components/foundation/Theme";
 
 interface TitleProps {

@@ -1,7 +1,7 @@
 import {Alert ,AlertProps,ConfigProvider} from "antd"
 import styled from "styled-components";
 import { Themes } from "../foundation/Theme";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 interface BannerProps extends AlertProps {
     Customtype?:"primary" | "info" | "success" | "warning" | "destructive" ;
 }

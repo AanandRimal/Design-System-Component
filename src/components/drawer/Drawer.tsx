@@ -1,6 +1,6 @@
 import React from "react";
 import { Drawer as AntDrawer, DrawerProps, ConfigProvider } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import ModalTitle from "../../pages/Title";
 import ModalFooter from "../../pages/Footer";
@@ -28,7 +28,6 @@ const Drawer: React.FC<CustomDrawerProps> = ({ footerType = "right", icon,descri
     >
       <AntDrawer
         {...drawerProps} 
-        onClose={drawerProps.onClose} 
         title={
           <div className="flex justify-between items-center ">
             <ModalTitle icon={icon} title={drawerProps.title} description={description} />
@@ -39,7 +38,8 @@ const Drawer: React.FC<CustomDrawerProps> = ({ footerType = "right", icon,descri
                    onClick={drawerProps.onClose}/>
           </div>
         }
-        footer={<ModalFooter footerType={footerType}  />}
+        closeIcon={null}
+        footer={<ModalFooter footerType={footerType}  > {drawerProps.footer} </ModalFooter>}
       >
         <div className="space-y-4" style={{ color: currentTheme.text.t3Subtitle }}>
           {drawerProps.children}

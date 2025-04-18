@@ -3,7 +3,7 @@ import {ConfigProvider, Alert as AntAlert } from "antd";
 import { AlertProps as AntAlertProps } from "antd/lib/alert";
 import styled from "styled-components";
 import { Themes} from "../foundation/Theme";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 type CustomAlertType = "primary" | "neutral" | "info" | "success" | "warning" | "error";
 interface AlertProps extends AntAlertProps {
   Customtype?:CustomAlertType
@@ -60,7 +60,7 @@ const alert = (
             colorInfoActive: themeTypeKey.default,
             colorInfoBg: stroke? "none" :themeTypeKey.focus,
             colorInfoBorder:stroke? themeTypeKey.stroke: "none",
-            colorText:themeTypeKey.dark,
+            colorText: themeType === "neutral" ? themeTypeKey.textcolor: themeTypeKey.dark,
             colorTextHeading:themeTypeKey.dark,
             withDescriptionIconSize:20,
           colorIcon:themeTypeKey.stroke,

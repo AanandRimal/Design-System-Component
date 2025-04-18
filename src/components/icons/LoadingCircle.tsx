@@ -1,5 +1,6 @@
 import React from "react";
-
+import { useTheme } from "../../context-hook/ThemeProvider";
+import { Themes } from "../foundation/Theme";
 interface LoadingCircleProps {
   size?: number;
   strokeWidth?: number;
@@ -8,15 +9,17 @@ interface LoadingCircleProps {
   backgroundColor?: string;
   duration?: number; // spin duration in seconds
 }
-
 const LoadingCircle: React.FC<LoadingCircleProps> = ({
   size = 48,
-  strokeWidth = 4,
+  strokeWidth = 3,
   progress = 30,
-  primaryColor = "#1677ff",
-  backgroundColor = "#e5e5e5",
   duration = 1.5,
+  ...props
 }) => {
+  const { themeMode } = useTheme();
+  const currentTheme = Themes[themeMode];
+  const primaryColor = props.primaryColor || currentTheme.primary.default;
+  const backgroundColor = props.backgroundColor || currentTheme.stroke.strong;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);

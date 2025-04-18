@@ -1,6 +1,6 @@
 import React from "react";
 import { ConfigProvider, Progress as AntProgress, ProgressProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 const Progress: React.FC<ProgressProps> = (props) => {
   const { themeMode } = useTheme();

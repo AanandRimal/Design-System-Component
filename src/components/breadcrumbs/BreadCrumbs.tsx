@@ -1,7 +1,7 @@
 import React from "react";
 import { Breadcrumb as AntBreadcrumb, ConfigProvider, BreadcrumbProps } from "antd";
 import { Icon } from "@iconify/react";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ ...props}) => {

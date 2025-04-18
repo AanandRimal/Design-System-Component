@@ -46,6 +46,7 @@ interface Inverse{
 
 interface ThemeType {
   primary: ThemeColor;
+  neutral: ThemeColor;
   secondary: ThemeColor;
   success: ThemeColor;
   destructive: ThemeColor;
@@ -161,11 +162,49 @@ const stroke = {
   strong: colors.ab[12],
   decorative: colors.ab[6],
 };
-const inverse={
-    
+const inverse={   
   inverseblack: colors.grey[900],
   inversewhite:bw
 };
+const darkBackground = {
+  bg0: colors.grey[950],
+  bg1: colors.grey[900],
+  bg2: colors.grey[800],
+  bg2Hover: colors.grey[900],
+  bg3: colors.grey[700],
+  bg4: colors.grey[700],
+  bg5: colors.grey[600],
+  bg5TableActive: colors.grey[600],
+  tabBg: colors.grey[600],
+};
+
+const darkText = {
+  t1Title: colors.grey[100],
+  t2Subtitle: colors.grey[400],
+  t2Component: colors.grey[300],
+  t3Subtitle: colors.grey[400],
+  t3Disabled: colors.grey[400],
+  inverse: colors.grey[950],
+  staticWhite: bw,
+};
+
+const darkFill = {
+  f1: colors.aw[2],
+  f2: colors.aw[4],
+  f3: colors.aw[8],
+  f4: colors.aw[16],
+};
+
+const darkStroke = {
+  strong: colors.aw[12],
+  decorative: colors.aw[6],
+};
+
+const darkInverse = {
+  inverseblack: bw,
+  inversewhite: colors.grey[900],
+};
+
 
   const Themes: Record<string, ThemeType> = {
     light: {
@@ -179,7 +218,11 @@ const inverse={
         default: colors.primary[700], hover: colors.primary[600], focus: colors.primary[100],
         accentBg: colors.primary[200], stroke: colors.primary[400], dark: colors.primary[900],textcolor:"#FFFFFF"
       },
-      secondary: { 
+     neutral: { 
+       default:text.t3Subtitle,focus: fill.f2, hover: fill.f1, dark:text.t1Title,textcolor:text.t3Subtitle,
+    },
+      
+     secondary: { 
         default:background.bg1 , hover: fill.f2, focus: "#F4F4F6",
         accentBg: "#E3E3E8", stroke: "#D3D3DA", dark: "#3D3D48",textcolor:colors.grey[700]
       },
@@ -203,16 +246,23 @@ const inverse={
     },
     },
     dark: {
+      ...{
+        background: darkBackground,
+        text: darkText,
+        fill: darkFill,
+        stroke: darkStroke,
+        inverse:darkInverse,
+
       primary: { 
         default: colors.primary[600], hover: colors.primary[500], focus: colors.primary[950],
         accentBg: colors.primary[950], stroke: colors.primary[600], dark: colors.primary[500],textcolor:"#FFFFFF"
       },
+      neutral: {  
+        default: darkText.t3Subtitle, focus: darkFill.f2, hover: darkFill.f1, dark:darkText.t1Title,textcolor:darkText.t3Subtitle
+      },
       secondary: { 
         default: colors.grey[950], hover: colors.grey[900], focus: "#17171C",
         accentBg: "#17171C", stroke: "#50505E", dark: "#26262C",textcolor:colors.grey[300]
-      },
-      stroke: { 
-        strong: colors.aw[12], decorative: colors.aw[6],
       },
       success: { 
         default: colors.green[600], hover: colors.green[500], focus: colors.green[950],
@@ -231,41 +281,8 @@ const inverse={
         accentBg: colors.orange[950], stroke: colors.orange[600], dark: colors.orange[500],textcolor:"#FFFFFF"
       },
 
-      background: {
-        bg0: colors.grey[950],
-        bg1: colors.grey[900],
-        bg2: colors.grey[800],
-        bg2Hover: colors.grey[900],
-        bg3: colors.grey[700],
-        bg4:colors.grey[700],
-        bg5:colors.grey[600],
-        bg5TableActive: colors.grey[600],
-        tabBg: colors.grey[600]
-      },
-      text: {
-        t1Title: colors.grey[100],
-        t2Subtitle: colors.grey[400],
-        t2Component: colors.grey[300],
-        t3Subtitle:colors.grey[400],
-        t3Disabled: colors.grey[400],
-        inverse: colors.grey[950],
-        staticWhite: bw
-      },
-
-      fill: {
-      f1:colors.aw[2],
-      f2:colors.aw[4],
-      f3:colors.aw[8],
-      f4:colors.aw[16],
-
-      },
-      
-      inverse:{
-        inverseblack:bw,
-        inversewhite:colors.grey[900]
-      } 
  
-  
+    },
     },
   };
   

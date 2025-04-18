@@ -14,7 +14,7 @@ const ModalDisplay = () => {
 
       {isModalOpen && (
         <Modal
-        footerType="stacked"
+        footerType="stretch"
           open={isModalOpen}
           onOk={() => {
             console.log("Confirmed!");
@@ -31,9 +31,18 @@ const ModalDisplay = () => {
               <p>Are you sure you want to delete this contact? This action is not reversible.</p>
             <CustomInput type="text" placeholder="Enter your name" label="Label" ></CustomInput>
             <CustomInput type="text" placeholder="Enter your name" label="Label"></CustomInput>
+            
             </>
           }
-        />
+          okText="Button Label"
+          cancelText="Button Label" 
+          okButtonProps={{
+            type: "primary"
+          }}  
+          cancelButtonProps	={{
+            type: "primary"
+            
+          }}   />
       )}
     </>
   );

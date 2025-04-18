@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch as AntSwitch, ConfigProvider, SwitchProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider"; 
+import { useTheme } from "../../context-hook/ThemeProvider"; 
 import { Themes } from "../foundation/Theme";
 import { switchSizes } from "./SwitchSizes"; 
 type CustomTrackSize = keyof typeof switchSizes; 

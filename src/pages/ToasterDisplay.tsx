@@ -2,7 +2,7 @@ import { Col, Row, Space } from "antd";
 import Toaster from "../components/toaster/Toaster";
 import Button from "../components/button/Button"
 
-const toasterTypes = ["info", "warning", "destructive", "success"] as const;
+const toasterTypes = ["info", "warning", "destructive", "success","neutral"] as const;
 
 const ToasterDisplay: React.FC = () => {
   return (

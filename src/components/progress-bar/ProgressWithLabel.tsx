@@ -1,6 +1,6 @@
 import React from "react";
 import { Themes } from "../foundation/Theme";
-import {useTheme} from "../../contexthook/ThemeProvider";
+import {useTheme} from "../../context-hook/ThemeProvider";
 import Progress from "./ProgressBar";
 
 interface ProgesswithLabelProps extends React.ComponentProps<typeof Progress> {

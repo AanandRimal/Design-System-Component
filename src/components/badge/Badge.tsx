@@ -1,7 +1,7 @@
 import React from 'react';
 import { Themes} from "../foundation/Theme";
 import { badgeSizes } from './BadgeSizes';
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 type CustomStatus = 'success' | 'warning' | 'destructive' | 'info' | 'primary' ; 
 interface BadgeProps {
   size?: number;

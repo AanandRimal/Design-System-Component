@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs as AntTabs, TabsProps as AntTabsProps, ConfigProvider } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import styled from "styled-components";
 type CustomType = "box" | "underline";

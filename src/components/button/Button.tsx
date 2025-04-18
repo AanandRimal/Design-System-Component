@@ -1,6 +1,6 @@
 import React from "react";
 import { ConfigProvider, Button as AntButton, ButtonProps as AntButtonProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes} from "../foundation/Theme";
 import { ButtonSizes,butttonSocialSizePadding,IconButtonPadding } from "./ButtonSizes";
 type Customtype = "primary"| "secondary" | "success" | "info" | "destructive" | "warning" | "social"; // made so that no other type can be passed

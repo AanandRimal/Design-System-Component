@@ -1,12 +1,13 @@
 import {ConfigProvider,Alert,AlertProps} from "antd";
 import styled from "styled-components";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import {Themes} from "../foundation/Theme";
 interface ToasterProps extends AlertProps {
-CustomType?:"primary"|"success"|"warning"|"destructive"|"info" //? cheked now it is optional then only 
+CustomType?:"primary"|"success"|"warning"|"destructive"|"info"|"neutral" //? cheked now it is optional then only 
 }
 const Toaster:React.FC<ToasterProps> =({CustomType="info", ...alertprops }) =>{
 const {themeMode}=useTheme();
+const currentTheme=Themes[themeMode];
 const themeTypeKey=Themes[themeMode][CustomType] || Themes[themeMode].primary;
 const StyledAlert = styled(Alert)`
 .ant-alert-icon {
@@ -32,15 +33,15 @@ return(
   },
   components:{
   Alert:{
-            colorInfo: themeTypeKey.textcolor,
+            colorInfo:  CustomType === "neutral" ? currentTheme.text.t2Component :themeTypeKey.textcolor,
             colorInfoHover: themeTypeKey.hover,
             colorInfoActive: themeTypeKey.default,
-            colorInfoBg: themeTypeKey.default,
-            colorInfoBorder:  "none",
+            colorInfoBg:  CustomType === "neutral" ? currentTheme.background.bg2 : themeTypeKey.default,
+            colorInfoBorder: CustomType === "neutral" ? currentTheme.stroke.strong: "none",
             colorText:themeTypeKey.textcolor,
-            colorTextHeading:themeTypeKey.textcolor,
+            colorTextHeading:  CustomType === "neutral" ? currentTheme.text.t2Component :themeTypeKey.textcolor,
             withDescriptionIconSize:20,
-          colorIcon:themeTypeKey.textcolor,
+          colorIcon: themeTypeKey.textcolor,
           fontSizeIcon:16,
           withDescriptionPadding:"10px 12px",
           marginSM:8,
@@ -50,7 +51,7 @@ return(
  }}
  >
  <StyledAlert
-    
+  style={{ boxShadow: '0px 9px 8px 0px rgba(0, 0, 0, 0.10)' }}
     type={alertprops.type || "info"}
     {...alertprops}
     message={<span className="text-large-semibold font-semibold">{alertprops.message}</span>}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Table, Space, Switch } from "antd";
+import {  Space, Switch } from "antd";
+import Table from "../components/table/Table";
 import { ChevronDown } from 'lucide-react';
 import Input from "../components/input/Input";
 import CustomInput from "../components/input/CustomInput";
@@ -98,10 +99,40 @@ const InputDisplay = () => {
           key: `${type}-${size}`,
           type: index === 0 ? "Select" : "",
           size,
-          default: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}   label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} suffixIcon={<ChevronDown  size={16} />}/>,
-          filled: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }}  options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} suffixIcon={<ChevronDown  size={16} />} />,
-          disabled:  <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} disabled  suffixIcon={<ChevronDown  size={16} />}/>,
-          error:   <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }} status="error" options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}  suffixIcon={<ChevronDown  size={16} />}/>,
+          default: <CustomInput type={type} size={size}  selectPlaceholder={
+           
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <img
+              src= "https://flagcdn.com/w40/us.png" 
+                alt="avatar"
+                style={{ width: 20, height: 13.1, borderRadius: "10%" }}
+              />
+              <span>Text Placeholder</span>
+            </span>
+          } options={countryOptions}   label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} suffixIcon={<ChevronDown  size={16} />}/>,
+          filled: <CustomInput type={type} size={size} defaultValue={{ value: "us", label: "TextPlaceholder" }}   options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} suffixIcon={<ChevronDown  size={16} />} />,
+          disabled:  <CustomInput type={type} size={size}  selectPlaceholder={
+           
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <img
+              src= "https://flagcdn.com/w40/us.png" 
+                alt="avatar"
+                style={{ width: 20, height: 13.1, borderRadius: "10%" }}
+              />
+              <span>Text Placeholer</span>
+            </span>
+          }  options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined} disabled  suffixIcon={<ChevronDown  size={16} />}/>,
+          error:   <CustomInput type={type} size={size}  selectPlaceholder={
+           
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <img
+              src= "https://flagcdn.com/w40/us.png" 
+                alt="avatar"
+                style={{ width: 20, height: 13.1, borderRadius: "10%" }}
+              />
+              <span>Text Placeholder</span>
+            </span>
+          }  status="error" options={countryOptions}  label="Label" bottomLabel={showBottomLabel ? "This is required" : undefined}  suffixIcon={<ChevronDown  size={16} />}/>,
         });
       });
     } else {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal as AntModal, ModalProps, ConfigProvider } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import Title from "../../pages/Title";
 import Footer from "../../pages/Footer";
@@ -34,7 +34,13 @@ const Modal: React.FC<CustomModalProps> = ({ footerType = "right", ...modalProps
       <AntModal
         {...modalProps}
         title={<Title icon={modalProps.icon} title={modalProps.title} description={modalProps.description} />}
-        footer={<Footer footerType={footerType} />}
+        footer={(originNode, { OkBtn, CancelBtn }) => (
+          <Footer footerType={footerType}>
+            <CancelBtn />
+            <OkBtn />
+          </Footer>
+        )}
+        
       >
         <div className="space-y-4" style={{ color: currentTheme.text.t3Subtitle }}>
           {modalProps.content}

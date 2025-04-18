@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import KrispMake from './pages/KrispMake';
-import { ThemeProvider } from './contexthook/ThemeProvider';
+import { ThemeProvider } from './context-hook/ThemeProvider';
 
 const App: React.FC = () => {
   return (

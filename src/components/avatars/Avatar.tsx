@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Avatar as AntAvatar, AvatarProps, ConfigProvider } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import Badge from "../avatar-badge/AvatarBadge";
 import { avatarSizes } from "./AvatarSizes";

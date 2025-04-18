@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CircleCheck } from "lucide-react";
 import Input from "./Input"; // Import your custom Input component
 import { Themes } from "../foundation/Theme";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 
 interface PasswordInputProps extends React.ComponentProps<typeof Input> {
   label?: string;

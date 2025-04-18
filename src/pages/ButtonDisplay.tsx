@@ -1,8 +1,9 @@
 import React from "react";
-import { Table } from "antd";
+
 import Button from "../components/button/Button"; // Ensure this is the correct import path
 import { Icon } from "@iconify/react";
 import { GoogleIcon, AppleIcon } from "../components/icons/Icon"; // Ensure these are correctly imported
+import Table from "../components/table/Table";
 
 const sizes: number[] = [32, 36, 40, 44, 48];
 type CustomButtonType = "primary" | "secondary" | "success" | "info" | "destructive" | "warning" | "social";

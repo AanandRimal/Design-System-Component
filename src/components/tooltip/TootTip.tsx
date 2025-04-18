@@ -1,7 +1,7 @@
 import React from "react";
 import { ConfigProvider, Tooltip as AntToolTip } from "antd";
 import type { TooltipProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import {Themes} from "../foundation/Theme";
 
 type CustomTooltipProps = TooltipProps & {

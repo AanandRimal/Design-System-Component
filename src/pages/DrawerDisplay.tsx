@@ -18,6 +18,12 @@ const DrawerDisplay: React.FC = () => {
         title="Drawer Title"
         description="This is a drawer component."
         footerType="right"
+        footer={[      <Button key="cancel" Customtype="secondary" >
+          Button Label
+        </Button>,
+        <Button key="submit" Customtype="primary" >
+          Button Label
+        </Button>]}
       >
         <p>Drawer content goes here.</p>
       </Drawer>

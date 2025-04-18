@@ -1,6 +1,6 @@
 import React from "react";
 import { Pagination as AntPagination, ConfigProvider, PaginationProps } from "antd";
-import { useTheme } from "../../contexthook/ThemeProvider";
+import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 
 const Pagination: React.FC<PaginationProps> = (props) => {
