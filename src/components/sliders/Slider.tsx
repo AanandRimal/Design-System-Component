@@ -17,6 +17,9 @@ const Slider: React.FC<AntSliderSingleProps> = (props
         railSize: 6,
         handleSize: 12,
         handleColor:"#00000014",
+        handleActiveColor:currentTheme.primary.default,
+        trackHoverBg:currentTheme.primary.hover,
+        railHoverBg:currentTheme.background.bg3,
         railBg:currentTheme.background.bg3,
         trackBg: currentTheme.primary.default,
         handleLineWidth:0.5   

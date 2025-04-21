@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { colors,Themes } from "./Theme";
+import Input from "../input/Input";
+
 const colorTypes = Object.keys(colors) as (keyof typeof colors)[];
 const ColorPalette: React.FC = () => {
   const { themeMode } = useTheme();
@@ -32,7 +34,7 @@ const ColorPalette: React.FC = () => {
       width: "250px",
       padding: "16px",
       background:currentTheme.background.bg1,
-      borderRight: "1px solid ${}}",
+      borderRight: `1px solid ${currentTheme.stroke.strong}`,
     },
     mainContent: {
       flex: 1,
@@ -54,7 +56,7 @@ const ColorPalette: React.FC = () => {
       textAlign: "center",
       background: currentTheme.background.bg1,
       borderRadius: "6px",
-      border: "1px solid #ddd",
+      border: `1px solid ${currentTheme.stroke.strong}`,
       boxShadow: themeMode === "dark" ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
     },
     colorSwatch: {
@@ -66,16 +68,12 @@ const ColorPalette: React.FC = () => {
     input: {
       width: "100%",
       padding: "8px",
-      border: "1px solid #ccc",
-      borderRadius: "4px",
       marginBottom: "10px",
-      background: currentTheme.background.bg1,
-      color: currentTheme.text.t2Component,
     },
     select: {
       width: "100%",
       padding: "8px",
-      border: "1px solid #ccc",
+      border: `1px solid ${currentTheme.stroke.strong}`,
       borderRadius: "4px",
       background: currentTheme.background.bg1,
       color:currentTheme.text.t2Component,
@@ -87,19 +85,19 @@ const ColorPalette: React.FC = () => {
     <div style={paletteStyles.container}>
       <div style={paletteStyles.sidebar}>
         <h2 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "12px" }}>Color Editor</h2>
-        <select
-          style={paletteStyles.select}
-          value={selectedType}
-          onChange={(e) => setSelectedType(e.target.value as keyof typeof colors)}
-        >
-          {colorTypes.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
+     
 
-        <input
+        <Input type="select"
+  style={{ marginBottom: "10px", width: "100%" }}
+  value={selectedType}
+  onChange={(value) => setSelectedType(value)}
+  options={colorTypes.map((type) => ({
+    label: type,
+    value: type,
+  }))}
+/>
+
+        <Input
           type="text"
           style={paletteStyles.input}
           placeholder="#HEX Color"

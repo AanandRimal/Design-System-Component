@@ -12,25 +12,26 @@ const StyledBannerWrapper = styled.div`
     .ant-alert {
       display: flex;
       align-items: center;
+      justify-content: center;
       text-align: center; 
       gap:8px
+     
     }
 .ant-alert-content {
     flex: initial;
 }
-    .ant-alert-icon,
-    .ant-alert-close-icon {
-      position: static;
-      top: auto;
-      align-self: center;
-      margin-left:420px
 
-    }
+  .ant-alert-close-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  
+  }
 
     .ant-alert-action {
-      margin-top: 0;
       align-self: center;
-   margin-left: 4px;
+      margin-left: 4px;
     }
   }
 
@@ -41,9 +42,8 @@ const StyledBannerWrapper = styled.div`
   }
 
   .ant-alert-close-icon {
-    position: relative;
-    top: 13px;
-    margin-left: 10px;
+   align-self: center;
+    margin-left: 12px;
   }
 
   .ant-alert-action {
@@ -79,8 +79,8 @@ components:{
         withDescriptionIconSize:20,
       colorIcon:themeTypeKey.textcolor,
       fontSizeIcon:16,
-      withDescriptionPadding:"10px 12px",
-      marginSM:isSingleContent? 0: 8,
+      withDescriptionPadding:"8px 16px",
+      marginSM:isSingleContent? 0: 12,
       marginXS:0,
     },
 },

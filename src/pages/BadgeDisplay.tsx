@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 
 const badgeSizes: (20 | 24 |28)[] = [20, 24,28];
 const badgeTypes: ("stroke" | "filled" | "solid")[] = ["stroke", "filled", "solid"];
-const badgeStatuses: ("success" | "info" | "warning" | "destructive")[] = ["success", "info", "warning", "destructive"];
+const badgeStatuses: ("success" | "info" | "warning" | "destructive" | "neutral")[] = ["success", "info", "warning", "destructive","neutral"];
 
 const badgeColumns = [
   { title: "Size", dataIndex: "size", key: "size", width: 100 },

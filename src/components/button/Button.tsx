@@ -71,7 +71,6 @@ const finalPaddingX = isSocialType
     }
     return <span style={iconStyle}>{icon}</span>;
   };
-console.log(props.type)
   const button = (
     <AntButton
     type={props.type || "primary"}//type provided as if not type given it is priamry as we have default primary prop if the type of pther proivded it takes that and config token is not applied 
@@ -79,6 +78,7 @@ console.log(props.type)
         ...buttonStyle,
       }}
       {...props}
+
     >
       {!props.loading && leftIcon && <StyledIcon icon={leftIcon} />}
       {props.children}

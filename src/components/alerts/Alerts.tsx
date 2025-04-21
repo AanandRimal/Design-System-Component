@@ -66,6 +66,7 @@ const alert = (
           colorIcon:themeTypeKey.stroke,
           fontSizeIcon:16,
           withDescriptionPadding:"12px 14px",
+          marginSM:8,
           marginXS:2,
         
             // colorInfoBorder:colorInfo.focus,

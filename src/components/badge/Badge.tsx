@@ -2,7 +2,9 @@ import React from 'react';
 import { Themes} from "../foundation/Theme";
 import { badgeSizes } from './BadgeSizes';
 import { useTheme } from "../../context-hook/ThemeProvider";
-type CustomStatus = 'success' | 'warning' | 'destructive' | 'info' | 'primary' ; 
+import { getNeutralTheme } from './BadgeTheme'; 
+
+type CustomStatus = 'success' | 'warning' | 'destructive' | 'info' | 'primary'|'neutral' ; 
 interface BadgeProps {
   size?: number;
   type?: 'solid' | 'filled' | 'stroke';
@@ -14,7 +16,11 @@ interface BadgeProps {
 const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'primary', icon, dot = false, children }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-  const themeTypeKey = currentTheme[status];
+  const themeTypeKey =
+  status === "neutral"
+    ? getNeutralTheme(themeMode)
+    : currentTheme[status];
+
   const badgeSizeKey = badgeSizes[size] || badgeSizes[20];
   const bgColor =
     type === 'solid' ? themeTypeKey?.default ?? 'transparent' :
@@ -25,15 +31,23 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
     type === 'stroke' ? currentTheme?.text.t2Component :
     type === 'solid' ? currentTheme.text.staticWhite :
     themeTypeKey?.dark ?? 'inherit';
-  const iconStyles = { color: type === 'solid' ? currentTheme.text.staticWhite : themeTypeKey?.default ?? 'inherit' };
+    const iconStyles = {
+      color: type === 'solid'
+        ? currentTheme.text.staticWhite                    
+        : status === "neutral"
+          ? themeTypeKey.textcolor                       
+          : themeTypeKey?.default ?? 'inherit'              
+    };
+    
   const dotStyles = {
     width: 6,
     height: 6,
     borderRadius: '50%',
-    backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:themeTypeKey?.default ?? 'inherit',
-    marginRight: 4,
+    backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:   status === "neutral"
+    ? themeTypeKey.textcolor       : themeTypeKey?.default ?? 'inherit',
     display:"flex",
     alignItems:"center",
+    paddingLeft: 2,
   };
 
   return (
@@ -51,14 +65,19 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
 
       }}
     >
-      {icon ? (
-        <span style={{ ...iconStyles, marginRight: 4, display: 'flex',
-          alignItems: 'center' }}>{icon}</span>
-      ) : dot ? (
-        <span style={dotStyles}></span>
-      ) : null}
-            <span style={{ color: textColor  }}>{children}</span>
-    </div>
+{(icon || dot || children) && (
+  <div className="flex items-center" style={{ gap: "2px" }}>
+    {icon ? (
+      <span style={{ ...iconStyles, display: 'flex', alignItems: 'center' }}>{icon}</span>
+    ) : dot ? (
+      <span style={dotStyles}></span>
+    ) : null}
+    {children && (
+      <span style={{ color: textColor, paddingInline: 2 }}>{children}</span>
+    )}
+  </div>
+)}
+</div>
   );
 };
 

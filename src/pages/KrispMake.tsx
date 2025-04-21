@@ -31,7 +31,6 @@ import CheckboxDisplay from "./CheckBoxDisplay";
 import TableDisplayComponent from "../components/table/TableDisplay";
 import Table from "../components/table/Table";
 import Slider from "../components/sliders/Slider";
-import ButtonGroup from "../components/button-group/ButtonGroup";
 import ButtonGroupDisplay from "./ButtonGroupDisplay";
 const { Title } = Type;
 const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner","Table","Slider","ButtonGroup"];
@@ -232,7 +231,6 @@ const avatarData = avatarSizesList.map((size) => ({
 {selectedComponent === "Button" && (
 <>
 <ButtonDisplay/>
-<Button Customtype="primary" Customsize={40} leftIcon={<LeftIcon/>}></Button>
 
 </>
 )}
@@ -289,6 +287,12 @@ const avatarData = avatarSizesList.map((size) => ({
     {
       title: 'Application List',
       href: '',
+    },
+    {
+      title: 'An Application',
+    },
+    {
+      title: 'An Application',
     },
     {
       title: 'An Application',
@@ -383,7 +387,12 @@ const avatarData = avatarSizesList.map((size) => ({
 {selectedComponent=== "Slider" && (
   <>
 
-<Slider defaultValue={50}  />
+<Slider defaultValue={15} style={{ width: 100 }} />
+<Slider defaultValue={30}   style={{ width: 300 }} />
+<Slider defaultValue={40}  style={{ width: 400 }}  />
+<Slider defaultValue={50}  style={{ width: 500 }}  />
+<Slider defaultValue={80}  style={{ width: 600 }}  />
+
   </>
 ) }
 {selectedComponent=== "ButtonGroup" && (

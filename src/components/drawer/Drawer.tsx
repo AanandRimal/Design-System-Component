@@ -19,6 +19,8 @@ const Drawer: React.FC<CustomDrawerProps> = ({ footerType = "right", icon,descri
       theme={{
         components: {
           Drawer: {
+            padding:8,
+            paddingLG: 8,
             colorBgElevated: currentTheme.background.bg1,
             colorText:currentTheme.text.t2Component,
             colorSplit:"none"
@@ -29,7 +31,7 @@ const Drawer: React.FC<CustomDrawerProps> = ({ footerType = "right", icon,descri
       <AntDrawer
         {...drawerProps} 
         title={
-          <div className="flex justify-between items-center ">
+          <div className="flex justify-between items-center p-2 ">
             <ModalTitle icon={icon} title={drawerProps.title} description={description} />
             <CloseOutlined className="cursor-pointer text-lg "
                     width="16px"
@@ -41,7 +43,7 @@ const Drawer: React.FC<CustomDrawerProps> = ({ footerType = "right", icon,descri
         closeIcon={null}
         footer={<ModalFooter footerType={footerType}  > {drawerProps.footer} </ModalFooter>}
       >
-        <div className="space-y-4" style={{ color: currentTheme.text.t3Subtitle }}>
+        <div className="space-y-4 p-2" style={{ color: currentTheme.text.t3Subtitle }}>
           {drawerProps.children}
         </div>
       </AntDrawer>

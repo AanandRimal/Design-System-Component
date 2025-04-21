@@ -15,7 +15,7 @@ const Title: React.FC<TitleProps> = ({ icon, title, description }) => {
   return (
     <div className={`flex gap-3 ${description ? "items-start" : "items-center"}`}>
       {icon}
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-1">
         <h5 className="text-h6-semibold font-semibold ">{title}</h5>
         {description && (
           <p className="text-base-regular font-regular" style={{ color: currentTheme.text.t3Subtitle }}>
