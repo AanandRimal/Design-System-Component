@@ -10,8 +10,8 @@ const TabDisplay: React.FC = () => {
       {
         key: "1",
         label: "Home",
-        icon: <Badge  > 22 </Badge>,
-        customIcon: <TabCustomIcon/>,
+        customIcon: <Badge  > 22 </Badge>,
+        icon: <TabCustomIcon/>,
         children:"Content for Settingshome" ,
       },
       {

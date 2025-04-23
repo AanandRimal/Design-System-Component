@@ -25,17 +25,15 @@ const Alert: React.FC<AlertProps> = ({
 
     const StyledAlert = styled(AntAlert)`
   .ant-alert-icon {
-    position: relative;
-    top: 14px; 
+   align-self: center;
   }
 
   .ant-alert-close-icon {
-    position: relative;
-    top: 14px;
+    align-self: center;
     margin-left:10px;
   }
     .ant-alert-action {
-  margin-top: 6px;
+  align-self: center;
 }
 
 `;

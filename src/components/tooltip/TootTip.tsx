@@ -19,12 +19,9 @@ const Tooltip: React.FC<CustomTooltipProps> = ({
     const currentTheme=Themes[themeMode];
 const isDescription = !!customDescription;
   const customContent = customTitle || customDescription ? (
-    <div>
+    <>
       {customTitle && <span>{customTitle}</span>}
-      {customDescription && (
-        <div  className="text-x-small-regular font-regular"style={{ color: currentTheme.text.t3Disabled ,marginTop:"4px" }}>{customDescription}</div>
-      )}
-    </div>
+      </>
   ) : (
    undefined
   );
@@ -40,10 +37,10 @@ const isDescription = !!customDescription;
         colorBgSpotlight:currentTheme.inverse.inverseblack,
         colorTextLightSolid:currentTheme.inverse.inversewhite,
         borderRadius:6,
-        paddingSM: isDescription? 24 :20,
+        paddingSM: isDescription? 24 :8,
         paddingXS: isDescription? 12:8,
         fontSize:13,
-        lineHeight:1.1,
+
     },
     },
 

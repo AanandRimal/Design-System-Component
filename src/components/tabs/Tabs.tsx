@@ -32,6 +32,7 @@ const TabLabel = styled.div<{ isBox: boolean; isActive: boolean; theme: any }>`
     border-radius: 8px;
     background: ${props.isActive ? props.theme.background.bg2 : props.theme.background.bg0};
     border: ${props.isActive ? `1px solid ${props.theme.stroke.strong}` : "none"};
+    box-shadow: ${props.isActive ? "0px 1px 2px 0px rgba(0, 0, 0, 0.051)" : "none"};
 
     &:hover {
       background: ${props.theme.fill.f2}; 
@@ -52,11 +53,11 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
             itemSelectedColor: currentTheme.text.t1Title,
             inkBarColor: isBox ? "transparent" : currentTheme.primary.default,
             colorText: currentTheme.text.t2Component,
-            horizontalItemGutter: isBox ? 4 : 0,
+            horizontalItemGutter: isBox ? 2 : 0,
             horizontalItemPadding: "4px 4px",
             itemHoverColor: currentTheme.text.t2Component,
             colorBorderSecondary: isBox ? "none" : currentTheme.stroke.strong,
-            itemActiveColor: currentTheme.primary.default,
+            itemActiveColor: "none",
           },
         },
       }}
@@ -64,9 +65,8 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
       <AntTabs
         {...props}
         tabBarStyle={{
-          background: isBox ? currentTheme.background.bg0 : "none",
+          background: isBox ? currentTheme.background.bg0: "none",
           borderRadius: isBox ? "8px" : "none",
-          padding: isBox ? "4px" : "0px",
         }}
         items={props.items?.map((tab) => {
           const { icon, label, customIcon, ...rest } = tab;

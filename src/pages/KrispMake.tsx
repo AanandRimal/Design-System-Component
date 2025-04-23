@@ -23,7 +23,6 @@ import InputDisplay from "./InputDisplay";
 import ToasterDisplay from "./ToasterDisplay";
 import DropdownDisplay from "./Dropdowndisplay"
 import BannerGrid from "./BannerDisplay";
-import { LeftIcon } from "../components/icons/LeftIcon";
 import TooltipDisplay from "./TooltipDisplay";
 import ProgressWithLabel from "../components/progress-bar/ProgressWithLabel";
 import SpinnerDisplay from "./SpinnerDisplay";
@@ -79,25 +78,25 @@ const switchData = switchSizes.map((size) => ({
   size,
   default: (
     <Space size={8}>
-      <Switch size={size} />
+      <Switch customSize={size} />
       <span>Switch Label Here</span>
     </Space>
   ),
   checked: (
     <Space size={8}>
-      <Switch size={size} checked />
+      <Switch customSize={size} checked />
       <span>Switch Label Here</span>
     </Space>
   ),
   defaultDisabled: (
     <Space size={8}>
-      <Switch size={size} disabled />
+      <Switch customSize={size} disabled />
       <span>Switch Label Here</span>
     </Space>
   ),
   checkedDisabled: (
     <Space size={8}>
-      <Switch size={size} checked disabled />
+      <Switch customSize={size} checked disabled />
       <span>Switch Label Here</span>
     </Space>
   ),
@@ -297,6 +296,7 @@ const avatarData = avatarSizesList.map((size) => ({
     {
       title: 'An Application',
     },
+    
   ]}/>
 )}
         </div>
@@ -334,6 +334,7 @@ const avatarData = avatarSizesList.map((size) => ({
 {selectedComponent === "Modal" && (
   <>
 <ModalDisplay/>
+
   </>
 )}
 {selectedComponent === "Drawer" && (
@@ -386,13 +387,12 @@ const avatarData = avatarSizesList.map((size) => ({
 ) }
 {selectedComponent=== "Slider" && (
   <>
-
 <Slider defaultValue={15} style={{ width: 100 }} />
 <Slider defaultValue={30}   style={{ width: 300 }} />
 <Slider defaultValue={40}  style={{ width: 400 }}  />
 <Slider defaultValue={50}  style={{ width: 500 }}  />
 <Slider defaultValue={80}  style={{ width: 600 }}  />
-
+<Slider defaultValue={100}  style={{ width: 700 }}  />
   </>
 ) }
 {selectedComponent=== "ButtonGroup" && (

@@ -5,15 +5,15 @@ import { Themes } from "../foundation/Theme";
 import { switchSizes } from "./SwitchSizes"; 
 type CustomTrackSize = keyof typeof switchSizes; 
 type ExtendedSwitchSize = Exclude<SwitchProps["size"], undefined> | CustomTrackSize; 
-interface CustomSwitchProps extends Omit<SwitchProps, "size"> {
-  size?: ExtendedSwitchSize 
+interface CustomSwitchProps extends SwitchProps {
+  customSize?: ExtendedSwitchSize 
 }
-const Switch: React.FC<CustomSwitchProps> = ({ size = "default", ...props }) => {
+const Switch: React.FC<CustomSwitchProps> = ({ customSize = 20, ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
   const disabledText = currentTheme.text.staticWhite
-  const customTrackHeight = switchSizes.hasOwnProperty(size as keyof typeof switchSizes) //switchSizes[size as keyof typeof switchSizes] || switchSizes[20];
-  ? switchSizes[size as keyof typeof switchSizes]
+  const customTrackHeight = switchSizes.hasOwnProperty(customSize as keyof typeof switchSizes) //switchSizes[size as keyof typeof switchSizes] || switchSizes[20];
+  ? switchSizes[customSize as keyof typeof switchSizes]
   : switchSizes[20];
   return (
     <ConfigProvider

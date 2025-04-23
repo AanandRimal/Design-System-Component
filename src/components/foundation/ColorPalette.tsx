@@ -87,7 +87,7 @@ const ColorPalette: React.FC = () => {
         <h2 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "12px" }}>Color Editor</h2>
      
 
-        <Input type="select"
+        <Input.Select 
   style={{ marginBottom: "10px", width: "100%" }}
   value={selectedType}
   onChange={(value) => setSelectedType(value)}
@@ -97,8 +97,8 @@ const ColorPalette: React.FC = () => {
   }))}
 />
 
-        <Input
-          type="text"
+        <Input.Text
+        
           style={paletteStyles.input}
           placeholder="#HEX Color"
           value={customHex}

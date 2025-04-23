@@ -261,7 +261,7 @@ const darkInverse = {
         default: darkText.t3Subtitle, focus: darkFill.f2, hover: darkFill.f1, dark:darkText.t1Title,textcolor:darkText.t3Subtitle
       },
       secondary: { 
-        default: colors.grey[950], hover: colors.grey[900], focus: "#17171C",
+        default: darkBackground.bg1, hover: darkFill.f2, focus: "#17171C",
         accentBg: "#17171C", stroke: "#50505E", dark: "#26262C",textcolor:colors.grey[300]
       },
       success: { 

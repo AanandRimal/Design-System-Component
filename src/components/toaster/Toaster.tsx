@@ -11,17 +11,15 @@ const currentTheme=Themes[themeMode];
 const themeTypeKey=Themes[themeMode][CustomType] || Themes[themeMode].primary;
 const StyledAlert = styled(Alert)`
 .ant-alert-icon {
-  position: relative;
-  top:13px; 
+align-self: center;
 }
 .ant-alert-close-icon {
-  position: relative;
-  top: 13px;
+align-self: center;
   margin-left:10px;
 }
 width:400px;
 .ant-alert-action {
-  margin-top: 6px;
+align-self: center;
 }
 
 

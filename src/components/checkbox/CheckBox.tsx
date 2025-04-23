@@ -7,10 +7,10 @@ import "./check.css";
 interface CustomCheckBoxProps extends CheckboxProps {
   size?: number;
 }
-const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 16,  ...props }) => {
+const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 20,  ...props }) => {
   const { themeMode } = useTheme(); 
   const currentTheme=Themes[themeMode];
-  const checksize=checkSizes[size];
+  const checksize=checkSizes[size] || checkSizes[20];
   const indeterminateWidth = checksize.linewidth
   const indeterminateborderwidth=checksize.linewidthbold
   console.log(props.indeterminate)

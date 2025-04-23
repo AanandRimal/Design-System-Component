@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "../components/modal/Modal"
 import Button from "../components/button/Button"
 import { LeftIcon } from "../components/icons/LeftIcon"; 
-import CustomInput from "../components/input/CustomInput";
+import LabeledInputText from "../components/input/Labeled/LabeledInputText";
 const ModalDisplay = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,8 +29,8 @@ const ModalDisplay = () => {
           content={
             <>
               <p>Are you sure you want to delete this contact? This action is not reversible.</p>
-            <CustomInput type="text" placeholder="Enter your name" label="Label" ></CustomInput>
-            <CustomInput type="text" placeholder="Enter your name" label="Label"></CustomInput>
+            <LabeledInputText type="text" placeholder="Enter your name" label={"Label"} ></LabeledInputText>
+            <LabeledInputText type="text" placeholder="Enter your name" label="Label"></LabeledInputText>
             
             </>
           }

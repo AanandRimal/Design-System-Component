@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { CircleCheck } from "lucide-react";
-import Input from "./Input"; // Import your custom Input component
-import { Themes } from "../foundation/Theme";
-import { useTheme } from "../../context-hook/ThemeProvider";
+import Input from "../Input"; // Import your custom Input component
+import { Themes } from "../../foundation/Theme";
+import { useTheme } from "../../../context-hook/ThemeProvider";
 
-interface PasswordInputProps extends React.ComponentProps<typeof Input> {
+interface PasswordInputProps extends React.ComponentProps<typeof Input.Text> {
   label?: string;
     bottomLabel?: string;
 
@@ -34,7 +34,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value
       {label && <label className="text-base-medium font-medium" style={{  color: currentTheme.text.t2Component}}>{label}</label>}
 
       {/* Password Input (Fix: Ensure value is a string) */}
-      <Input type="password" value={password} onChange={handleChange} {...props} />
+      <Input.Password value={password} onChange={handleChange} {...props} />
       {bottomLabel && (
          <span
          className="text-xs mt-1.5"

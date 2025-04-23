@@ -156,10 +156,10 @@
 // };
 
 // export default CardInput;
-import { Input, Space } from "antd";
+import {  Space } from "antd";
 import { useState, useRef } from "react";
 import type { InputRef } from "antd";
-
+import Input from "./Input"
 interface CardInputProps {
   size?: "small" | "middle" | "large";
   status?: "error" | "warning";
@@ -192,7 +192,7 @@ const CardInput: React.FC<CardInputProps> = ({ size = "middle", status, disabled
 
   return (
     <Space.Compact  direction="horizontal" >
-      <Input
+      <Input.Text
         size={size}
         placeholder="Card Number"
         status={status}
@@ -212,7 +212,7 @@ const CardInput: React.FC<CardInputProps> = ({ size = "middle", status, disabled
         }
         maxLength={19} 
       />
-      <Input
+      <Input.Text
         size={size}
         placeholder="MM/YY"
         status={status}
@@ -220,11 +220,12 @@ const CardInput: React.FC<CardInputProps> = ({ size = "middle", status, disabled
         value={expiry}
         inputMode="numeric"
         onChange={(e) => setExpiry(formatExpiry(e.target.value))}
-        ref={expiryRef}
+        
         style={{ width: 100 }}
         maxLength={5}
       />
-      <Input
+      <Input.Text
+
         size={size}
         placeholder="CVV"
         status={status}
@@ -235,6 +236,7 @@ const CardInput: React.FC<CardInputProps> = ({ size = "middle", status, disabled
         maxLength={4}
       />
     </Space.Compact>
+
   );
 };
 

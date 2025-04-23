@@ -10,7 +10,7 @@ Customtype?: Customtype;
 Customsize?:CustomSize;
 leftIcon?:React.ReactNode;
 rightIcon?:React.ReactNode;
-}
+} 
 const Button: React.FC<ButtonProps> = ({
   //removed explicit type and rathe rpassed the type while passing button itslef
   Customtype,
@@ -107,7 +107,7 @@ const finalPaddingX = isSocialType
             contentLineHeight: buttonSizeKey?.lineheight,
             controlHeight: buttonSizeKey?.height,
             paddingInline: finalPaddingX,
-            primaryShadow: "none",
+            primaryShadow: Customtype === "secondary" ? "0px 1px 2px 0px #0000000D" : "none",
             opacityLoading:1,
           },
         },

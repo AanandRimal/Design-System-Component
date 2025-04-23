@@ -17,10 +17,8 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
   const themeTypeKey =
-  status === "neutral"
-    ? getNeutralTheme(themeMode)
-    : currentTheme[status];
-
+  status==="neutral" ? getNeutralTheme(themeMode)  :  
+     currentTheme[status];
   const badgeSizeKey = badgeSizes[size] || badgeSizes[20];
   const bgColor =
     type === 'solid' ? themeTypeKey?.default ?? 'transparent' :
@@ -29,8 +27,10 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
   const borderColor = type === 'stroke' ? currentTheme.stroke.strong : 'transparent';
   const textColor =
     type === 'stroke' ? currentTheme?.text.t2Component :
-    type === 'solid' ? currentTheme.text.staticWhite :
-    themeTypeKey?.dark ?? 'inherit';
+    type === 'solid'
+    ? (status === 'neutral' ? currentTheme.inverse.inversewhite : currentTheme.text.staticWhite)
+    : themeTypeKey?.dark ?? 'inherit';
+  
     const iconStyles = {
       color: type === 'solid'
         ? currentTheme.text.staticWhite                    

@@ -1,18 +1,19 @@
 import React from "react";
-import Input from "./Input";
-import { Themes } from "../foundation/Theme";
-import { useTheme } from "../../context-hook/ThemeProvider";
+import { useTheme } from "../../../context-hook/ThemeProvider";
+import { Themes } from "../../foundation/Theme";
+import { InputProps } from "antd";
 
-interface CustomInputProps extends React.ComponentProps<typeof Input> {
+interface LabeledInputProps extends InputProps {
   label?: string;
   bottomLabel?: string;
+  children: React.ReactNode;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({
+const LabeledInput: React.FC<LabeledInputProps> = ({
   label,
   bottomLabel,
   status,
-  type = "text",
+  children,
   ...props
 }) => {
   const { themeMode } = useTheme();
@@ -24,20 +25,23 @@ const CustomInput: React.FC<CustomInputProps> = ({
       {label && (
         <label
           className="text-base-medium font-medium mb-1"
-          style={{ color:props.disabled? currentTheme.text.t3Disabled: currentTheme.text.t2Component }} 
+          style={{ color: props.disabled ? currentTheme.text.t3Disabled : currentTheme.text.t2Component }}
         >
           {label}
         </label>
       )}
-      <Input type={type} status={status} {...props} />
+
+      {children}
+
       {bottomLabel && (
         <span
           className="text-xs mt-1.5"
           style={{
             color: isError
-              ? currentTheme.destructive.default :
-              props.disabled? currentTheme.text.t3Disabled
-              : currentTheme.text.t3Subtitle, 
+              ? currentTheme.destructive.default
+              : props.disabled
+              ? currentTheme.text.t3Disabled
+              : currentTheme.text.t3Subtitle,
           }}
         >
           {bottomLabel}
@@ -47,4 +51,4 @@ const CustomInput: React.FC<CustomInputProps> = ({
   );
 };
 
-export default CustomInput;
+export default LabeledInput;

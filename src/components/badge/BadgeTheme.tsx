@@ -7,6 +7,7 @@ export const getNeutralTheme = (themeMode: keyof typeof Themes) => {
     focus:currentTheme.fill.f3,
     dark: currentTheme.text.t3Subtitle,
     textcolor: currentTheme.text.t3Disabled,
+    
 
   };
 };

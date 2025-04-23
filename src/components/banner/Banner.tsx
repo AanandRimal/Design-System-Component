@@ -24,8 +24,7 @@ const StyledBannerWrapper = styled.div`
   .ant-alert-close-icon {
     position: absolute;
     right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
+ align-self: center;
   
   }
 
@@ -47,7 +46,7 @@ const StyledBannerWrapper = styled.div`
   }
 
   .ant-alert-action {
-    margin-top: 6px;
+  align-self: center;
   }
 `;
 
