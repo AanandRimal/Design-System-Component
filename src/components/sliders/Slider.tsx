@@ -16,13 +16,14 @@ const Slider: React.FC<AntSliderSingleProps> = (props
       Slider: {
         railSize: 6,
         handleSize: 12,
-        handleColor:"#00000014",
+        handleColor:currentTheme.primary.default,
         handleActiveColor:currentTheme.primary.default,
         trackHoverBg:currentTheme.primary.hover,
-        railHoverBg:currentTheme.background.bg3,
-        railBg:currentTheme.background.bg3,
+        colorPrimaryBorderHover:currentTheme.primary.default,
+        railHoverBg:currentTheme.fill.f3,
+        railBg:currentTheme.fill.f3,
         trackBg: currentTheme.primary.default,
-        handleLineWidth:0.5   
+        handleLineWidth:1.5   
       },
     },
 }

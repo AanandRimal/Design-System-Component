@@ -27,7 +27,9 @@ const Dropdown: React.FC<AntDropdownProps> = ({  ...dropdownProps }) => {
           Dropdown: {
             colorBgElevated:currentTheme.background.bg2,
         colorText:currentTheme.text.t2Component,
+        colorTextDescription:currentTheme.text.t3Subtitle,
         controlItemBgHover:currentTheme.fill.f2,
+        colorTextDisabled:currentTheme.text.t2Subtitle,
         marginXS:8,
         paddingXXS:4,
         paddingBlock:6,

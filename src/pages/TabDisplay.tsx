@@ -6,6 +6,7 @@ import TabCustomIcon from "../components/icons/TabCustomIcon";
 const TabDisplay: React.FC = () => {
   const [boxactiveKey,setboxActiveKey]=useState<string>("1");
   const [underlineactiveKey,setunderlineActiveKey]=useState<string>("1");
+  const [ghostactiveKey,setghostActiveKey]=useState<string>("1");
     const tabItems = [
       {
         key: "1",
@@ -39,16 +40,20 @@ const TabDisplay: React.FC = () => {
         children: "Content for Settings",
       },
     ];
-  
+    
     return (
-      <div className="grid grid-cols-2 gap-6 p-4  " >
+      <div className="grid grid-cols-2 gap-6 p-4" >
         <div>
-          <h2 className="text-lg font-semibold mb-4">Box Tab</h2>
+          <h2 className="text-lg font-semibold mb-4" >Box Tab</h2>
           <Tabs Customtype="box" items={tabItems} activeKey={boxactiveKey} onChange={setboxActiveKey} ></Tabs>
         </div>
         <div className="">
           <h2 className="text-lg font-semibold mb-2">Underline Tab</h2>
           <Tabs Customtype="underline" items={tabItems} activeKey={underlineactiveKey} onChange={setunderlineActiveKey} />
+        </div>
+        <div className="">
+          <h2 className="text-lg font-semibold mb-2">Ghost Tab</h2>
+          <Tabs Customtype="ghost" items={tabItems} activeKey={ghostactiveKey} onChange={setghostActiveKey} />
         </div>
       </div>
     );

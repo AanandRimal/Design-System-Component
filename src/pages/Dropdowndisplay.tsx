@@ -1,6 +1,9 @@
 import Dropdown from "../components/drop-down/Dropdown"; // adjust path as needed
 import Button from "../components/button/Button";
 import {LeftIcon }from "../components/icons/LeftIcon"; // adjust the import path to match your project
+import type { MenuProps } from 'antd';
+
+
 const items = [
   {
     key: '1',
@@ -33,6 +36,63 @@ const itemsWithIcon = [
   },
 ];
 
+const multipleSectionChildren: MenuProps['items']  = [
+  {
+    type: 'group',
+    label: 'Group title',
+    key: 'group-1',
+    children: [
+      {
+        key: '1-1',
+        label: 'Option A',
+      },
+      {
+        key: '1-2',
+        label: 'Option B',
+      },
+    ],
+  },
+  {
+    key: '2',
+    label: 'Sub menu',
+    children: [
+      {
+        key: '2-1',
+        label: 'Option C',
+      },
+      {
+        key: '2-2',
+        label: 'Option D',
+      },
+    ],
+  },
+  {
+    key: '3',
+    label: 'Option 3',
+    icon: <LeftIcon />,
+  },
+  {
+    key: '4',
+    label: 'Option 4',
+  },
+  {
+    key: '5',
+    label: 'Disabled sub menu',
+    disabled: true,
+    children: [
+      {
+        key: '5-1',
+        label: 'Option E',
+      },
+      {
+        key: '5-2',
+        label: 'Option F',
+      },
+    ],
+  },
+];
+
+
 
 const ExampleComponent = () => {
   return (
@@ -48,11 +108,17 @@ const ExampleComponent = () => {
       <Dropdown
         menu={{ items:itemsWithIcon }}
         placement="bottomLeft"
-        open
+        
       >
         <Button Customtype="secondary" icon={<LeftIcon />} > Open Dropdown with icon </Button>
       </Dropdown>
-
+      <Dropdown
+        menu={{ items:multipleSectionChildren }}
+        placement="bottomLeft"
+        
+      >
+        <Button Customtype="secondary" icon={<LeftIcon />} > Open Dropdown with multiple section </Button>
+      </Dropdown>
     </div>
   );
 };

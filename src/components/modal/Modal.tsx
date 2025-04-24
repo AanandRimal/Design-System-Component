@@ -10,42 +10,77 @@ interface CustomModalProps extends ModalProps {
   description?: React.ReactNode;
   content?: React.ReactNode;
   footerType?: "right" | "stretch" | "stacked";
+  variant?: "default" | "divider";
+  customFooter?:React.ReactNode;
 }
 
-const Modal: React.FC<CustomModalProps> = ({ footerType = "right", ...modalProps }) => {
+const Modal: React.FC<CustomModalProps> = ({
+  footerType = "right",
+  variant = "divider",
+  customFooter,
+  ...modalProps
+}) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
+
+  // Border classes only for "divider" variant
+  const titleStyle = variant === "divider" ? { borderBottom: `1px solid ${currentTheme.stroke.strong}`, padding: "20px 12px", } : {};
+  const footerStyle = variant === "divider" ? { borderTop: `1px solid ${currentTheme.stroke.strong}`, padding: "20px 12px",} : {};
+  const contentClassName = variant === "divider" ? "px-3 py-5 space-y-4" : "space-y-4";
+  const modalPadding = variant === "default" ? "20px" : "0px";
 
   return (
     <ConfigProvider
       theme={{
+        token:{
+      
+        },
         components: {
           Modal: {
-            marginXS: 20,
+            marginXS: variant==="divider"? 0:20,
             headerBg: currentTheme.background.bg1,
             contentBg: currentTheme.background.bg1,
             footerBg: currentTheme.background.bg1,
             titleColor: currentTheme.text.t1Title,
             colorIcon: currentTheme.text.t3Disabled,
+            borderRadius:12,
+            
+           
           },
         },
       }}
     >
-      <AntModal
-        {...modalProps}
-        title={<Title icon={modalProps.icon} title={modalProps.title} description={modalProps.description} />}
-        footer={(originNode, { OkBtn, CancelBtn }) => (
-          <Footer footerType={footerType}>
-            <CancelBtn />
-            <OkBtn />
-          </Footer>
-        )}
-        
-      >
-        <div className="space-y-4" style={{ color: currentTheme.text.t3Subtitle }}>
-          {modalProps.content}
-        </div>
-      </AntModal>
+     
+     <AntModal
+  {...modalProps}
+  footer={null} //default footer had issue of reactnode + extra so needed more condition so used customfooter so se it null
+  styles={{
+    content: {
+      padding: modalPadding,
+      border: variant === "divider" ? `1px solid ${currentTheme.stroke.strong}` : "none"
+    },
+  }}
+  title={
+    (modalProps.title || modalProps.icon || modalProps.description) ? (
+      <Title
+        icon={modalProps.icon}
+        title={modalProps.title}
+        description={modalProps.description}
+       variantStyle={titleStyle}
+      />
+    ) : undefined
+  }
+>
+  <div className={contentClassName} style={{ color: currentTheme.text.t3Subtitle }}>
+    {modalProps.content}
+  </div>
+  {customFooter && (
+    <Footer footerType={footerType} variantStyle={footerStyle}>
+      {customFooter}
+    </Footer>
+  )}
+</AntModal>
+
     </ConfigProvider>
   );
 };

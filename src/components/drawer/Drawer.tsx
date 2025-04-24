@@ -3,8 +3,8 @@ import { Drawer as AntDrawer, DrawerProps, ConfigProvider } from "antd";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import ModalTitle from "../../pages/Title";
-import ModalFooter from "../../pages/Footer";
-import { CloseOutlined } from "@ant-design/icons";
+import Footer from "../../pages/Footer";
+import { X } from "lucide-react";
 interface CustomDrawerProps extends DrawerProps {
   icon?: React.ReactNode;
   description?: React.ReactNode;
@@ -33,7 +33,7 @@ const Drawer: React.FC<CustomDrawerProps> = ({ footerType = "right", icon,descri
         title={
           <div className="flex justify-between items-center p-2 ">
             <ModalTitle icon={icon} title={drawerProps.title} description={description} />
-            <CloseOutlined className="cursor-pointer text-lg "
+            <X className="cursor-pointer text-lg "
                     width="16px"
                     height="16px"
                     style={{color:currentTheme.text.t3Disabled ,marginTop:"-25px" }} 
@@ -41,7 +41,7 @@ const Drawer: React.FC<CustomDrawerProps> = ({ footerType = "right", icon,descri
           </div>
         }
         closeIcon={null}
-        footer={<ModalFooter footerType={footerType}  > {drawerProps.footer} </ModalFooter>}
+        footer={<Footer footerType={footerType}  > {drawerProps.footer} </Footer>}
       >
         <div className="space-y-4 p-2" style={{ color: currentTheme.text.t3Subtitle }}>
           {drawerProps.children}

@@ -3,7 +3,7 @@ import { ConfigProvider, Button as AntButton, ButtonProps as AntButtonProps } fr
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes} from "../foundation/Theme";
 import { ButtonSizes,butttonSocialSizePadding,IconButtonPadding } from "./ButtonSizes";
-type Customtype = "primary"| "secondary" | "success" | "info" | "destructive" | "warning" | "social"; // made so that no other type can be passed
+type Customtype = "primary"| "secondary" | "success" | "info" | "destructive" | "warning" | "social"|"ghost"; // made so that no other type can be passed
 type CustomSize = keyof typeof ButtonSizes;//same dfor szie as well no other than key of typeszies be passed 
 interface ButtonProps extends AntButtonProps { // adding extra porps with extending the exisintg button prop of ant 
 Customtype?: Customtype;
@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
     : props.children
     ? buttonSizeKey?.paddingY
     : iconButtonPadding?.paddingY;
-
+  
 const finalPaddingX = isSocialType
   ? socialPadding?.paddingX
   : props.children
@@ -53,7 +53,7 @@ const finalPaddingX = isSocialType
     lineHeight: `${lineheight / 16}rem`,
   };
     const iconColor = props.disabled ? currentTheme.text.t3Disabled   : isSocialType //for all disbaled state icon color is same so text3diabeld and then for type socila icon color is defualt when exported the svg color  and  for type secondary icon color is different then other so handling 
-  ? undefined : Customtype === "secondary" ? currentTheme.text.t3Subtitle : "#FFFFFF";
+  ? undefined : Customtype === "secondary" ||Customtype==="ghost" ? currentTheme.text.t3Subtitle : "#FFFFFF";
   const iconSize = buttonSizeKey?.iconSize || 20;
   const StyledIcon = ({ icon }: { icon: React.ReactNode }) => {
     const iconStyle = {

@@ -94,6 +94,22 @@ module.exports = {
      900:"#8A191C",
      950:"#4A0D0F",
   },
+  ab:{
+    2:"	#17171C05",
+    4:"#17171C0A",
+    6:"#17171C0F",
+    8:"#17171C14",
+    12:"#17171C1F",
+    16:"#17171C29",
+  },
+  aw: {
+    2: "#FFFFFF05",
+    4: "#FFFFFF0A",
+    6: "#FFFFFF0F",
+    8: "#FFFFFF14",
+    12: "#FFFFFF1F",
+    16: "#FFFFFF29"
+  },
   "t3subtitle": "#6C6C7F", 
     },
     borderRadius: {
@@ -153,7 +169,6 @@ module.exports = {
       semibold: "600",
       bold: "700",
     },
-    
   },
   },
   variants: {

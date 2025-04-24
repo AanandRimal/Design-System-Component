@@ -59,6 +59,7 @@ const TableDisplayComponent = () => {
       title: 'Name',
       dataIndex: 'name',
       sorter: true,
+      showSorterTooltip:false,
       render: (name: string) => (
         <div className="flex items-center gap-2">
           <Avatar customSize={24}>K</Avatar>
@@ -70,6 +71,7 @@ const TableDisplayComponent = () => {
       title: 'Email',
       dataIndex: 'email',
       sorter: true,
+      showSorterTooltip:false,
       render: (email: string) => <span>{email}</span>,
     },
     {
@@ -93,11 +95,13 @@ const TableDisplayComponent = () => {
       title: 'Date',
       dataIndex: 'date',
       sorter: true,
+      showSorterTooltip:false,
       render: (date: string) => <span>{date}</span>,
     },
     {
       title: 'Badges',
       sorter: true,
+      showSorterTooltip:false,
       render: () => (
         <div className="flex flex-row gap-3">
           <Badge size={20} type="stroke" dot>

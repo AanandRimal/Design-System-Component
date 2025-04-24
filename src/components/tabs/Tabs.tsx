@@ -1,10 +1,15 @@
 import React from "react";
-import { Tabs as AntTabs, TabsProps as AntTabsProps, ConfigProvider } from "antd";
+import {
+  Tabs as AntTabs,
+  TabsProps as AntTabsProps,
+  ConfigProvider,
+} from "antd";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import styled from "styled-components";
-type CustomType = "box" | "underline";
-type AntTabItem = NonNullable<AntTabsProps['items']>[number];
+
+type CustomType = "box" | "underline" | "ghost";
+type AntTabItem = NonNullable<AntTabsProps["items"]>[number];
 
 type ExtendedTabItem = AntTabItem & {
   customIcon?: React.ReactNode;
@@ -14,34 +19,89 @@ interface TabsProps extends AntTabsProps {
   Customtype?: CustomType;
   items?: ExtendedTabItem[];
 }
-const TabLabel = styled.div<{ isBox: boolean; isActive: boolean; theme: any }>`
-  padding: 12px;
+
+// 🎨 Visual style mapping per tab type
+const tabTypeStyles = {
+  underline: {
+    background: "none",
+    border: "none",
+    hoverBg: (theme: any) => theme.fill.f2,
+    activeBg: "none",
+    activeBorder: "none",
+  },
+  box: {
+    background: (theme: any) => theme.background.bg0,
+    border: (theme: any) => theme.background.bg0,
+    hoverBg: (theme: any) => theme.fill.f2,
+    activeBg: (theme: any) => theme.background.bg2,
+    activeBorder: (theme: any) => theme.stroke.strong,
+  },
+  ghost: {
+    background: "transparent",
+    border: () => "transparent",
+    hoverBg: (theme: any) => theme.fill.f1,
+    activeBg: (theme: any) => theme.background.bg1,
+    activeBorder: (theme: any) => theme.stroke.strong,
+  },
+};
+
+// 📐 Layout style mapping per tab type
+const tabTypeLayoutStyles = {
+  underline: {
+    padding: "12px",
+    borderRadius: "0px",
+    boxShadow: "none",
+  },
+  box: {
+    padding: "8px 12px",
+    borderRadius: "8px",
+    boxShadow: (isActive: boolean) =>
+      isActive ? "0px 1px 2px rgba(0, 0, 0, 0.051)" : "none",
+  },
+  ghost: {
+    padding: "8px 12px",
+    borderRadius: "8px",
+    boxShadow: "none",
+  },
+};
+
+// 🧩 Styled TabLabel using both visual + layout configs
+const TabLabel = styled.div<{
+  isActive: boolean;
+  theme: any;
+  type: CustomType;
+}>`
   display: flex;
   gap: 6px;
 
-  background: ${(props) => (props.isActive ? props.theme.background.bg1 : "none")};
+  ${({ theme, isActive, type }) => {
+    const visual = tabTypeStyles[type];
+    const layout = tabTypeLayoutStyles[type];
 
-  &:hover {
-    background: ${(props) => props.theme.fill.f2}; 
-  }
+    const getVisual = (val: any) =>
+      typeof val === "function" ? val(theme) : val;
+    const getShadow = (val: any) =>
+      typeof val === "function" ? val(isActive) : val;
 
-  ${(props) =>
-    props.isBox &&
-    `
-    padding: 8px 12px;
-    border-radius: 8px;
-    background: ${props.isActive ? props.theme.background.bg2 : props.theme.background.bg0};
-    border: ${props.isActive ? `1px solid ${props.theme.stroke.strong}` : "none"};
-    box-shadow: ${props.isActive ? "0px 1px 2px 0px rgba(0, 0, 0, 0.051)" : "none"};
-
-    &:hover {
-      background: ${props.theme.fill.f2}; 
-    }
-  `}
+    return `
+      padding: ${layout.padding};
+      border-radius: ${layout.borderRadius};
+      box-shadow: ${getShadow(layout.boxShadow)};
+      background: ${isActive ? getVisual(visual.activeBg) : getVisual(visual.background)};
+      border: 1px solid ${isActive ? getVisual(visual.activeBorder) : getVisual(visual.border)};
+      
+      &:hover {
+        background: ${getVisual(visual.hoverBg)};
+      }
+    `;
+  }}
 `;
+
+// 🚀 Main Tabs Component
 const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
+
   const isBox = Customtype === "box";
 
   return (
@@ -51,12 +111,12 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
           Tabs: {
             controlHeight: isBox ? 36 : 44,
             itemSelectedColor: currentTheme.text.t1Title,
-            inkBarColor: isBox ? "transparent" : currentTheme.primary.default,
+            inkBarColor: Customtype === "underline"? currentTheme.primary.default : "transparent",
             colorText: currentTheme.text.t2Component,
             horizontalItemGutter: isBox ? 2 : 0,
             horizontalItemPadding: "4px 4px",
             itemHoverColor: currentTheme.text.t2Component,
-            colorBorderSecondary: isBox ? "none" : currentTheme.stroke.strong,
+            colorBorderSecondary:Customtype === "underline" ? currentTheme.stroke.strong: "transparent",
             itemActiveColor: "none",
           },
         },
@@ -65,28 +125,26 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
       <AntTabs
         {...props}
         tabBarStyle={{
-          background: isBox ? currentTheme.background.bg0: "none",
-          borderRadius: isBox ? "8px" : "none",
+          background:
+            Customtype === "box" ? currentTheme.background.bg0 : "none",
+          borderRadius: Customtype === "box" ? "8px" : "none",
         }}
         items={props.items?.map((tab) => {
           const { icon, label, customIcon, ...rest } = tab;
-        
           return {
             ...rest,
             label: (
               <TabLabel
-                isBox={isBox}
                 isActive={props.activeKey === tab.key}
+                type={Customtype}
                 theme={currentTheme}
               >
-                  {icon}
-                  {label}
+                {icon}
+                {label}
                 {customIcon}
               </TabLabel>
             ),
           };
-    
-        
         })}
       />
     </ConfigProvider>

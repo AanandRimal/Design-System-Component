@@ -6,8 +6,8 @@ import { GoogleIcon, AppleIcon } from "../components/icons/Icon"; // Ensure thes
 import Table from "../components/table/Table";
 
 const sizes: number[] = [32, 36, 40, 44, 48];
-type CustomButtonType = "primary" | "secondary" | "success" | "info" | "destructive" | "warning" | "social";
-const buttonTypes: CustomButtonType[] = ["primary", "secondary", "success", "info", "destructive", "warning"];
+type CustomButtonType = "primary" | "secondary" | "success" | "info" | "destructive" | "warning" |"ghost";
+const buttonTypes: CustomButtonType[] = ["primary", "secondary", "success", "info", "destructive", "warning","ghost"];
 
 const columns = [
   { title: "Type", dataIndex: "Customtype", key: "type", width: 150 },

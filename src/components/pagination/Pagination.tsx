@@ -14,13 +14,13 @@ const Pagination: React.FC<PaginationProps> = (props) => {
           Pagination: {
             colorPrimary: currentTheme.text.t1Title,
             colorBgTextHover:currentTheme.fill.f2,
-
             colorPrimaryHover:currentTheme.text.t2Component,
             itemActiveBg: currentTheme.fill.f3,
             colorText: currentTheme.text.t2Component,
             itemBg: currentTheme.background.bg1,
             lineWidth:0,
             colorTextDisabled: currentTheme.text.t3Subtitle
+            
   
           },
         },
@@ -29,7 +29,7 @@ const Pagination: React.FC<PaginationProps> = (props) => {
       <AntPagination {...props}     />
       <style>
     {`
-      .ant-pagination-item-link {
+      .ant-pagination-prev , .ant-pagination-next {
         border: 1px solid ${currentTheme.stroke.strong} !important;
         color: ${currentTheme.text.t3Subtitle}
       }

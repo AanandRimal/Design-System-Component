@@ -326,7 +326,7 @@ const avatarData = avatarSizesList.map((size) => ({
 }
 {selectedComponent==="Pagination"&& (
   <> 
-  <Pagination defaultCurrent={1} total={50} />
+  <Pagination defaultCurrent={5} total={200} />
         
         </>
 )

@@ -1,12 +1,11 @@
 import React from "react";
-import Button from "../components/button/Button";
-
-interface ModalFooterProps  {
+interface FooterProps    {
   footerType?: "right" | "stretch" | "stacked";
   children?: React.ReactNode;
+  variantStyle?:React.CSSProperties;
 }
 
-const ModalFooter: React.FC<ModalFooterProps> = ({ footerType = "right",children}) => {
+const Footer: React.FC<FooterProps> = ({ footerType = "right",children ,variantStyle}) => {
   const footerClass = {
     right: "justify-end gap-2.5 p-2",
     stretch: "justify-start gap-2.5 p-2",
@@ -14,10 +13,10 @@ const ModalFooter: React.FC<ModalFooterProps> = ({ footerType = "right",children
   }[footerType];
 
   return (
-    <div className={`flex ${footerClass}`} >
+    <div className={`flex ${footerClass} , ${variantStyle}`} >
  {children}
     </div>
   );
 };
 
-export default ModalFooter;
+export default Footer;

@@ -6,14 +6,16 @@ interface TitleProps {
   icon?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;
+  variantStyle?:React.CSSProperties;
+
 }
 
-const Title: React.FC<TitleProps> = ({ icon, title, description }) => {
+const Title: React.FC<TitleProps> = ({ icon, title, description,variantStyle }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
 
   return (
-    <div className={`flex gap-3 ${description ? "items-start" : "items-center"}`}>
+    <div className={`flex gap-3  ${description ? "items-start" : "items-center"}`} style={variantStyle}>
       {icon}
       <div className="flex flex-col gap-1">
         <h5 className="text-h6-semibold font-semibold ">{title}</h5>

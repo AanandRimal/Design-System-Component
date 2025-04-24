@@ -86,13 +86,15 @@ const Table: React.FC<AntTableProps> = (props) => {
                 headerColor:currentTheme.text.t2Component,
                 borderColor:currentTheme.stroke.decorative,
                 colorBgContainer:currentTheme.background.bg1,
-                rowHoverBg:currentTheme.background.bg2,
+                rowHoverBg:currentTheme.fill.f1,
                 rowSelectedHoverBg:currentTheme.background.bg2,
                 colorText:currentTheme.text.t2Component,
                 headerSplitColor:currentTheme.stroke.strong,
                 cellPaddingBlock:8,
                 cellPaddingInline:10,
                 rowSelectedBg:currentTheme.background.bg3,
+                colorIcon:currentTheme.text.t3Disabled,
+                colorPrimary:currentTheme.primary.default
             },
           },
       }}
