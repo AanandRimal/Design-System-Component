@@ -56,8 +56,8 @@ const ModalDisplay = () => {
           title={"Modal"}
           description="This is a description text."
           customFooter={[
-            <Button key="cancel" Customtype="secondary">Cancel</Button>,
-            <Button key="submit" Customtype="primary">Submit</Button>,
+            <Button key="cancel" Customtype="secondary" onClick={closeModal}>Cancel</Button>,
+            <Button key="submit" Customtype="primary"onClick={closeModal}>Submit</Button>,
           ]}
           content={
             <>

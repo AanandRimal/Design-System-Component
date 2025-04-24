@@ -1,12 +1,13 @@
 import React from "react";
 import { Input } from "antd";
 import { InputProps } from "antd";
+import { SearchProps } from "antd/es/input";
 import BaseInputTheme from "./BaseInputTheme";
 import SearchIcon from "../icons/SearchIcon";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Sizes } from "../foundation/Theme";
 
-interface CustomSearchProps extends InputProps {
+interface CustomSearchProps extends SearchProps {
   customSize?: keyof typeof Sizes;
 }
 
