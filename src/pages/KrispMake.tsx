@@ -31,6 +31,7 @@ import TableDisplayComponent from "../components/table/TableDisplay";
 import Table from "../components/table/Table";
 import Slider from "../components/sliders/Slider";
 import ButtonGroupDisplay from "./ButtonGroupDisplay";
+import LoadingCircle from "../components/icons/LoadingCircle";
 const { Title } = Type;
 const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner","Table","Slider","ButtonGroup"];
 export default function KrispMake() {

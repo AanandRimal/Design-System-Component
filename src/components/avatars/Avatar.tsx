@@ -11,8 +11,7 @@ interface CustomAvatarProps extends AvatarProps {
   dot?:boolean;
 }
 //****Used absolute and top and left as with offsett leftt was not applied and added div to make exact container  if just offset then form left it was not applied like it was but form badge not frm avater look women shouder justtt touched not touched body but with top and left it touched  */
-const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
-
+const StyledIconWrapper = styled.span<{ iconSize: number; translateY: number }>`
   height: ${(props) => props.iconSize}px;
   width: ${(props) => props.iconSize}px;
   transform: translateY(${(props) => props.translateY}px);
@@ -21,10 +20,7 @@ const StyledIconWrapper = styled.div<{ iconSize: number; translateY: number }>`
 //     position: relative;
 //     height: ${(props) => props.size}px;
 //   width: ${(props) => props.size}px;
-
-
 // `;
-
 const getChildrenLabel = (children: React.ReactNode, maxChars: number) => {
   if (typeof children === "string") {
     return children.slice(0, maxChars).toUpperCase();
@@ -38,7 +34,7 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
   const userIconSize =  icon ?  avatarSizeobj.base * 1: avatarSizeobj.base *0.5  ;
   const translateY = avatarSizeobj.base * 0.19;
 
-  const allowedChars = avatarSizeobj.base <= 24 ? 1 : 2;
+  const maxChars = avatarSizeobj.base <= 24 ? 1 : 2;
   
 
   return (
@@ -49,7 +45,6 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
             colorTextPlaceholder: icon ? currentTheme.background.bg5 : currentTheme.primary.default,
             colorText: currentTheme.text.t1Title,
             colorTextLightSolid: icon ? currentTheme.background.bg2Hover : currentTheme.text.staticWhite,
-            colorBorder: "#ffff",
             containerSize: avatarSizeobj.base,
             textFontSize: userIconSize, //icon size
             fontSize:userIconSize,//textlabel size
@@ -70,7 +65,7 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
   }
   {...props}
 >
-  {getChildrenLabel(props.children, allowedChars)}
+  {getChildrenLabel(props.children, maxChars)}
 </AntAvatar>
 
       </Badge>

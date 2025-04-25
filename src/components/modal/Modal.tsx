@@ -71,6 +71,7 @@ const Modal: React.FC<CustomModalProps> = ({
     ) : undefined
   }
 >
+  <div className="flex flex-col gap-5">
   <div className={contentClassName} style={{ color: currentTheme.text.t3Subtitle }}>
     {modalProps.content}
   </div>
@@ -79,6 +80,7 @@ const Modal: React.FC<CustomModalProps> = ({
       {customFooter}
     </Footer>
   )}
+  </div>
 </AntModal>
 
     </ConfigProvider>

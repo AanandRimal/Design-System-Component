@@ -167,7 +167,7 @@ interface CardInputProps {
   placeholder?:string|number
 }
 
-const CardInput: React.FC<CardInputProps> = ({ size = "middle", status, disabled ,placeholder}) => {
+const CardInput: React.FC<CardInputProps> = ({ size = "large", status, disabled ,placeholder}) => {
   const [cardNumber, setCardNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const expiryRef = useRef<InputRef>(null);

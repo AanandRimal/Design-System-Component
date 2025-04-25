@@ -7,9 +7,9 @@ interface CustomTextAreaProps extends TextAreaProps {
   customSize?: keyof typeof Sizes;
 }
 
-const TextArea: React.FC<CustomTextAreaProps> = ({ customSize, status, ...props }) => (
+const TextArea: React.FC<CustomTextAreaProps> = ({ customSize,  ...props }) => (
   <BaseInputTheme customSize={customSize} >
-    <Input.TextArea status={status === "error" ? "error" : undefined} {...props} />
+    <Input.TextArea {...props} />
   </BaseInputTheme>
 );
 

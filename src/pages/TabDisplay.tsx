@@ -18,25 +18,25 @@ const TabDisplay: React.FC = () => {
       {
         key: "2",
         label: "Setting",
-        icon: <Badge  > 22 </Badge>,
+        customIcon: <Badge  > 22 </Badge>,
         children: "Content for Settings",
       },
       {
         key: "3",
         label: "Profile",
-        icon: <Badge  > 22 </Badge>,
+        customIcon: <Badge  > 22 </Badge>,
         children: "Content for Settingsprofile",
       },
       {
         key: "4",
         label: "Notify",
-        icon: <Badge  > 22 </Badge>,
+        customIcon: <Badge  > 22 </Badge>,
         children: "Content for Settingsnotify",
       },
       {
         key: "5",
         label: "Message",
-        icon: <Badge  > 22 </Badge>,
+        customIcon:  <Badge  > 22 </Badge>,
         children: "Content for Settings",
       },
     ];

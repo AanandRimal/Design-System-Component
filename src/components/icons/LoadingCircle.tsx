@@ -10,7 +10,7 @@ interface LoadingCircleProps {
   duration?: number; // spin duration in seconds
 }
 const LoadingCircle: React.FC<LoadingCircleProps> = ({
-  size = 48,
+  size = 15,
   strokeWidth = 3,
   progress = 30,
   duration = 1.5,

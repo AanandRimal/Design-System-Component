@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = ({ footerType = "right",children ,variantS
   }[footerType];
 
   return (
-    <div className={`flex ${footerClass} , ${variantStyle}`} >
+    <div className={`flex ${footerClass} `}  style={variantStyle}>
  {children}
     </div>
   );

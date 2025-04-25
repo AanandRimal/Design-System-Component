@@ -7,7 +7,7 @@ interface CustomOtpProps extends OTPProps {
   customSize?: keyof typeof Sizes;
 }
 
-const OTP: React.FC<CustomOtpProps> = ({ customSize, status, ...props }) => (
+const OTP: React.FC<CustomOtpProps> = ({ customSize, ...props }) => (
   <BaseInputTheme customSize={customSize}>
     <Input.OTP
       {...props}

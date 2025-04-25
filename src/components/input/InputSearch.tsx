@@ -1,13 +1,12 @@
 import React from "react";
 import { Input } from "antd";
 import { InputProps } from "antd";
-import { SearchProps } from "antd/es/input";
 import BaseInputTheme from "./BaseInputTheme";
 import SearchIcon from "../icons/SearchIcon";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Sizes } from "../foundation/Theme";
 
-interface CustomSearchProps extends SearchProps {
+interface CustomSearchProps extends InputProps {
   customSize?: keyof typeof Sizes;
 }
 
@@ -17,7 +16,7 @@ const Search: React.FC<CustomSearchProps> = ({ customSize, status, ...props }) =
 
   return (
     <BaseInputTheme customSize={customSize} >
-      <Input.Search
+      <Input
         size="large"
         prefix={<SearchIcon size={iconSize} theme={themeMode} />}
         status={status === "error" ? "error" : undefined}

@@ -93,15 +93,11 @@ const InputDisplay: React.FC = () => {
         error: { status: "error", placeholder: "Error" },
       };
       const props = { ...commonProps, ...(mode ? propsMap[mode] : {}) };
-
+    
       const Component = LabeledInputComponents[type];
-
+    
       if (!Component) return "-";
-
-      if (type === "otp" || type === "textarea") {
-        return <Component {...labelProps} />;
-      }
-
+    
       if (type === "select") {
         const flag_withlabel = (
           <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -118,10 +114,10 @@ const InputDisplay: React.FC = () => {
           />
         );
       }
-
+    
       return <Component {...props} placeholder={type === "password" ? "Password" : "Text Placeholder"} />;
     };
-
+    
     if (["otp", "textarea", "card"].includes(type)) {
       inputData.push({
         key: `${type}-no-size`,

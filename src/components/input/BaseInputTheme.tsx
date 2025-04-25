@@ -34,7 +34,6 @@ const  BaseInputTheme: React.FC<BaseInputProps> = ({ children, customSize = 36 }
             colorBgContainerDisabled: currentTheme.fill.f2,
             colorTextDisabled: currentTheme.text.t3Disabled,
             inputFontSizeLG: customSizeKey.fontSize,
-            paddingBlockLG: customSizeKey.paddingY,
             paddingInlineLG: customSizeKey.paddingX,
             controlHeightLG: customSizeKey.height,
             borderRadiusLG: 8,

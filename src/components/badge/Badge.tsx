@@ -17,7 +17,7 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
   const themeTypeKey =
-  status==="neutral" ? getNeutralTheme(themeMode)  :  
+  status==="neutral" ? getNeutralTheme(themeMode):  
      currentTheme[status];
   const badgeSizeKey = badgeSizes[size] || badgeSizes[20];
   const bgColor =
@@ -44,7 +44,7 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
     height: 6,
     borderRadius: '50%',
     backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:   status === "neutral"
-    ? themeTypeKey.textcolor       : themeTypeKey?.default ?? 'inherit',
+    ? themeTypeKey.textcolor : themeTypeKey?.default ?? 'inherit',
     display:"flex",
     alignItems:"center",
     paddingLeft: 2,

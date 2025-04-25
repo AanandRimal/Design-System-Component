@@ -8,9 +8,9 @@ interface Props extends React.ComponentProps<typeof Input.OTP> {
 
 }
 
-const LabeledInputOTP: React.FC<Props> = ({ label, bottomLabel, customSize, status,  ...props }) => (
+const LabeledInputOTP: React.FC<Props> = ({ label, bottomLabel, status,  ...props }) => (
     <LabeledInput label={label} bottomLabel={bottomLabel} status={status}  >
-      <Input.OTP status={status}  {...props} />
+      <Input.OTP status={status} {...props} />
     </LabeledInput>
 );
 
