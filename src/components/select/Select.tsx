@@ -10,8 +10,8 @@ import { Sizes, Themes } from "../foundation/Theme";
 type CustomSize = keyof typeof Sizes;
 
 interface CustomOption {
-  value: string;
-  label: string;
+  value: string | number |undefined;
+  label: string |number |undefined;
   img?: string;
 }
 
@@ -47,7 +47,7 @@ const Select: React.FC<SelectProps> = ({
             colorText: currentTheme.text.t2Component,
             colorTextPlaceholder: placeholderTextColor,
             controlHeightLG: customSizeKey.height,
-            borderRadiusLG: 10,
+            borderRadiusLG: 8,
             fontSizeLG: customSizeKey.fontSize,
             colorBorder: borderColor,
             paddingLG: customSizeKey.paddingX,
@@ -93,7 +93,7 @@ const Select: React.FC<SelectProps> = ({
                 {selectedOption?.img && (
                   <img
                     src={selectedOption.img}
-                    alt={selectedOption.label}
+                    alt={String(selectedOption.label)}
                     style={{ width: 20, height: 13.1, borderRadius: "10%" }}
                   />
                 )}

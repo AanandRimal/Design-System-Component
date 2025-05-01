@@ -9,6 +9,7 @@ import { avatarSizes } from "./AvatarSizes";
 interface CustomAvatarProps extends AvatarProps {
   customSize?: number;
   dot?:boolean;
+  customStatus?:"online"|"offline";
 }
 //****Used absolute and top and left as with offsett leftt was not applied and added div to make exact container  if just offset then form left it was not applied like it was but form badge not frm avater look women shouder justtt touched not touched body but with top and left it touched  */
 const StyledIconWrapper = styled.span<{ iconSize: number; translateY: number }>`
@@ -27,7 +28,7 @@ const getChildrenLabel = (children: React.ReactNode, maxChars: number) => {
   }
   return children;
 };
-const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => {
+const Avatar: React.FC<CustomAvatarProps> = ({customStatus, customSize, icon, ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
   const avatarSizeobj = avatarSizes[customSize as keyof typeof avatarSizes] || avatarSizes[120];
@@ -54,8 +55,9 @@ const Avatar: React.FC<CustomAvatarProps> = ({ customSize, icon, ...props }) => 
       }}
     >
    {/* <Wrapper  size={avatarSizeobj.base}> */}
-     <Badge dot={props.dot} customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]} customStatus="online">
+     <Badge dot={props.dot} customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]} customStatus={customStatus} >
       <AntAvatar
+      
   icon={
     React.isValidElement(icon) ? (
       <StyledIconWrapper iconSize={userIconSize} translateY={translateY}>

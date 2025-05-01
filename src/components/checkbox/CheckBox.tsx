@@ -4,9 +4,11 @@ import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import { checkSizes } from "./CheckSizes";
 import "./check.css";
+
 interface CustomCheckBoxProps extends CheckboxProps {
-  size?: number;
+  size?: 16 | 20 | 24;
 }
+
 const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 20,  ...props }) => {
   const { themeMode } = useTheme(); 
   const currentTheme=Themes[themeMode];

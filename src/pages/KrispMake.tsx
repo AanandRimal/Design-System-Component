@@ -3,16 +3,12 @@ import {  Typography as Type, Divider, Menu,ConfigProvider,Space} from "antd";
 import { Icon } from "@iconify/react";
 import { useTheme } from "../context-hook/ThemeProvider";
 import ColorPalette from "../components/foundation/ColorPalette";
-import Button from "../components/button/Button";
 import Typography from "../components/foundation/Typography";
 import { Themes } from "../components/foundation/Theme";
-import Radio from "../components/Radio";
 import Switch from "../components/switch/Switch"
-import Alert from "../components/alerts/Alerts"
-import { CustomAlertType } from "../components/alerts/Alerts";
 import Breadcrumb from "../components/breadcrumbs/BreadCrumbs";
 import Avatar from "../components/avatars/Avatar";
-import BadgeTable from "./BadgeDisplay";
+import BadgeDisplay from "./BadgeDisplay";
 import TabDisplay from "./TabDisplay";
 import Pagination from "../components/pagination/Pagination";
 import "./scrollbar.css"
@@ -22,7 +18,7 @@ import ButtonDisplay from "./ButtonDisplay";
 import InputDisplay from "./InputDisplay";
 import ToasterDisplay from "./ToasterDisplay";
 import DropdownDisplay from "./Dropdowndisplay"
-import BannerGrid from "./BannerDisplay";
+import BannerDisplay from "./BannerDisplay";
 import TooltipDisplay from "./TooltipDisplay";
 import ProgressWithLabel from "../components/progress-bar/ProgressWithLabel";
 import SpinnerDisplay from "./SpinnerDisplay";
@@ -31,34 +27,70 @@ import TableDisplayComponent from "../components/table/TableDisplay";
 import Table from "../components/table/Table";
 import Slider from "../components/sliders/Slider";
 import ButtonGroupDisplay from "./ButtonGroupDisplay";
-import LoadingCircle from "../components/icons/LoadingCircle";
+import dayjs from 'dayjs';
+import CustomDatePicker from "../components/date-picker/Date-Picker";
+import { LeftIcon } from "../components/icons/LeftIcon";
+import ButtonDoc from "../component-docs/ButtonDoc";
+import Tabs from "../components/tabs/Tabs";
+import InputDoc from "../component-docs/InputDoc";
+import AvatarDoc from "../component-docs/AvatarDoc";
+import AlertDisplay from "./AlertDisplay";
+import AlertDoc from "../component-docs/AlertDoc";
+import BadgeDoc from "../component-docs/BadgeDoc";
+import BannerDoc from "../component-docs/BannerDoc";
+import ButtonGroupDoc from "../component-docs/ButtonGroupDoc";
+import CheckboxDoc from "../component-docs/CheckBoxDoc";
+import ColorSystemDoc from "../component-docs/ColorDoc";
+import DrawerDoc from "../component-docs/DrawerDoc";
+import ModalDoc from "../component-docs/ModalDoc";
+import PaginationDoc from "../component-docs/PaginationDoc";
+import ProgressDoc from "../component-docs/ProgressBarDoc";
+import RadioDisplay from "./RadioDisplay";
+import RadioDoc from "../component-docs/RadioDoc";
+import SliderDoc from "../component-docs/SliderDoc";
+import SpinnerDoc from "../component-docs/SpinnerDoc";
+import SwitchDisplay from "./SwitchDisplay";
+import SwitchDoc from "../component-docs/SwitchDpc";
+import TableDoc from "../component-docs/TableDoc";
+import TabsDoc from "../component-docs/TabDoc";
+import ToasterDoc from "../component-docs/ToasterDoc";
+import TooltipDoc from "../component-docs/ToolTipDoc";
+import TypographyDoc from "../component-docs/TypographyDoc";
+import DropdownDoc from "../component-docs/Dropdown";
+import CustomRangePicker from "./DateSelector";
+
 const { Title } = Type;
-const components = [ "Colors","Typography","Avatar", "Button","Checkbox", "Input", "Radio Button","Switch/Toggle","Alert","Breadcrumb","Badges","Tabs","Pagination","Modal","Drawer","Toaster","Banner","Dropdown","ToolTip","ProgressBar","Spinner","Table","Slider","ButtonGroup"];
+const components = [
+  "Alert",
+  "Avatar",
+  "Badges",
+  "Banner",
+  "Breadcrumb",
+  "Button",
+  "ButtonGroup",
+  "Checkbox",
+  "Colors",
+  "DatePicker",
+  "Drawer",
+  "Dropdown",
+  "Input",
+  "Modal",
+  "Pagination",
+  "ProgressBar",
+  "Radio Button",
+  "Slider",
+  "Spinner",
+  "Switch/Toggle",
+  "Table",
+  "Tabs",
+  "Toaster",
+  "ToolTip",
+  "Typography",
+];
 export default function KrispMake() {
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
-const alertTypes: CustomAlertType[] = ["neutral", "info", "success", "warning", "error", "primary"];
 const currentTheme=Themes[themeMode]
-  const radioSizes = [16, 20, 24];
-const radioColumns = [
-  { title: "Size", dataIndex: "size", key: "size", width: 100 },
-  { title: "Default", dataIndex: "default", key: "default" },
-  { title: "Checked", dataIndex: "checked", key: "checked" },
-  { title: "Disabled", dataIndex: "disabled", key: "disabled" },
-];
-const switchSizes = [20, 24];
-const switchColumns = [
-  { title: "Size", dataIndex: "size", key: "size", width: 100 },
-  { title: "Default", dataIndex: "default", key: "default" },
-  { title: "Checked", dataIndex: "checked", key: "checked" },
-  { title: "Default: Disabled", dataIndex: "defaultDisabled", key: "defaultDisabled" },
-  { title: "Checked: Disabled", dataIndex: "checkedDisabled", key: "checkedDisabled" },
-];
-const alertColumns = [
-  { title: "Condition", dataIndex: "condition", key: "condition", width: 150 },
-  { title: "Type", dataIndex: "type", key: "type", width: 150 },
-  { title: "Alert", dataIndex: "alert", key: "alert" },
-];
 const avatarSizesList = [14, 20, 24, 32, 36, 40, 48, 64, 80, 120];
 const avatarColumns = [
   { title: "Size", dataIndex: "size", key: "size", width: 100 },
@@ -67,71 +99,6 @@ const avatarColumns = [
   { title: "Avatar", dataIndex: "avatar", key: "avatar" },
 ];
 
-const radioData = radioSizes.map((size) => ({
-  key: `radio-${size}`,
-  size,
-  default: <Radio size={size} >This is the Radio Label</Radio>,
-  checked: <Radio size={size} checked > This is the Radio Label</Radio>,
-  disabled: <Radio size={size} disabled>This is the RadioLabel</Radio>,
-}));
-const switchData = switchSizes.map((size) => ({
-  key: `switch-${size}`,
-  size,
-  default: (
-    <Space size={8}>
-      <Switch customSize={size} />
-      <span>Switch Label Here</span>
-    </Space>
-  ),
-  checked: (
-    <Space size={8}>
-      <Switch customSize={size} checked />
-      <span>Switch Label Here</span>
-    </Space>
-  ),
-  defaultDisabled: (
-    <Space size={8}>
-      <Switch customSize={size} disabled />
-      <span>Switch Label Here</span>
-    </Space>
-  ),
-  checkedDisabled: (
-    <Space size={8}>
-      <Switch customSize={size} checked disabled />
-      <span>Switch Label Here</span>
-    </Space>
-  ),
-}));
-const generateAlertData = (condition: "filled" | "stroke") => {
-  return alertTypes.map((type) => {
-    const buttonType =  condition === "stroke" ? "secondary" : type === "error" ? "destructive" : type === "neutral" ? "secondary" : type;
-    return {
-      key: `${condition}-${type}`,
-      condition,
-      type,
-      alert: (
-        <Alert
-          className="text-base-regular"
-          message={`This is a ${type} alert`}
-          description={"This is a Description Text"}
-          action={
-            <Space>
-          <Button Customtype={buttonType}>Button Label</Button>
-          </Space>}
-          closable
-          Customtype={type}
-          showIcon
-          {...(condition === "stroke" ? { stroke: true } : {})}
-        />
-      ),
-    };
-  });
-};
-const alertData = [
-  ...generateAlertData("filled"),
-  { key: "separator", condition: "", type: "", alert: <Divider /> },
-  ...generateAlertData("stroke"),
-];
 const avatarData = avatarSizesList.map((size) => ({
   key: `avatar-${size}`,
   size,
@@ -230,51 +197,168 @@ const avatarData = avatarSizesList.map((size) => ({
 
 {selectedComponent === "Button" && (
 <>
-<ButtonDisplay/>
+<div className="p-4">
+
+      <Tabs defaultActiveKey="display" items={ [
+  {
+    key: 'display',
+    label: 'Display',
+    children: <ButtonDisplay />,
+  },
+  {
+    key: 'docs',
+    label: 'Docs',
+    children: <ButtonDoc />,
+  },
+]} />
+    </div>
 
 </>
 )}
    <div>
    {selectedComponent === "Checkbox" && (
     <>
-<CheckboxDisplay/>
+    <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <CheckboxDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <CheckboxDoc />,
+},
+]} />
+</div>
   </>
 )}
         </div>
         <div >
         {selectedComponent === "Input" && (
           <>
-<InputDisplay/>
-          </>
+<div className="p-4">
+
+      <Tabs defaultActiveKey="display" items={ [
+  {
+    key: 'display',
+    label: 'Display',
+    children: <InputDisplay />,
+  },
+  {
+    key: 'docs',
+    label: 'Docs',
+    children: <InputDoc />,
+  },
+]} />
+    </div>
+
+</>
           
 )}
 </div>
-{selectedComponent === "Colors" && <ColorPalette />}
-{selectedComponent==="Typography"&& <Typography/>}
+{selectedComponent === "Colors" && 
+<>
+<div className="p-4">
+
+      <Tabs defaultActiveKey="display" items={ [
+  {
+    key: 'display',
+    label: 'Display',
+    children: <ColorPalette />,
+  },
+  {
+    key: 'docs',
+    label: 'Docs',
+    children: <ColorSystemDoc/>,
+  },
+]} />
+    </div>
+
+</>}
+{selectedComponent==="Typography"&&
+ <>
+ <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <Typography />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <TypographyDoc/>,
+},
+]} />
+</div>
+
+</>
+}
 
   {selectedComponent==="Radio Button"&&(
     <>   
 {/* <Button  type="success" size={100}>elllll</Button>
 <Button type="destructive" >Help me</Button>
 <Button type="warning" size="large">help me testing </Button> */}
+<div className="p-4">
 
-    <Table columns={radioColumns} dataSource={radioData} pagination={false} bordered />
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <RadioDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <RadioDoc/>,
+},
+]} />
+</div>
     </>
   )}
-   <div>
    {selectedComponent === "Switch/Toggle" && (
-  <Table columns={switchColumns} dataSource={switchData} pagination={false} bordered />
+  <>
+  <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <SwitchDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <SwitchDoc/>,
+},
+]} />
+</div>
+  </>
 )}
-        </div>
-        <div>
+   
    {selectedComponent === "Alert" && (
     <>
-     <Table
-     columns={alertColumns}
-     dataSource={alertData}
-     pagination={false}
-     bordered
-   />
+<div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <AlertDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <AlertDoc />,
+},
+]} />
+</div>
+
    </>
 )}
    <div>
@@ -304,107 +388,339 @@ const avatarData = avatarSizesList.map((size) => ({
         <div>
    {selectedComponent === "Avatar" && (
     <>
- <Table columns={avatarColumns} dataSource={avatarData} pagination={false} bordered />
+  <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <Table columns={avatarColumns} dataSource={avatarData} pagination={false} bordered />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <AvatarDoc/>,
+},
+]} />
+</div>
+
+ 
  </>
 )}
    {selectedComponent === "Badges" && (
     <>
-{/* <Badge type="filled" status="success" icon={  <Avatar customSize={14} src={<img src={"./Female 2.png"} alt="avatar" />}  />}>dfdvdfdf</Badge>
-          <Badge type="solid" status="destructive"  icon={  <Icon
-          icon="mage:select-box"/>}>dfdvdfdf</Badge>
-            <Badge type="solid" status="destructive"  icon={  <Icon
-          icon="mage:select-box"/>}>dfdvdfdf</Badge>
-          <Badge type="stroke" status="destructive"  size={20} dot >dfdvdfdf</Badge>
-          <Badge type="filled" status="destructive"  size={24} dot>dfdvdfdf</Badge>
-          <Badge type="solid" status="success"  size={24} dot>dfdvdfdf</Badge> */}
-          <BadgeTable />
-         
+      <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <BadgeDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <BadgeDoc />,
+},
+]} />
+</div>   
  </>
 )}
 {selectedComponent==="Tabs"&& (
-   <TabDisplay/>
+  <>
+     <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children:    <TabDisplay/>,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <TabsDoc />,
+},
+]} />
+</div> 
+  </>
 )
 }
 {selectedComponent==="Pagination"&& (
   <> 
-  <Pagination defaultCurrent={5} total={200} />
-        
+  <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <Pagination defaultCurrent={5} total={300}   showRowsPerPage  showTotalItems/>,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <PaginationDoc />,
+},
+]} />
+</div>  
+
+ 
         </>
 )
 }
 {selectedComponent === "Modal" && (
   <>
-<ModalDisplay/>
+     <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <ModalDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <ModalDoc />,
+},
+]} />
+</div>
 
   </>
 )}
 {selectedComponent === "Drawer" && (
   <>
-<DrawerDisplay/>
+     <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <DrawerDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <DrawerDoc />,
+},
+]} />
+</div>
   </>
 )}
 {selectedComponent=== "Toaster" && (
   <>
-<ToasterDisplay/>
+     <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <ToasterDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <ToasterDoc />,
+},
+]} />
+</div>
   </>
 ) }
 {selectedComponent=== "Dropdown" && (
   <>
+ <div className="p-4">
 
-<DropdownDisplay/>
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <DropdownDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <DropdownDoc />,
+},
+]} />
+</div>  
   </>
 ) }
 {selectedComponent=== "Banner" && (
   <>
+      <div className="p-4">
 
-<BannerGrid />
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <BannerDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <BannerDoc />,
+},
+]} />
+</div>  
   </>
 ) }
 {selectedComponent=== "ToolTip" && (
   <>
-<TooltipDisplay/>
+     <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <TooltipDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <TooltipDoc />,
+},
+]} />
+</div> 
   </>
 ) }
 {selectedComponent=== "ProgressBar" && (
   <>
- <Space direction="vertical" size={50} style={{ width: 500 }}>
-  <ProgressWithLabel percent={70} label="Label" />
-  <ProgressWithLabel percent={50} bottomLabel="Help Text" />
-  <ProgressWithLabel percent={85} label="Label" bottomLabel="HelpText" />
-  <ProgressWithLabel percent={40} />
+       <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children:  <Space direction="vertical" size={50} style={{ width: 500 }}>
+<ProgressWithLabel percent={70} label="Label" />
+<ProgressWithLabel percent={50} bottomLabel="Help Text" />
+<ProgressWithLabel percent={85} label="Label" bottomLabel="HelpText" />
+<ProgressWithLabel percent={40} />
 </Space>
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <ProgressDoc />,
+},
+]} />
+</div>  
+
 
   </>
 ) }
 {selectedComponent=== "Spinner" && (
   <>
-<SpinnerDisplay/>
+  <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <SpinnerDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <SpinnerDoc />,
+},
+]} />
+</div>  
   </>
 ) }
 {selectedComponent=== "Table" && (
   <>
-<TableDisplayComponent/>
+    <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <TableDisplayComponent/>,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <TableDoc />,
+},
+]} />
+</div>  
+
   </>
 ) }
 {selectedComponent=== "Slider" && (
   <>
+   <div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children:  <Space direction="vertical" size={50} style={{ width: 500 }}>
 <Slider defaultValue={15} style={{ width: 100 }} />
 <Slider defaultValue={30}   style={{ width: 300 }} />
 <Slider defaultValue={40}  style={{ width: 400 }}  />
 <Slider defaultValue={50}  style={{ width: 500 }}  />
 <Slider defaultValue={80}  style={{ width: 600 }}  />
 <Slider defaultValue={100}  style={{ width: 700 }}  />
+</Space>
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <SliderDoc />,
+},
+]} />
+</div>  
+
   </>
 ) }
 {selectedComponent=== "ButtonGroup" && (
 
   <>  
-<ButtonGroupDisplay/>
+<div className="p-4">
+
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <ButtonGroupDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <ButtonGroupDoc />,
+},
+]} />
+</div>
 
   </>  
 )}
+{selectedComponent=== "DatePicker" && (
+
+<>  
+<CustomRangePicker/>
+
+<CustomDatePicker
+  type="range"
+  rangePickerProps={{
+    placeholder: ["Start date", "End date"],
+    presets: [
+      { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
+      { label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
+      { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
+      { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
+    ],
+    superNextIcon:<LeftIcon/>
+
+  }}
+
+/>
+
+</>  
+)}
         </div>
-        </div>
+
       </div>
     </div>
     </ConfigProvider>

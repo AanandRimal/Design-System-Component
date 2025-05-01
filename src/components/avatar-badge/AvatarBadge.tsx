@@ -17,14 +17,18 @@ const Badge: React.FC<CustomBadgeProps> = ({customSize=16, customStatus="online"
           Badge: {
             indicatorHeight:customSize,
             dotSize:customSize,
-            colorError:isOnlineStatus ? currentTheme.success.default :currentTheme.stroke.strong,
+            colorError:isOnlineStatus ? currentTheme.success.default :currentTheme.fill.f4,
             colorBorderBg:currentTheme.background.bg1,
-            lineWidth:2
+            lineWidth:2,
+    
           },
         },
       }}
     >
-      <AntBadge  {...props} >
+      <AntBadge  {...props}  
+      style={{
+    boxShadow: `0 0 0 1px ${currentTheme.background.bg1}`,
+  }} >
         {props.children}
         </AntBadge>
     </ConfigProvider>

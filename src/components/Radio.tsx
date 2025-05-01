@@ -3,7 +3,7 @@ import { Radio as AntRadio, ConfigProvider, RadioProps } from "antd";
 import { useTheme } from "../context-hook/ThemeProvider";
 import { Themes } from "./foundation/Theme";
 interface CustomRadioProps extends RadioProps {
-  size?: number;
+  size?: 16|20|24;
 }
   const Radio: React.FC<CustomRadioProps> = ({ size = 16, children, ...props }) => {
   const { themeMode } = useTheme();

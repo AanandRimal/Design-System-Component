@@ -39,16 +39,35 @@ const itemsWithIcon = [
 const multipleSectionChildren: MenuProps['items']  = [
   {
     type: 'group',
-    label: 'Group title',
+    label: 'Dropdown Heading',
     key: 'group-1',
     children: [
       {
         key: '1-1',
         label: 'Option A',
+        icon:<LeftIcon/>
       },
       {
         key: '1-2',
         label: 'Option B',
+        icon:<LeftIcon/>
+      },
+    ],
+  },
+  {
+    type: 'group',
+    label: 'Dropdown Heading',
+    key: 'group-2',
+    children: [
+      {
+        key: '2-1',
+        label: 'Option A',
+        icon:<LeftIcon/>
+      },
+      {
+        key: '2-2',
+        label: 'Option B',
+        icon:<LeftIcon/>
       },
     ],
   },

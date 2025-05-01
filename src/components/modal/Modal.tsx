@@ -24,9 +24,9 @@ const Modal: React.FC<CustomModalProps> = ({
   const currentTheme = Themes[themeMode];
 
   // Border classes only for "divider" variant
-  const titleStyle = variant === "divider" ? { borderBottom: `1px solid ${currentTheme.stroke.strong}`, padding: "20px 12px", } : {};
-  const footerStyle = variant === "divider" ? { borderTop: `1px solid ${currentTheme.stroke.strong}`, padding: "20px 12px",} : {};
-  const contentClassName = variant === "divider" ? "px-3 py-5 space-y-4" : "space-y-4";
+  const titleStyle = variant === "divider" ? { borderBottom: `1px solid ${currentTheme.stroke.strong}`, padding: "16px 20px", } : {};
+  const footerStyle = variant === "divider" ? { borderTop: `1px solid ${currentTheme.stroke.strong}`, padding: "16px 20px",} : {};
+  const contentClassName = variant === "divider" ? "px-5 py-5 space-y-4" : "space-y-4";
   const modalPadding = variant === "default" ? "20px" : "0px";
 
   return (
@@ -71,14 +71,14 @@ const Modal: React.FC<CustomModalProps> = ({
     ) : undefined
   }
 >
-  <div className="flex flex-col gap-5">
+<div className={`flex flex-col ${variant !== "divider" ? "gap-5" : ""}`}>
   <div className={contentClassName} style={{ color: currentTheme.text.t3Subtitle }}>
     {modalProps.content}
   </div>
   {customFooter && (
     <Footer footerType={footerType} variantStyle={footerStyle}>
       {customFooter}
-    </Footer>
+    </Footer>                        
   )}
   </div>
 </AntModal>

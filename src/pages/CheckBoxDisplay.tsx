@@ -6,7 +6,7 @@ import CheckBox from "../components/checkbox/CheckBox"; // your custom checkbox 
 const CheckboxGroup = Checkbox.Group;
 
 const options = ["Option A", "Option B", "Option C"];
-const checkboxSizes = [16, 20, 24];
+const checkboxSizes : (16 | 20 | 24 )[] = [16,20,24];
 
 const CheckboxMatrixWithCheckAll: React.FC = () => {
   const [checkedLists, setCheckedLists] = useState<Record<number, string[]>>(() =>

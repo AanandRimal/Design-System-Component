@@ -4,9 +4,8 @@ import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import { switchSizes } from "./SwitchSizes"; 
 type CustomTrackSize = keyof typeof switchSizes; 
-type ExtendedSwitchSize = Exclude<SwitchProps["size"], undefined> | CustomTrackSize; 
 interface CustomSwitchProps extends SwitchProps {
-  customSize?: ExtendedSwitchSize 
+  customSize?: CustomTrackSize
 }
 const Switch: React.FC<CustomSwitchProps> = ({ customSize = 20, ...props }) => {
   const { themeMode } = useTheme();

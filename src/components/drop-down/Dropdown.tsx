@@ -9,15 +9,19 @@ const Dropdown: React.FC<AntDropdownProps> = ({  ...dropdownProps }) => {
 
   return (
     <>
-    <style>
-    {`
-      .ant-dropdown-menu-item-icon {
-        color:${currentTheme.text.t3Subtitle}
-      }
-        .ant-dropdown-menu{
-        border:1px solid ${currentTheme.stroke.strong}}
-    `}
-  </style>
+<style>
+{`
+  .ant-dropdown-menu-item-icon {
+    color: ${currentTheme.text.t3Subtitle};
+    margin-right: 8px !important;
+  }
+  .ant-dropdown-menu {
+    border: 1px solid ${currentTheme.stroke.strong};
+  }
+`}
+</style>
+
+
     <ConfigProvider
       theme={{
         token: {
@@ -25,13 +29,14 @@ const Dropdown: React.FC<AntDropdownProps> = ({  ...dropdownProps }) => {
         },
         components: {
           Dropdown: {
+            colorIcon:currentTheme.text.t3Subtitle,
             colorBgElevated:currentTheme.background.bg2,
         colorText:currentTheme.text.t2Component,
         colorTextDescription:currentTheme.text.t3Subtitle,
         controlItemBgHover:currentTheme.fill.f2,
         colorTextDisabled:currentTheme.text.t2Subtitle,
-        marginXS:8,
         paddingXXS:4,
+        marginXS:0,
         paddingBlock:6,
         controlPaddingHorizontal:8,
              boxShadowSecondary: '0px 3px 4px 0px rgba(0, 0, 0, 0.12)',

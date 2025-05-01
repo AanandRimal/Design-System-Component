@@ -2,7 +2,7 @@ import React from "react";
 import { ConfigProvider, Button as AntButton, ButtonProps as AntButtonProps } from "antd";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes} from "../foundation/Theme";
-import { ButtonSizes,butttonSocialSizePadding,IconButtonPadding } from "./ButtonSizes";
+import { ButtonSizes,IconButtonPadding } from "./ButtonSizes";
 type Customtype = "primary"| "secondary" | "success" | "info" | "destructive" | "warning" | "social"|"ghost"; // made so that no other type can be passed
 type CustomSize = keyof typeof ButtonSizes;//same dfor szie as well no other than key of typeszies be passed 
 interface ButtonProps extends AntButtonProps { // adding extra porps with extending the exisintg button prop of ant 
@@ -10,7 +10,7 @@ Customtype?: Customtype;
 Customsize?:CustomSize;
 leftIcon?:React.ReactNode;
 rightIcon?:React.ReactNode;
-} 
+}
 const Button: React.FC<ButtonProps> = ({
   //removed explicit type and rathe rpassed the type while passing button itslef
   Customtype,
@@ -27,19 +27,9 @@ const Button: React.FC<ButtonProps> = ({
    ? ButtonSizes[Customsize as keyof typeof ButtonSizes]
     : ButtonSizes[36];
   const isSocialType = Customtype === "social"; // social button padding, is different so handled here 
-  const socialPadding =  butttonSocialSizePadding[Customsize as number] ||  butttonSocialSizePadding[36];
   const iconButtonPadding=IconButtonPadding[Customsize as number] || IconButtonPadding[36] // ivon Button padding
-  const finalPaddingY = isSocialType
-    ? socialPadding?.paddingY
-    : props.children
-    ? buttonSizeKey?.paddingY
-    : iconButtonPadding?.paddingY;
-  
-const finalPaddingX = isSocialType
-  ? socialPadding?.paddingX
-  : props.children
-    ? buttonSizeKey?.paddingX
-    : iconButtonPadding?.paddingX;
+  const finalPaddingY = props.children? buttonSizeKey?.paddingY : iconButtonPadding?.paddingY;
+  const finalPaddingX = props.children ? buttonSizeKey?.paddingX : iconButtonPadding?.paddingX;
 
   const lineheight = buttonSizeKey?.lineheight ?? 16;
   const buttonStyle: React.CSSProperties = {
@@ -92,7 +82,7 @@ const finalPaddingX = isSocialType
         },
         components: {
           Button: {
-            colorPrimary: colorTypeKey.default,
+            colorPrimary: Customtype ==="ghost" ? "none" : colorTypeKey.default,
             colorPrimaryHover: colorTypeKey.hover,
             colorPrimaryActive: colorTypeKey.default,
             colorBorder: "none",

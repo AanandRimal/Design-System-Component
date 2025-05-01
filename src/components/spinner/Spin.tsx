@@ -4,7 +4,7 @@ import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 
 interface CustomSpinProps extends SpinProps {
-  customSize?: number;
+  customSize?: 20|24|36|40;
 }
 
 const Spin: React.FC<CustomSpinProps> = ({ customSize, ...props }) => {

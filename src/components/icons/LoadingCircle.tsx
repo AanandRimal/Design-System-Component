@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 interface LoadingCircleProps {
-  size?: number;
+  customSize?: 20|24|36|40;
   strokeWidth?: number;
   progress?: number; // percentage (0–100)
   primaryColor?: string;
@@ -10,7 +10,7 @@ interface LoadingCircleProps {
   duration?: number; // spin duration in seconds
 }
 const LoadingCircle: React.FC<LoadingCircleProps> = ({
-  size = 15,
+  customSize = 20,
   strokeWidth = 3,
   progress = 30,
   duration = 1.5,
@@ -20,13 +20,13 @@ const LoadingCircle: React.FC<LoadingCircleProps> = ({
   const currentTheme = Themes[themeMode];
   const primaryColor = props.primaryColor || currentTheme.primary.default;
   const backgroundColor = props.backgroundColor || currentTheme.stroke.strong;
-  const radius = (size - strokeWidth) / 2;
+  const radius = (customSize - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
 
   const spinnerStyle: React.CSSProperties = {
-    width: size,
-    height: size,
+    width: customSize,
+    height: customSize,
     display: "inline-block",
     animation: `spin ${duration}s linear infinite`,
   };
@@ -44,11 +44,11 @@ const LoadingCircle: React.FC<LoadingCircleProps> = ({
       <style>{keyframes}</style>
 
       <div style={spinnerStyle}>
-        <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+        <svg width={customSize} height={customSize} style={{ transform: "rotate(-90deg)" }}>
           {/* Background Circle */}
           <circle
-            cx={size / 2}
-            cy={size / 2}
+            cx={customSize / 2}
+            cy={customSize / 2}
             r={radius}
             stroke={backgroundColor}
             strokeWidth={strokeWidth}
@@ -56,8 +56,8 @@ const LoadingCircle: React.FC<LoadingCircleProps> = ({
           />
           {/* Progress Arc */}
           <circle
-            cx={size / 2}
-            cy={size / 2}
+            cx={customSize / 2}
+            cy={customSize / 2}
             r={radius}
             stroke={primaryColor}
             strokeWidth={strokeWidth}

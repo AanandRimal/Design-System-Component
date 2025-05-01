@@ -18,16 +18,17 @@ type ExtendedTabItem = AntTabItem & {
 interface TabsProps extends AntTabsProps {
   Customtype?: CustomType;
   items?: ExtendedTabItem[];
-}
+} 
 
 // 🎨 Visual style mapping per tab type
 const tabTypeStyles = {
   underline: {
-    background: "none",
+    background: "transparent",
     border: "none",
     hoverBg: (theme: any) => theme.fill.f2,
     activeBg: "none",
     activeBorder: "none",
+
   },
   box: {
     background: (theme: any) => theme.background.bg0,
@@ -73,7 +74,9 @@ const TabLabel = styled.div<{
 }>`
   display: flex;
   gap: 6px;
-
+ height: ${({ type }) => (type === "box" ? "36px" : "44px")}; 
+ align-items:center;
+ justify-content:center;
   ${({ theme, isActive, type }) => {
     const visual = tabTypeStyles[type];
     const layout = tabTypeLayoutStyles[type];
@@ -88,20 +91,21 @@ const TabLabel = styled.div<{
       border-radius: ${layout.borderRadius};
       box-shadow: ${getShadow(layout.boxShadow)};
       background: ${isActive ? getVisual(visual.activeBg) : getVisual(visual.background)};
-      border: 1px solid ${isActive ? getVisual(visual.activeBorder) : getVisual(visual.border)};
-      
-      &:hover {
-        background: ${getVisual(visual.hoverBg)};
-      }
+      border: 1px solid ${isActive ? getVisual(visual.activeBorder) : getVisual(visual.border)}; 
+      ${!isActive ? `
+        &:hover {
+          background: ${getVisual(visual.hoverBg)};
+        }
+      ` : ""}
     `;
   }}
 `;
-
+//applied hover if not active if i set hover none it inherit the bg color so applied only hover whne not active tab alos added height as antd config height is not working 
 // 🚀 Main Tabs Component
 const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-
+  const isGhost =Customtype === "ghost" 
   const isBox = Customtype === "box";
 
   return (
@@ -113,11 +117,14 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
             itemSelectedColor: currentTheme.text.t1Title,
             inkBarColor: Customtype === "underline"? currentTheme.primary.default : "transparent",
             colorText: currentTheme.text.t2Component,
-            horizontalItemGutter: isBox ? 2 : 0,
-            horizontalItemPadding: "4px 4px",
+            horizontalItemGutter: isBox ? 2 : isGhost? 4: 0,
+            horizontalItemPadding: isBox? "4px 4px" : "0px 0px",
             itemHoverColor: currentTheme.text.t2Component,
             colorBorderSecondary:Customtype === "underline" ? currentTheme.stroke.strong: "transparent",
             itemActiveColor: "none",
+            lineHeight:0,
+
+            
           },
         },
       }}
@@ -128,6 +135,7 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
           background:
             Customtype === "box" ? currentTheme.background.bg0 : "none",
           borderRadius: Customtype === "box" ? "8px" : "none",
+      
         }}
         items={props.items?.map((tab) => {
           const { icon, label, customIcon, ...rest } = tab;

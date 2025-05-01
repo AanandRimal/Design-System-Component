@@ -133,7 +133,7 @@ aw: {
 };
 const bw="#FFFFFF";
 const background = {
-  bg0: colors.grey[50],
+  bg0: colors.grey[100],
   bg1: bw,
   bg2: bw,
   bg2Hover: colors.grey[50],
@@ -209,6 +209,7 @@ const darkInverse = {
   const Themes: Record<string, ThemeType> = {
     light: {
       ...{
+        bw,
         background, 
         text,
         fill,
@@ -247,6 +248,7 @@ const darkInverse = {
     },
     dark: {
       ...{
+        bw,
         background: darkBackground,
         text: darkText,
         fill: darkFill,

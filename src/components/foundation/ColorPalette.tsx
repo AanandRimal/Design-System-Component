@@ -1,131 +1,134 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTheme } from "../../context-hook/ThemeProvider";
-import { colors,Themes } from "./Theme";
-import Input from "../input/Input";
+import { colors, Themes } from "./Theme";
 
-const colorTypes = Object.keys(colors) as (keyof typeof colors)[];
-const ColorPalette: React.FC = () => {
+const ColorPalette = () => {
   const { themeMode } = useTheme();
-  const currentTheme=Themes[themeMode];
-  const [selectedType, setSelectedType] = useState<keyof typeof colors>("primary");
-  const [customHex, setCustomHex] = useState<string>("");
-  const [colorValues, setColorValues] = useState<typeof colors>(colors);
+  const currentTheme = Themes[themeMode];
+  const colorTypes = Object.keys(colors) as (keyof typeof colors)[];
 
-  const handleHexChange = () => {
-    if (!/^#([0-9A-F]{3}){1,2}$/i.test(customHex)) return;
-
-    setColorValues((prevColors) => ({
-      ...prevColors,
-      [selectedType]: {
-        ...prevColors[selectedType],
-        custom: customHex,
-      },
-    }));
-  };
-
-  const paletteStyles: Record<string, React.CSSProperties> = {
-    container: {
-      display: "flex",
-      height: "100vh",
-      backgroundColor:currentTheme.background.bg1,
-      color: themeMode === "dark" ? "#fff" : "#000",
-    },
-    sidebar: {
-      width: "250px",
-      padding: "16px",
-      background:currentTheme.background.bg1,
-      borderRight: `1px solid ${currentTheme.stroke.strong}`,
-    },
-    mainContent: {
-      flex: 1,
-      padding: "16px",
-      overflowY: "auto",
-    },
-    button: {
-      width: "100%",
-      padding: "8px",
-      backgroundColor: currentTheme.primary.default,
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-      cursor: "pointer",
-    },
-    colorCard: {
-      width: "120px",
-      padding: "10px",
-      textAlign: "center",
-      background: currentTheme.background.bg1,
-      borderRadius: "6px",
-      border: `1px solid ${currentTheme.stroke.strong}`,
-      boxShadow: themeMode === "dark" ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
-    },
-    colorSwatch: {
-      width: "100%",
-      height: "60px",
-      borderRadius: "4px",
-      marginBottom: "6px",
-    },
-    input: {
-      width: "100%",
-      padding: "8px",
-      marginBottom: "10px",
-    },
-    select: {
-      width: "100%",
-      padding: "8px",
-      border: `1px solid ${currentTheme.stroke.strong}`,
-      borderRadius: "4px",
-      background: currentTheme.background.bg1,
-      color:currentTheme.text.t2Component,
-      marginBottom: "10px",
-    },
-  };
-
-  return (
-    <div style={paletteStyles.container}>
-      <div style={paletteStyles.sidebar}>
-        <h2 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "12px" }}>Color Editor</h2>
-     
-
-        <Input.Select 
-  style={{ marginBottom: "10px", width: "100%" }}
-  value={selectedType}
-  onChange={(value) => setSelectedType(value)}
-  options={colorTypes.map((type) => ({
-    label: type,
-    value: type,
-  }))}
-/>
-
-        <Input.Text
-        
-          style={paletteStyles.input}
-          placeholder="#HEX Color"
-          value={customHex}
-          onChange={(e) => setCustomHex(e.target.value)}
-        />
-
-        <button style={paletteStyles.button} onClick={handleHexChange}>Apply</button>
+  // Color Shade Rows
+  const renderColorShades = (type: keyof typeof colors) => (
+    <div key={type} className="flex flex-col md:flex-row items-start mb-16">
+      {/* Label */}
+      <div className="w-full md:w-24 text-left md:text-right text-sm font-semibold capitalize pb-4 md:pt-6">
+        {type}
       </div>
 
-      <div style={paletteStyles.mainContent}>
-        <h2 style={{ fontSize: "20px", fontWeight: "bold", marginBottom: "12px" }}>Color Palette</h2>
-
-        {Object.entries(colorValues).map(([type, shades]) => (
-          <div key={type} style={{ marginBottom: "20px" }}>
-            <h3 style={{ fontSize: "16px", fontWeight: "bold", marginBottom: "8px" }}>{type}</h3>
-            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              {Object.entries(shades).map(([shade, hex]) => (
-                <div key={shade} style={paletteStyles.colorCard}>
-                  <div style={{ ...paletteStyles.colorSwatch, backgroundColor: hex }}></div>
-                  <span style={{ fontSize: "12px", fontWeight: "bold" }}>{type}-{shade}</span>
-                  <br />
-                  <span style={{ fontSize: "12px", color: "#555" }}>{hex}</span>
-                </div>
-              ))}
+      {/* Grid of swatches */}
+      <div className="w-full overflow-x-auto pb-4">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 min-w-full">
+          {Object.entries(colors[type]).map(([shade, hex]) => (
+            <div
+              key={shade}
+              className="rounded-md border p-2 text-center flex flex-col items-center gap-2 min-w-[120px]"
+              style={{ border: `1px solid ${currentTheme.stroke.strong}` }}
+            >
+              <div
+                className="h-10 sm:h-20 w-full rounded"
+                style={{ backgroundColor: hex }}
+              ></div>
+              <div className="text-xs font-medium w-full">{shade}</div>
+              <div className="text-[10px] w-full whitespace-normal break-all px-1">{hex}</div>
             </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  // Themed Palette Section
+  const renderThemedPalette = (
+    categoryName: string,
+    lightSet: Record<string, string>,
+    darkSet: Record<string, string>
+  ) => (
+    <div key={categoryName} className="space-y-2 mb-10" style={{ color: currentTheme.text.t2Component }}>
+      <h4 className="text-sm font-semibold mb-4 capitalize">{categoryName}</h4>
+
+      {/* Headers */}
+      <div className="grid grid-cols-3 gap-2 px-2 text-[10px] mb-2">
+        <div></div>
+        <div className="text-center">Light</div>
+        <div className="text-center">Dark</div>
+      </div>
+
+      {/* Color rows */}
+      <div className="space-y-4">
+                  {Object.entries(lightSet).map(([key, lightLabel]) => {
+          const darkLabel = darkSet?.[key] ?? "-";
+          return (
+            <div
+              key={key}
+              className="grid grid-cols-3 gap-2 items-center border rounded p-2 md:p-4"
+              style={{ border: `1px solid ${currentTheme.stroke.strong}` }}
+            >
+              {/* Color Name */}
+              <div className="text-xs font-medium pr-1">{key}</div>
+
+              {/* Light Swatch + Label */}
+              <div className="flex flex-col items-center gap-2">
+                <div
+                  className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded border"
+                  style={{ backgroundColor: lightLabel, border: `1px solid ${currentTheme.stroke.strong}` }}
+                ></div>
+                <div className="text-[10px] text-center w-full px-1 break-all">
+                  {lightLabel}
+                </div>
+              </div>
+
+              {/* Dark Swatch + Label */}
+              <div className="flex flex-col items-center gap-2">
+                <div
+                  className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 rounded border"
+                  style={{ backgroundColor: darkLabel, border: `1px solid ${currentTheme.stroke.strong}` }}
+                ></div>
+                <div className="text-[10px] text-center w-full px-1 break-all">
+                  {darkLabel}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="w-full p-2 sm:p-4 md:p-6">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+        {/* Color Shades Section */}
+        <div className="w-full lg:w-2/3">
+          <h2 className="text-lg sm:text-xl font-bold mb-6">Primitive Colors Set</h2>
+          <div>
+            {colorTypes.map(renderColorShades)}
           </div>
-        ))}
+        </div>
+
+        {/* Themed Palette Section */}
+        <div className="w-full lg:w-1/3">
+          <h2 className="text-lg sm:text-xl font-bold mb-6">Secondary Themed Colors</h2>
+          <div>
+            {Object.entries(currentTheme).map(([categoryName, lightSet]) => {
+              const darkTheme = Themes[themeMode === "light" ? "dark" : "light"];
+              const darkSet = darkTheme[categoryName as keyof typeof darkTheme];
+
+              if (
+                typeof lightSet === "object" &&
+                !Array.isArray(lightSet) &&
+                Object.values(lightSet).every((v) => typeof v === "string")
+              ) {
+                return renderThemedPalette(
+                  categoryName,
+                  lightSet as Record<string, string>,
+                  darkSet as Record<string, string>
+                );
+              }
+
+              return null;
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
