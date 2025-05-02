@@ -57,7 +57,7 @@ import ToasterDoc from "../component-docs/ToasterDoc";
 import TooltipDoc from "../component-docs/ToolTipDoc";
 import TypographyDoc from "../component-docs/TypographyDoc";
 import DropdownDoc from "../component-docs/Dropdown";
-import CustomRangePicker from "./DateSelector";
+import CustomDatePickerr from "./DateSelector";
 
 const { Title } = Type;
 const components = [
@@ -699,8 +699,8 @@ children: <ButtonGroupDoc />,
 {selectedComponent=== "DatePicker" && (
 
 <>  
-<CustomRangePicker/>
-
+<CustomDatePickerr mode="range"/>
+<CustomDatePickerr mode="single" />
 <CustomDatePicker
   type="range"
   rangePickerProps={{

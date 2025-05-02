@@ -11,7 +11,7 @@ interface Props extends CustomTextProps {
 
 const LabeledInputText: React.FC<Props> = ({ label, bottomLabel,  status, disabled, ...props }) => (
     <LabeledInput label={label} bottomLabel={bottomLabel} status={status} disabled={disabled}>
-      <Input.Text size="large" status={status} {...props} />
+      <Input.Text  status={status} {...props} />
     </LabeledInput>
 );
 

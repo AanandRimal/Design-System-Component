@@ -8,7 +8,7 @@ CustomType?:"primary"|"success"|"warning"|"destructive"|"info"|"neutral" //? che
 const Toaster:React.FC<ToasterProps> =({CustomType="info", ...alertprops }) =>{
 const {themeMode}=useTheme();
 const currentTheme=Themes[themeMode];
-const themeTypeKey=Themes[themeMode][CustomType] || Themes[themeMode].primary;
+const themeTypeKey=(currentTheme as any)[ CustomType]  || Themes[themeMode].primary;
 const StyledAlert = styled(Alert)`
 .ant-alert-icon {
 align-self: center;
@@ -32,11 +32,11 @@ return(
   components:{
   Alert:{
             colorInfo:  CustomType === "neutral" ? currentTheme.text.t2Component :themeTypeKey.textcolor,
-            colorInfoHover: themeTypeKey.hover,
-            colorInfoActive: themeTypeKey.default,
+            colorInfoHover: CustomType === "neutral" ? currentTheme.fill.f1:themeTypeKey.hover,
+            colorInfoActive:  CustomType === "neutral" ? currentTheme.text.t3Subtitle :themeTypeKey.default,
             colorInfoBg:  CustomType === "neutral" ? currentTheme.background.bg2 : themeTypeKey.default,
             colorInfoBorder: CustomType === "neutral" ? currentTheme.stroke.strong: "none",
-            colorText:themeTypeKey.textcolor,
+            colorText:CustomType === "neutral" ? currentTheme.text.t3Subtitle :themeTypeKey.textcolor,
             colorTextHeading:  CustomType === "neutral" ? currentTheme.text.t2Component :themeTypeKey.textcolor,
             withDescriptionIconSize:20,
           colorIcon: themeTypeKey.textcolor,

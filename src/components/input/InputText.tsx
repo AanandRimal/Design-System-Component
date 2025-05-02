@@ -9,6 +9,7 @@ interface CustomTextProps extends InputProps {
 }
 
 const Text: React.FC<CustomTextProps> = ({ customSize, ...props }) => (
+  
   <BaseInputTheme customSize={customSize} >
     <Input size="large"  {...props} />
   </BaseInputTheme>

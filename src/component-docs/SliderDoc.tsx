@@ -7,7 +7,7 @@ import Badge from "../components/badge/Badge";
 const description = (
   <p className="text-base leading-relaxed">
     The <Badge type="filled" status="primary">Slider</Badge> component is a customized version of Ant Design’s Slider.
-    It supports <Badge type="filled" status="info" dot>theming</Badge> and <Badge type="stroke" status="success" dot>custom styles</Badge> to match your design system,
+    It supports <Badge type="filled" status="info" dot>theming</Badge> and <Badge type="stroke" status="success" dot>custom styles</Badge> to match our design system,
     while maintaining all native functionality from Ant Design.
   </p>
 );
@@ -15,7 +15,7 @@ const description = (
 const customProps = (
   <ul className="list-disc list-inside text-base space-y-2">
     <li>
-      <strong><Badge type="filled" status="info">Theming support</Badge></strong> – The slider is visually customized to fit your system theme for colors, track style, and thumb appearance.
+      <strong><Badge type="filled" status="info">Theming support</Badge></strong> – The slider is visually customized to fit our system theme for colors, track style, and thumb appearance.
     </li>
     <li>
       <strong><Badge type="filled" status="neutral">Styled</Badge></strong> – It supports inline style for width or full custom styling through <code>style</code> prop or class names.

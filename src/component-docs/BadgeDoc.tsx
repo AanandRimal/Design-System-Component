@@ -8,8 +8,8 @@ import { Icon } from "@iconify/react";
 const description = (
     <p className="text-base leading-relaxed">
       The <Badge type="filled" status="neutral" dot>Badge</Badge> component is a fully custom-designed utility,
-      built independently from Ant Design. It allows visual indicators through various combinations
-      of <strong>status</strong>, <strong>type</strong>, <strong>size</strong>, and optionally with <strong>dot</strong>, <strong>icon</strong>, or <strong>avatar</strong>.
+      built independently from Ant Design. It has three different type and every type has different status and Our
+      , <strong>Badge</strong>, can be rendered with  <strong>dot</strong>, <strong>icon</strong>, or <strong>avatar</strong>....
     </p>
   );
 

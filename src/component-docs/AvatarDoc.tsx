@@ -7,9 +7,9 @@ import { Icon } from "@iconify/react";
 
 const description = (
   <p className="text-base leading-relaxed">
-    The <Badge type="filled" status="neutral" dot>Avatar</Badge> component supports three rendering methods:
+    The <Badge type="filled" status="neutral" dot>Avatar  </Badge>is basically an ant avatar but extended with additional props and it  supports three rendering methods:
     image (via <Badge type="filled" status="neutral" dot>src</Badge>), icon (via <Badge type="filled" status="neutral" dot>icon</Badge>), and text (via children).
-    It also supports presence indicators through <Badge type="filled" status="neutral" dot>dot</Badge> and <Badge type="filled" status="neutral" dot>customStatus</Badge>.
+    It also supports  online , offline presence indicators through <Badge type="filled" status="neutral" dot>dot</Badge> and <Badge type="filled" status="neutral" dot>customStatus</Badge>.
   </p>
 );
 
@@ -35,6 +35,7 @@ const customProps = (
       <strong><Badge type="filled" status="neutral" dot>customStatus</Badge></strong> – Can be{" "}
       <Badge type="filled" status="success">online</Badge> or{" "}
       <Badge type="filled" status="destructive">offline</Badge>.
+      By default it is <Badge type="filled" status="success">online</Badge>
     </li>
   </ul>
 );

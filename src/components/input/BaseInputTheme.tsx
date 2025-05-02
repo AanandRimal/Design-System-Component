@@ -38,7 +38,7 @@ const  BaseInputTheme: React.FC<BaseInputProps> = ({ children, customSize = 36 }
             paddingInlineLG: customSizeKey.paddingX,
             controlHeightLG: customSizeKey.height,
             borderRadiusLG: 8,
-            lineHeightLG:0,
+            lineHeightLG: 0,
           },
         },
       }}

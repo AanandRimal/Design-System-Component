@@ -13,8 +13,7 @@ const DrawerDoc: React.FC = () => {
       The <Badge type="filled" status="neutral" dot>Drawer</Badge> component is a customized version of Ant Design’s drawer.
       It extends core functionality with props like <Badge type="filled" status="info" dot>icon</Badge>,{" "}
       <Badge type="filled" status="info" dot>description</Badge>, and{" "}
-      <Badge type="filled" status="info" dot>footerType</Badge>. It also supports a fully custom{" "}
-      <Badge type="filled" status="info" dot>footer</Badge> and removes the default close icon so you can provide
+      <Badge type="filled" status="info" dot>footerType</Badge>. It  removes the default close icon so you can provide
       your own.
     </p>
   );
@@ -22,7 +21,7 @@ const DrawerDoc: React.FC = () => {
   const customProps = (
     <ul className="list-disc list-inside text-base space-y-2">
       <li>
-        <strong><Badge type="filled" status="neutral" dot>icon</Badge></strong> – A ReactNode shown to the left of the drawer title (e.g. a custom back button).
+        <strong><Badge type="filled" status="neutral" dot>icon</Badge></strong> – A ReactNode shown to the right  of the drawer title as AntD close icon defualt was in left side so to place right side we introduced icon prop (e.g. a custom back button).
       </li>
       <li>
         <strong><Badge type="filled" status="neutral" dot>description</Badge></strong> – A paragraph shown below the title for context or secondary info.
@@ -34,9 +33,6 @@ const DrawerDoc: React.FC = () => {
           <li><code>stretch</code>: buttons fill available width</li>
           <li><code>stacked</code>: buttons are stacked vertically</li>
         </ul>
-      </li>
-      <li>
-        <strong><Badge type="filled" status="neutral" dot>footer</Badge></strong> – Accepts an array of ReactNode elements for complete footer customization.
       </li>
       <li>
         <strong><Badge type="filled" status="neutral" dot>Custom close logic</Badge></strong> – The default close icon is disabled. Use your own trigger to close the drawer.

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Themes} from "../foundation/Theme";
 import { badgeSizes } from './BadgeSizes';
-import { useTheme } from "../../context-hook/ThemeProvider";
-import { getNeutralTheme } from './BadgeTheme'; 
+import { useTheme } from "../../context-hook/ThemeProvider"; 
 
 type CustomStatus = 'success' | 'warning' | 'destructive' | 'info' | 'primary'|'neutral' ; 
 interface BadgeProps {
@@ -16,26 +15,25 @@ interface BadgeProps {
 const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'primary', icon, dot = false, children }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
-  const themeTypeKey =
-  status==="neutral" ? getNeutralTheme(themeMode):  
-     currentTheme[status];
+  const themeTypeKey = (currentTheme as any)[status] || currentTheme.primary;
   const badgeSizeKey = badgeSizes[size] || badgeSizes[20];
   const bgColor =
-    type === 'solid' ? themeTypeKey?.default ?? 'transparent' :
-    type === 'filled' ? themeTypeKey?.focus ?? 'transparent' :
+    type === 'solid' ? status === 'neutral' ? currentTheme.text.t1Title:  themeTypeKey?.default ?? 'transparent' :
+    type === 'filled' ? status === 'neutral' ? currentTheme.fill.f2:   themeTypeKey?.focus ?? 'transparent' :
     'transparent';
   const borderColor = type === 'stroke' ? currentTheme.stroke.strong : 'transparent';
   const textColor =
     type === 'stroke' ? currentTheme?.text.t2Component :
     type === 'solid'
     ? (status === 'neutral' ? currentTheme.inverse.inversewhite : currentTheme.text.staticWhite)
-    : themeTypeKey?.dark ?? 'inherit';
+    : type ==='filled'    ? (status === 'neutral' ? currentTheme.text.t3Subtitle : themeTypeKey.dark):'inherit'
   
     const iconStyles = {
       color: type === 'solid'
-        ? currentTheme.text.staticWhite                    
+        ? status === "neutral"
+        ? currentTheme.text.inverse :currentTheme.text.staticWhite                    
         : status === "neutral"
-          ? themeTypeKey.textcolor                       
+          ? currentTheme.text.t3Disabled                     
           : themeTypeKey?.default ?? 'inherit'              
     };
     
@@ -43,8 +41,9 @@ const Badge: React.FC<BadgeProps> = ({ size = 32, type = 'stroke', status = 'pri
     width: 6,
     height: 6,
     borderRadius: '50%',
-    backgroundColor: type === 'solid' ?  currentTheme.text.staticWhite:   status === "neutral"
-    ? themeTypeKey.textcolor : themeTypeKey?.default ?? 'inherit',
+    backgroundColor: type === 'solid' ?  status === "neutral"
+    ? currentTheme.text.inverse: currentTheme.text.staticWhite :   status === "neutral"
+    ? currentTheme.text.t3Disabled : themeTypeKey?.default ?? 'inherit',
     display:"flex",
     alignItems:"center",
     paddingLeft: 2,

@@ -14,8 +14,8 @@ const description = (
     <Badge type="filled" status="primary">TextArea</Badge>,{" "}
     <Badge type="filled" status="primary">Search</Badge>,{" "}
     <Badge type="filled" status="primary">Card</Badge>, and{" "}
-    <Badge type="filled" status="primary">Select</Badge>.For Input with already built in Label we have LabeledInput component made so use {`<LabeledInput-Text,OTP,Password.../>`} Labeled inputs must be  provided top label and bottom
-    description props to show.
+    <Badge type="filled" status="primary">Select</Badge>.For Input with already built in Label we have LabeledInput component made so use {`<LabeledInput-Text,OTP,Password.../>`} Labeled inputs must be  provided top    <Badge type="filled" status="info">label</Badge> and{" "}
+    <Badge type="filled" status="info">bottomlabel</Badge> props description to show.
   </p>
 );
 
@@ -59,7 +59,7 @@ const customProps = (
     </li>
     <li>
       <strong>
-        <Badge type="filled" status="neutral" dot>Status</Badge>
+        <Badge type="filled" status="neutral" dot>status</Badge>
       </strong>{" "}
       – Accepts{" "}
       <Badge type="filled" status="warning">warning</Badge> or{" "}

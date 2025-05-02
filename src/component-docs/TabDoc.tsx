@@ -81,7 +81,7 @@ const TabsDoc: React.FC = () => {
         <Badge type="filled" status="info">ghost</Badge>.
       </li>
       <li>
-        <strong><Badge type="filled" status="neutral" dot>customIcon</Badge></strong> – Allows injecting a custom icon or indicator (e.g., <Badge>22</Badge>) into individual tab items.This customIcon prop is added inside items.
+        <strong><Badge type="filled" status="neutral" dot>customIcon</Badge></strong> – Allows injecting a custom icon or indicator (e.g., <Badge>22</Badge>) into individual tab items we have <Badge>icon</Badge>prop of defualt Tab but if we want to add another icon we use customIcon prop .This customIcon prop is added inside items.
       </li>
     </ul>
   );

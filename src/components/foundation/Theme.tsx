@@ -46,7 +46,6 @@ interface Inverse{
 
 interface ThemeType {
   primary: ThemeColor;
-  neutral: ThemeColor;
   secondary: ThemeColor;
   success: ThemeColor;
   destructive: ThemeColor;
@@ -219,9 +218,7 @@ const darkInverse = {
         default: colors.primary[700], hover: colors.primary[600], focus: colors.primary[100],
         accentBg: colors.primary[200], stroke: colors.primary[400], dark: colors.primary[900],textcolor:"#FFFFFF"
       },
-     neutral: { 
-       default:text.t3Subtitle,focus: fill.f2, hover: fill.f1, dark:text.t1Title,textcolor:text.t3Subtitle,
-    },
+  
       
      secondary: { 
         default:background.bg1 , hover: fill.f2, focus: "#F4F4F6",
@@ -258,9 +255,6 @@ const darkInverse = {
       primary: { 
         default: colors.primary[600], hover: colors.primary[500], focus: colors.primary[950],
         accentBg: colors.primary[950], stroke: colors.primary[600], dark: colors.primary[500],textcolor:"#FFFFFF"
-      },
-      neutral: {  
-        default: darkText.t3Subtitle, focus: darkFill.f2, hover: darkFill.f1, dark:darkText.t1Title,textcolor:darkText.t3Subtitle
       },
       secondary: { 
         default: darkBackground.bg1, hover: darkFill.f2, focus: "#17171C",
@@ -300,11 +294,11 @@ const darkInverse = {
   }
 
   const Sizes: Record<number, SizeType> = {   
-  32: { height: 32, width: "auto", fontSize: 14, iconSize: 20, paddingY: 6, paddingX: 10 ,lineheight:20, fontWeight:600, },
-  36: { height: 36, width: "auto", fontSize: 14, iconSize: 20, paddingY: 8, paddingX: 12, lineheight:20, fontWeight:600, },
-  40: { height: 40, width: "auto", fontSize: 14, iconSize: 20, paddingY: 10, paddingX: 12,lineheight:20, fontWeight:600, },
-  44: { height: 44, width: "auto", fontSize: 16, iconSize: 20, paddingY: 12, paddingX: 14,lineheight:24,fontWeight:600, },
-  48: { height: 48, width: "auto", fontSize: 16, iconSize: 24, paddingY: 14, paddingX: 14, lineheight:24,fontWeight:600, },  
+  32: { height: 32, width: "auto", fontSize: 14, iconSize: 20, paddingY: 6, paddingX: 10 ,lineheight:20, fontWeight:400, },
+  36: { height: 36, width: "auto", fontSize: 14, iconSize: 20, paddingY: 8, paddingX: 12, lineheight:20, fontWeight:400, },
+  40: { height: 40, width: "auto", fontSize: 14, iconSize: 20, paddingY: 10, paddingX: 12,lineheight:20, fontWeight:400, },
+  44: { height: 44, width: "auto", fontSize: 16, iconSize: 20, paddingY: 12, paddingX: 14,lineheight:20,fontWeight:400, },
+  48: { height: 48, width: "auto", fontSize: 16, iconSize: 24, paddingY: 12, paddingX: 14, lineheight:24,fontWeight:400, },  
   };
 
   
