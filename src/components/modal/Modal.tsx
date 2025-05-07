@@ -26,7 +26,7 @@ const Modal: React.FC<CustomModalProps> = ({
   // Border classes only for "divider" variant
   const titleStyle = variant === "divider" ? { borderBottom: `1px solid ${currentTheme.stroke.strong}`, padding: "16px 20px", } : {};
   const footerStyle = variant === "divider" ? { borderTop: `1px solid ${currentTheme.stroke.strong}`, padding: "16px 20px",} : {};
-  const contentClassName = variant === "divider" ? "px-5 py-5 space-y-4" : "space-y-4";
+  const contentClassName = variant === "divider" ? "px-5 py-5 flex flex-col gap-4" : "flex flex-col gap-4";
   const modalPadding = variant === "default" ? "20px" : "0px";
 
   return (

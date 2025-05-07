@@ -187,11 +187,207 @@
 // };
 
 // export default CustomRangePicker;
+// import { DatePicker, Select, ConfigProvider, DatePickerProps } from 'antd';
+// import type { RangePickerProps } from 'antd/es/date-picker';
+// import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+// import dayjs, { Dayjs } from 'dayjs';
+// import React, { useState } from 'react';
+
+// const { RangePicker } = DatePicker;
+
+// type Mode = 'single' | 'range';
+
+// interface CustomDatePickerProps {
+//   mode?: Mode;
+//   datePickerProps?: DatePickerProps;
+//   rangePickerProps?: RangePickerProps;
+// }
+
+// const getMonthOptions = () => {
+//   return Array.from({ length: 24 }).map((_, i) => {
+//     const date = dayjs().startOf('month').add(i - 12, 'month');
+//     return {
+//       label: date.format('MMMM YYYY'),
+//       value: date.format('MMMM YYYY'),
+//     };
+//   });
+// };
+
+// const CalendarHeader = ({
+//   panelMonth,
+//   setPanelMonth,
+//   side,
+//   syncPanelMonth,
+// }: {
+//   panelMonth: Dayjs;
+//   setPanelMonth: (date: Dayjs) => void;
+//   side: 'left' | 'right';
+//   syncPanelMonth: (newMonth: Dayjs, side: 'left' | 'right') => void;
+// }) => {
+//   const handleMonthSelect = (value: string) => {
+//     const newMonth = dayjs(value, 'MMMM YYYY');
+//     setPanelMonth(newMonth);
+//     syncPanelMonth(newMonth, side);
+//   };
+
+//   const handleMonthChange = (offset: number) => {
+//     const newMonth = panelMonth.add(offset, 'month');
+//     setPanelMonth(newMonth);
+//     syncPanelMonth(newMonth, side);
+//   };
+
+//   return (
+//     <div
+//       style={{
+//         display: 'flex',
+//         justifyContent: 'space-between',
+//         padding: '0.5rem 1rem',
+//         alignItems: 'center',
+//       }}
+//     >
+//       <Select
+//         value={panelMonth.format('MMMM YYYY')}
+//         onChange={handleMonthSelect}
+//         dropdownMatchSelectWidth={false}
+//         bordered={false}
+//         style={{ fontWeight: 500 }}
+//         options={getMonthOptions()}
+//       />
+//       <div style={{ display: 'flex', gap: 8 }}>
+//         <LeftOutlined
+//           onClick={() => handleMonthChange(-1)}
+//           style={{ cursor: 'pointer', color: '#888' }}
+//         />
+//         <RightOutlined
+//           onClick={() => handleMonthChange(1)}
+//           style={{ cursor: 'pointer', color: '#888' }}
+//         />
+//       </div>
+//     </div>
+//   );
+// };
+
+
+// const CustomDatePickerr: React.FC<CustomDatePickerProps> = ({ mode = 'single',datePickerProps,rangePickerProps }) => {
+//   const [open, setOpen] = useState(false);
+//   const [panelMonthLeft, setPanelMonthLeft] = useState(dayjs());
+//   const [panelMonthRight, setPanelMonthRight] = useState(dayjs().add(1, 'month'));
+//   const syncPanelMonth = (newMonth: Dayjs, side: 'left' | 'right') => {
+//     if (side === 'left') {
+//       const right = newMonth.add(1, 'month');
+//       setPanelMonthRight(right);
+//     } else {
+//       const left = newMonth.subtract(1, 'month');
+//       setPanelMonthLeft(left);
+//     }
+//   };
+  
+//   const renderPanel = (panelNode: React.ReactNode) => {
+//     return (
+//       <div style={{ position: 'relative', paddingTop: 44 }}>
+//         <style>
+//           {`
+//             .custom-range-wrapper {
+//               display: flex;
+//               background: #fff;
+//               border-radius: 8px;
+//               overflow: hidden;
+//             }
+  
+//             .custom-calendar-panel {
+//               flex: 1;
+//               position: relative;
+//               padding-top: 44px;
+//             }
+  
+//             .calendar-header {
+//               position: absolute;
+//               top: 0;
+//               left: 0;
+//               width: 100%;
+//               z-index: 2;
+//               background: #fff;
+//               padding: 0 8px;
+//             }
+  
+//             .ant-picker-header {
+//               display: none !important;
+//             }
+//           `}
+//         </style>
+  
+//         <div className="custom-range-wrapper">
+//           <div className="custom-calendar-panel">
+//             <div className="calendar-header">
+//               <CalendarHeader
+//                 panelMonth={panelMonthLeft}
+//                 setPanelMonth={setPanelMonthLeft}
+//                 side="left"
+//                 syncPanelMonth={syncPanelMonth}
+//               />
+//             </div>
+//             {panelNode /* will render both calendars, but appears side-by-side */}
+//           </div>
+  
+//           <div className="custom-calendar-panel">
+//             <div className="calendar-header"> 
+//               <CalendarHeader
+//                 panelMonth={panelMonthRight}
+//                 setPanelMonth={setPanelMonthRight}
+//                 side="right"
+//                 syncPanelMonth={syncPanelMonth}
+//               />
+//             </div>
+//             {/* You may clone panelNode again here if needed */}
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   };
+  
+
+//   const sharedProps = {
+//     open,
+//     onOpenChange: (status: boolean) => {
+//       setOpen(status);
+//       if (status) {
+//         setPanelMonthLeft(dayjs());
+//         setPanelMonthRight(dayjs().add(1, 'month'));
+//       }
+//     },
+//     panelRender: renderPanel,
+//     dropdownClassName: 'custom-calendar-dropdown',
+//     format: 'YYYY-MM-DD',
+//   };
+
+//   return mode === 'single' ? (
+//     <DatePicker
+//       {...sharedProps}
+//       {...datePickerProps}
+//       value={panelMonthLeft}
+//       onChange={(date) => date && setPanelMonthLeft(date)}
+//       pickerValue={panelMonthLeft}
+    
+//     />
+//   ) : (
+//     <RangePicker
+//       {...sharedProps}
+//       {...rangePickerProps}
+//       pickerValue={[panelMonthLeft, panelMonthRight]}
+//       onCalendarChange={(dates) => {
+//         if (dates?.[0]) setPanelMonthLeft(dates[0]);
+//         if (dates?.[1]) setPanelMonthRight(dates[1]);
+//       }}
+//     />
+//   );
+// };
+
+// export default CustomDatePickerr;
+import React, { useState } from 'react';
 import { DatePicker, Select, ConfigProvider, DatePickerProps } from 'antd';
 import type { RangePickerProps } from 'antd/es/date-picker';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import dayjs, { Dayjs } from 'dayjs';
-import React, { useState } from 'react';
 
 const { RangePicker } = DatePicker;
 
@@ -237,14 +433,7 @@ const CalendarHeader = ({
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        padding: '0.5rem 1rem',
-        alignItems: 'center',
-      }}
-    >
+    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', alignItems: 'center' }}>
       <Select
         value={panelMonth.format('MMMM YYYY')}
         onChange={handleMonthSelect}
@@ -254,119 +443,83 @@ const CalendarHeader = ({
         options={getMonthOptions()}
       />
       <div style={{ display: 'flex', gap: 8 }}>
-        <LeftOutlined
-          onClick={() => handleMonthChange(-1)}
-          style={{ cursor: 'pointer', color: '#888' }}
-        />
-        <RightOutlined
-          onClick={() => handleMonthChange(1)}
-          style={{ cursor: 'pointer', color: '#888' }}
-        />
+        <LeftOutlined onClick={() => handleMonthChange(-1)} style={{ cursor: 'pointer', color: '#888' }} />
+        <RightOutlined onClick={() => handleMonthChange(1)} style={{ cursor: 'pointer', color: '#888' }} />
       </div>
     </div>
   );
 };
 
-
-const CustomDatePickerr: React.FC<CustomDatePickerProps> = ({ mode = 'single',datePickerProps,rangePickerProps }) => {
+const CustomDatePickerr: React.FC<CustomDatePickerProps> = ({
+  mode = 'single',
+  datePickerProps = {},
+  rangePickerProps = {},
+}) => {
   const [open, setOpen] = useState(false);
   const [panelMonthLeft, setPanelMonthLeft] = useState(dayjs());
   const [panelMonthRight, setPanelMonthRight] = useState(dayjs().add(1, 'month'));
+
   const syncPanelMonth = (newMonth: Dayjs, side: 'left' | 'right') => {
-    if (side === 'left') {
-      const right = newMonth.add(1, 'month');
-      setPanelMonthRight(right);
-    } else {
-      const left = newMonth.subtract(1, 'month');
-      setPanelMonthLeft(left);
-    }
+    if (side === 'left') setPanelMonthRight(newMonth.add(1, 'month'));
+    else setPanelMonthLeft(newMonth.subtract(1, 'month'));
   };
-  
+
   const renderPanel = (panelNode: React.ReactNode) => {
     const children = React.Children.toArray(panelNode as React.ReactNode);
-
-    const sharedPanelStyles = {
-    
+    const sharedPanelStyles = { 
+      width: "300px",
+      minHeight: 350,
       display: 'flex',
       flexDirection: 'column' as const,
-    };
+    };    
+
+    const headerStyle = `
+      .custom-calendar-dropdown .ant-picker-panel-container .ant-picker-header {
+        display: none !important;
+      }
+    `;
 
     if (mode === 'single') {
       return (
         <div style={{ padding: 8 }}>
-          <style>
-            {`
-              .custom-calendar-dropdown .ant-picker-panel-container .ant-picker-header {
-                display: none !important;
-              }
-            `}
-          </style>
+          <style>{headerStyle}</style>
           <CalendarHeader
-  panelMonth={panelMonthLeft}
-  setPanelMonth={setPanelMonthLeft}
-  side="left"
-  syncPanelMonth={syncPanelMonth}
-/>
+            panelMonth={panelMonthLeft}
+            setPanelMonth={setPanelMonthLeft}
+            side="left"
+            syncPanelMonth={syncPanelMonth}
+          />
           <div>{panelNode}</div>
         </div>
       );
     }
 
-    // Range mode
     return (
-      <div
-        style={{
-          display: 'flex',
-          padding: 8,
-          gap: 0,
-          border: '1px solid #ddd',
-          borderRadius: 8,
-          backgroundColor: '#fff',
-        }}
-      >
-        <style>
-          {`
-            .custom-calendar-dropdown .ant-picker-panel-container .ant-picker-header {
-              display: none !important;
-            }
-          `}
-        </style>
-
-        <div
-          style={{
-            ...sharedPanelStyles,
-            borderRight: '1px solid #eee',
-            paddingRight: 8,
-          }}
-        >
-         <CalendarHeader
-  panelMonth={panelMonthLeft}
-  setPanelMonth={setPanelMonthLeft}
-  side="left"
-  syncPanelMonth={syncPanelMonth}
-/>
+      <div style={{ display: 'flex', padding: 8, gap: 0, border: '1px solid #ddd', borderRadius: 8, backgroundColor: '#fff' }}>
+        <style>{headerStyle}</style>
+        <div style={{ ...sharedPanelStyles, borderRight: '1px solid #eee', paddingRight: 8 }}>
+          <CalendarHeader
+            panelMonth={panelMonthLeft}
+            setPanelMonth={setPanelMonthLeft}
+            side="left"
+            syncPanelMonth={syncPanelMonth}
+          />
           <div>{children[0]}</div>
         </div>
-
-        <div
-          style={{
-            ...sharedPanelStyles,
-            paddingRight: 8,
-          }}
-        >
-       <CalendarHeader
-  panelMonth={panelMonthRight}
-  setPanelMonth={setPanelMonthRight}
-  side="right"
-  syncPanelMonth={syncPanelMonth}
-/>
+        <div style={{ ...sharedPanelStyles, paddingLeft: 8 }}>
+          <CalendarHeader
+            panelMonth={panelMonthRight}
+            setPanelMonth={setPanelMonthRight}
+            side="right"
+            syncPanelMonth={syncPanelMonth}
+          />
           <div>{children[1]}</div>
         </div>
       </div>
     );
   };
 
-  const sharedProps = {
+  const commonPickerProps = {
     open,
     onOpenChange: (status: boolean) => {
       setOpen(status);
@@ -382,24 +535,176 @@ const CustomDatePickerr: React.FC<CustomDatePickerProps> = ({ mode = 'single',da
 
   return mode === 'single' ? (
     <DatePicker
-      {...sharedProps}
+      {...commonPickerProps}
       {...datePickerProps}
       value={panelMonthLeft}
-      onChange={(date) => date && setPanelMonthLeft(date)}
+      onChange={(date) => {
+        date && setPanelMonthLeft(date);
+        datePickerProps?.onChange?.(date, date?.format('YYYY-MM-DD') ?? '');
+      }}
       pickerValue={panelMonthLeft}
-    
     />
   ) : (
     <RangePicker
-      {...sharedProps}
+      {...commonPickerProps}
       {...rangePickerProps}
       pickerValue={[panelMonthLeft, panelMonthRight]}
       onCalendarChange={(dates) => {
         if (dates?.[0]) setPanelMonthLeft(dates[0]);
         if (dates?.[1]) setPanelMonthRight(dates[1]);
+        
       }}
     />
   );
 };
 
 export default CustomDatePickerr;
+// import React, { useState } from 'react';
+// import { DatePicker, Select } from 'antd';
+// import { DatePickerProps } from 'antd';
+// import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+// import dayjs, { Dayjs } from 'dayjs';
+// import weekday from 'dayjs/plugin/weekday';
+// import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+
+
+// dayjs.extend(weekday);
+// dayjs.extend(isSameOrBefore);
+
+// type Mode = 'single';
+
+// interface CustomDatePickerProps {
+//   mode?: Mode;
+//   datePickerProps?: DatePickerProps;
+// }
+
+// const getMonthOptions = () => {
+//   return Array.from({ length: 24 }).map((_, i) => {
+//     const date = dayjs().startOf('month').add(i - 12, 'month');
+//     return {
+//       label: date.format('MMMM YYYY'),
+//       value: date.format('MMMM YYYY'),
+//     };
+//   });
+// };
+
+// const CalendarHeader = ({
+//   panelMonth,
+//   setPanelMonth,
+// }: {
+//   panelMonth: Dayjs;
+//   setPanelMonth: (date: Dayjs) => void;
+// }) => {
+//   const handleMonthSelect = (value: string) => {
+//     const newMonth = dayjs(value, 'MMMM YYYY');
+//     setPanelMonth(newMonth);
+//   };
+
+//   const handleMonthChange = (offset: number) => {
+//     setPanelMonth(panelMonth.add(offset, 'month'));
+//   };
+
+//   return (
+//     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 12px', alignItems: 'center' }}>
+//       <Select
+//         value={panelMonth.format('MMMM YYYY')}
+//         onChange={handleMonthSelect}
+//         dropdownMatchSelectWidth={false}
+//         bordered={false}
+//         options={getMonthOptions()}
+//         style={{ width: 150 }}
+//       />
+//       <div style={{ display: 'flex', gap: 8 }}>
+//         <LeftOutlined onClick={() => handleMonthChange(-1)} style={{ cursor: 'pointer', color: '#888' }} />
+//         <RightOutlined onClick={() => handleMonthChange(1)} style={{ cursor: 'pointer', color: '#888' }} />
+//       </div>
+//     </div>
+//   );
+// };
+
+// const generateCalendarGrid = (month: Dayjs): Dayjs[] => {
+//   const startOfMonth = month.startOf('month');
+//   const endOfMonth = month.endOf('month');
+//   const startDate = startOfMonth.startOf('week'); // Sunday
+//   const endDate = endOfMonth.endOf('week'); // Saturday
+//   const grid: Dayjs[] = [];
+
+//   let current = startDate;
+//   while (current.isSameOrBefore(endDate)) {
+//     grid.push(current);
+//     current = current.add(1, 'day');
+//   }
+
+//   return grid;
+// };
+
+// const CustomDatePickerr: React.FC<CustomDatePickerProps> = ({
+//   mode = 'single',
+//   datePickerProps = {},
+// }) => {
+//   const [open, setOpen] = useState(false);
+//   const [panelMonth, setPanelMonth] = useState(dayjs());
+//   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+
+//   const handleDateSelect = (date: Dayjs) => {
+//     setSelectedDate(date);
+//     datePickerProps?.onChange?.(date, date.format('YYYY-MM-DD'));
+//     setOpen(false);
+//   };
+
+//   const renderCustomPanel = () => {
+//     const grid = generateCalendarGrid(panelMonth);
+
+//     return (
+//       <div style={{ padding: 12, background: '#fff', borderRadius: 8, width: 280 }}>
+//         <CalendarHeader panelMonth={panelMonth} setPanelMonth={setPanelMonth} />
+//         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', textAlign: 'center', marginBottom: 8 }}>
+//           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+//             <div key={day} style={{ fontWeight: 600 }}>{day}</div>
+//           ))}
+//         </div>
+//         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4 }}>
+//           {grid.map((date) => {
+//             const isCurrentMonth = date.month() === panelMonth.month();
+//             const isSelected = selectedDate?.isSame(date, 'day');
+
+//             return (
+//               <div
+//                 key={date.toString()}
+//                 onClick={() => handleDateSelect(date)}
+//                 style={{
+//                   padding: '6px 0',
+//                   borderRadius: 4,
+//                   background: isSelected ? '#1677ff' : 'transparent',
+//                   color: isSelected ? '#fff' : isCurrentMonth ? '#000' : '#ccc',
+//                   cursor: 'pointer',
+//                   textAlign: 'center',
+//                 }}
+//               >
+//                 {date.date()}
+//               </div>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     );
+//   };
+
+//   return (
+//     <DatePicker
+//       {...datePickerProps}
+//       open={open}
+//       value={selectedDate}
+//       onChange={(date) => {
+//         setSelectedDate(date);
+//         datePickerProps?.onChange?.(date, date?.format('YYYY-MM-DD') ?? '');
+//       }}
+//       onOpenChange={setOpen}
+//       panelRender={renderCustomPanel}
+//       format="YYYY-MM-DD"
+//       dropdownClassName="custom-calendar-dropdown"
+//     />
+//   );
+// };
+
+// export default CustomDatePickerr;

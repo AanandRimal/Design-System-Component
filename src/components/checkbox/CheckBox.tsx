@@ -23,7 +23,7 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 20,  ...props }) => {
           Checkbox: {
             colorPrimary: currentTheme.primary.default,
             colorPrimaryHover: currentTheme.primary.default,
-            colorPrimaryBorder:currentTheme.background.bg5TableActive,//THIS IS FOCUS COLOR 
+            colorPrimaryBorder:currentTheme.fill.f3,//THIS IS FOCUS COLOR 
             colorBgContainer:currentTheme.background.bg1,
             colorBorder:currentTheme.stroke.strong,
             colorBgContainerDisabled: currentTheme.background.bg3,
@@ -32,7 +32,6 @@ const CheckBox: React.FC<CustomCheckBoxProps> = ({ size = 20,  ...props }) => {
             colorWhite:currentTheme.text.staticWhite,
             borderRadiusSM: checksize.borderadius,
             lineWidthBold:checksize.linewidthbold,
-
             controlInteractiveSize: size, 
           },
         },

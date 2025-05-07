@@ -35,7 +35,7 @@ const LabeledInput: React.FC<LabeledInputProps> = ({
 
       {bottomLabel && (
         <span
-          className="text-xs mt-1.5"
+          className="text-small-regular font-regular mt-1.5"
           style={{
             color: isError
               ? currentTheme.destructive.default

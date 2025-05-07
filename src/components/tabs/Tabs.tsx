@@ -118,7 +118,7 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
             inkBarColor: Customtype === "underline"? currentTheme.primary.default : "transparent",
             colorText: currentTheme.text.t2Component,
             horizontalItemGutter: isBox ? 2 : isGhost? 4: 0,
-            horizontalItemPadding: isBox? "4px 4px" : "0px 0px",
+            horizontalItemPadding: "0px 0px",
             itemHoverColor: currentTheme.text.t2Component,
             colorBorderSecondary:Customtype === "underline" ? currentTheme.stroke.strong: "transparent",
             itemActiveColor: "none",
@@ -132,10 +132,10 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
       <AntTabs
         {...props}
         tabBarStyle={{
-          background:
+            background:
             Customtype === "box" ? currentTheme.background.bg0 : "none",
-          borderRadius: Customtype === "box" ? "8px" : "none",
-      
+            borderRadius: Customtype === "box" ? "8px" : "none",
+            padding:Customtype === "box" ?  "4px" :"0px",
         }}
         items={props.items?.map((tab) => {
           const { icon, label, customIcon, ...rest } = tab;

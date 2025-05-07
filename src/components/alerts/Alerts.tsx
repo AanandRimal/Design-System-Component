@@ -61,7 +61,7 @@ const alert = (
             colorText: themeType === "neutral" ? currentTheme.text.t3Subtitle: themeTypeKey.dark,
             colorTextHeading:themeType === "neutral" ? currentTheme.text.t1Title: themeTypeKey.dark,
             withDescriptionIconSize:20,
-          colorIcon:themeTypeKey.stroke,
+          colorIcon:themeType === "neutral" ? currentTheme.text.t3Subtitle:themeTypeKey.stroke,
           fontSizeIcon:16,
           withDescriptionPadding:"12px 14px",
           marginSM:8,

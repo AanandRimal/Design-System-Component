@@ -27,6 +27,14 @@ const DatePicker: React.FC<CustomDatePickerProps> = ({
             colorPrimary:currentTheme.primary.default,
             cellHoverBg:currentTheme.background.bg3,
             cellActiveWithRangeBg:currentTheme.primary.focus,
+            colorBgElevated:currentTheme.background.bg2,
+            colorBgContainer:currentTheme.background.bg2,
+            colorSplit:currentTheme.stroke.decorative,
+            colorText:currentTheme.text.t2Component,
+            colorIcon:currentTheme.text.t3Subtitle,
+            colorTextHeading:currentTheme.text.t2Component,
+            colorTextDisabled:currentTheme.text.t3Disabled,
+            colorTextPlaceholder:currentTheme.text.t2Component
             // more tokens...
           },
         },

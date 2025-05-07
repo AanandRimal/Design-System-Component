@@ -119,7 +119,7 @@ const ExampleComponent = () => {
       <Dropdown
         menu={{ items }}
         placement="bottomLeft"
-      
+    
       >
         <Button Customtype="secondary">Open Dropdown</Button>
       </Dropdown>
@@ -134,7 +134,7 @@ const ExampleComponent = () => {
       <Dropdown
         menu={{ items:multipleSectionChildren }}
         placement="bottomLeft"
-        
+        open
       >
         <Button Customtype="secondary" icon={<LeftIcon />} > Open Dropdown with multiple section </Button>
       </Dropdown>

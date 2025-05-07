@@ -16,12 +16,12 @@ interface CustomRadioProps extends RadioProps {
         components: {
           Radio: {
             colorPrimary: primaryColor, // Active radio color
-            dotColorDisabled: "red",
+            
             colorPrimaryHover: primaryColor,
             colorPrimaryBorder: currentTheme.background.bg5TableActive,
             colorBgContainer: currentTheme.background.bg1,
             colorBorder: currentTheme.stroke.strong, // diabeld ko border linxa 
-            colorBgContainerDisabled: currentTheme.background.bg5TableActive,
+            colorBgContainerDisabled: currentTheme.background.bg3,
             colorTextDisabled: currentTheme.text.t3Disabled,
             colorText: currentTheme.text.t2Component,
             colorWhite: currentTheme.background.bg1, //this is dot color

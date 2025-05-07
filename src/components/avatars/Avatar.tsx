@@ -43,7 +43,7 @@ const Avatar: React.FC<CustomAvatarProps> = ({customStatus, customSize, icon, ..
       theme={{
         components: {
           Avatar: {
-            colorTextPlaceholder: icon ? currentTheme.background.bg5 : currentTheme.primary.default,
+            colorTextPlaceholder: icon ? currentTheme.fill.f4 : currentTheme.primary.default,
             colorText: currentTheme.text.t1Title,
             colorTextLightSolid: icon ? currentTheme.background.bg2Hover : currentTheme.text.staticWhite,
             containerSize: avatarSizeobj.base,
@@ -57,7 +57,7 @@ const Avatar: React.FC<CustomAvatarProps> = ({customStatus, customSize, icon, ..
    {/* <Wrapper  size={avatarSizeobj.base}> */}
      <Badge dot={props.dot} customSize={avatarSizeobj.status} offset={[0, avatarSizeobj.dotplacement]} customStatus={customStatus} >
       <AntAvatar
-      
+        style={{ fontWeight: 600 }}
   icon={
     React.isValidElement(icon) ? (
       <StyledIconWrapper iconSize={userIconSize} translateY={translateY}>

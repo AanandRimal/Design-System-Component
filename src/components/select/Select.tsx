@@ -4,6 +4,7 @@ import {
   Select as AntSelect,
   SelectProps as AntSelectProps,
 } from "antd";
+import { ChevronDown } from "lucide-react";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Sizes, Themes } from "../foundation/Theme";
 
@@ -70,6 +71,8 @@ const Select: React.FC<SelectProps> = ({
         size="large"
         status={isError ? "error" : undefined}
         options={options}
+                    suffixIcon={<ChevronDown size={16} />}
+    
         placeholder={props.selectPlaceholder}
         optionRender={(option) => (
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -103,6 +106,7 @@ const Select: React.FC<SelectProps> = ({
           }
           return null;
         }}
+        
         {...props}
       />
     </ConfigProvider>

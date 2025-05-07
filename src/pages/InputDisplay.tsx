@@ -110,7 +110,6 @@ const InputDisplay: React.FC = () => {
             {...props}
             options={countryOptions}
             selectPlaceholder={flag_withlabel}
-            suffixIcon={<ChevronDown size={16} />}
           />
         );
       }

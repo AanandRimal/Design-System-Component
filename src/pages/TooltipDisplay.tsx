@@ -27,11 +27,11 @@ const TooltipDisplay = () => {
         
         {/* Section 1 */}
         <Section title="Title Only">
-          <Tooltip customTitle="Hello" arrow={false} >
+          <Tooltip customTitle="Hello" arrow={false} open >
             <Button Customtype="primary">No Arrow</Button>
           </Tooltip>
           {positions.map((placement) => (
-            <Tooltip key={placement} customTitle={`Hello (${placement})`} placement={placement as any}>
+            <Tooltip key={placement} customTitle={`Hello (${placement})`} placement={placement as any}  >
               <Button Customtype="primary">{placement}</Button>
             </Tooltip>
           ))}
@@ -39,7 +39,7 @@ const TooltipDisplay = () => {
 
         {/* Section 2 */}
         <Section title="Title + Description">
-          <Tooltip customTitle="Hello" customDescription="This is a description" arrow={false} >
+          <Tooltip customTitle="Hello" customDescription="This is a description" arrow={false} open >
             <Button Customtype="primary">No Arrow</Button>
           </Tooltip>
           {positions.map((placement) => (

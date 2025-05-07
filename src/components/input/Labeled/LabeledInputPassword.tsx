@@ -49,7 +49,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ label = "Password", value
         </span>
       )}
       {/* Password Validation Rules */}
-      <div className="text-x-small-regular font-regular" style={{  color: currentTheme.text.t2Component, marginTop: "8px" }}>
+      <div className="text-x-small-regular font-regular flex flex-col gap-1.5" style={{  color: currentTheme.text.t2Component, marginTop: "8px" }}>
         {passwordRules.map((rule, index) => (
           <div key={index} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <CircleCheck  size={12.67} color={rule.check ? "green" : currentTheme.text.t3Disabled}/>

@@ -21,7 +21,7 @@ const Switch: React.FC<CustomSwitchProps> = ({ customSize = 20, ...props }) => {
         },
         components: {
           Switch: {
-            colorPrimary: props.disabled && props.checked ? currentTheme.success.accentBg : currentTheme.success.default,
+            colorPrimary:  currentTheme.success.default,
             colorPrimaryHover: currentTheme.success.default,
             colorTextQuaternary: currentTheme.fill.f4,
             colorTextDisabled: disabledText,

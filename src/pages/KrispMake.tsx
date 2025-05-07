@@ -58,6 +58,9 @@ import TooltipDoc from "../component-docs/ToolTipDoc";
 import TypographyDoc from "../component-docs/TypographyDoc";
 import DropdownDoc from "../component-docs/Dropdown";
 import CustomDatePickerr from "./DateSelector";
+import {Toaster as SonnerToaster} from "sonner";
+import { DatePicker } from "antd";
+import PaginatedDemo from "./PaginationDemo";
 
 const { Title } = Type;
 const components = [
@@ -454,7 +457,7 @@ children: <TabsDoc />,
 {
 key: 'display',
 label: 'Display',
-children: <Pagination defaultCurrent={5} total={300}   showRowsPerPage  showTotalItems/>,
+children: <PaginatedDemo/>,
 },
 {
 key: 'docs',
@@ -510,7 +513,13 @@ children: <DrawerDoc />,
 {selectedComponent=== "Toaster" && (
   <>
      <div className="p-4">
-
+     <SonnerToaster
+      position="top-right"
+      richColors
+      closeButton
+      expand={true}
+      duration={4000}
+    />
 <Tabs defaultActiveKey="display" items={ [
 {
 key: 'display',
@@ -530,7 +539,7 @@ children: <ToasterDoc />,
   <>
  <div className="p-4">
 
-<Tabs defaultActiveKey="display" items={ [
+<Tabs defaultActiveKey="display" destroyInactiveTabPane  items={ [
 {
 key: 'display',
 label: 'Display',
@@ -568,7 +577,7 @@ children: <BannerDoc />,
   <>
      <div className="p-4">
 
-<Tabs defaultActiveKey="display" items={ [
+<Tabs defaultActiveKey="display"    destroyInactiveTabPane items={ [
 {
 key: 'display',
 label: 'Display',
@@ -699,11 +708,9 @@ children: <ButtonGroupDoc />,
 {selectedComponent=== "DatePicker" && (
 
 <>  
-<CustomDatePickerr mode="range"/>
-<CustomDatePickerr mode="single" />
-<CustomDatePicker
-  type="range"
+<CustomDatePicker type="range"
   rangePickerProps={{
+    defaultOpen:true,
     placeholder: ["Start date", "End date"],
     presets: [
       { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
@@ -711,7 +718,41 @@ children: <ButtonGroupDoc />,
       { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
       { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
     ],
-    superNextIcon:<LeftIcon/>
+    superNextIcon:<LeftIcon/>,
+    nextIcon:<LeftIcon/>,
+    prevIcon:<LeftIcon/>
+
+  }}
+
+/>
+<CustomDatePickerr mode="range"   rangePickerProps={{
+    defaultOpen:true}}/>
+<CustomDatePickerr
+  mode="single"
+  datePickerProps={{
+    defaultOpen: true,
+    presets: [
+      { label: 'Today', value: dayjs() },
+      { label: 'Yesterday', value: dayjs().subtract(1, 'day') },
+      { label: '7 Days Ago', value: dayjs().subtract(7, 'day') },
+    ],
+  }}
+/>
+
+<CustomDatePickerr
+  mode="range"
+  rangePickerProps={{
+    defaultOpen:true,
+    placeholder: ["Start date", "End date"],
+    presets: [
+      { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
+      { label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
+      { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
+      { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
+    ],
+    superNextIcon:<LeftIcon/>,
+    nextIcon:<LeftIcon/>,
+    prevIcon:<LeftIcon/>
 
   }}
 

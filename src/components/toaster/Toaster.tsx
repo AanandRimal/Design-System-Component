@@ -39,7 +39,8 @@ return(
             colorText:CustomType === "neutral" ? currentTheme.text.t3Subtitle :themeTypeKey.textcolor,
             colorTextHeading:  CustomType === "neutral" ? currentTheme.text.t2Component :themeTypeKey.textcolor,
             withDescriptionIconSize:20,
-          colorIcon: themeTypeKey.textcolor,
+          colorIcon:CustomType === "neutral" ? currentTheme.text.t3Disabled: themeTypeKey.textcolor,
+          colorIconHover:CustomType === "neutral" ? currentTheme.text.t3Disabled: themeTypeKey.textcolor,
           fontSizeIcon:16,
           withDescriptionPadding:"10px 12px",
           marginSM:8,
@@ -59,3 +60,4 @@ return(
 );
 };
 export  default Toaster;
+export    type {ToasterProps};

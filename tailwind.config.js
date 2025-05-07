@@ -118,29 +118,29 @@ module.exports = {
       sm: "8px",
     },
     fontSize: {
-      "h1-medium": ["32px", { lineHeight: "130%", fontWeight: "500" }],
-      "h1-semibold": ["32px", { lineHeight: "130%", fontWeight: "600" }],
-      "h1-bold": ["32px", { lineHeight: "130%", fontWeight: "700" }],
+      "h1-medium": ["32px", { lineHeight: "40p", fontWeight: "500" }],
+      "h1-semibold": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+      "h1-bold": ["32px", { lineHeight: "40px", fontWeight: "700" }],
 
-      "h2-medium": ["28px", { lineHeight: "130%", fontWeight: "500" }],
-      "h2-semibold": ["28px", { lineHeight: "130%", fontWeight: "600" }],
-      "h2-bold": ["28px", { lineHeight: "130%", fontWeight: "700" }],
+      "h2-medium": ["28px", { lineHeight: "38px", fontWeight: "500" }],
+      "h2-semibold": ["28px", { lineHeight: "38px", fontWeight: "600" }],
+      "h2-bold": ["28px", { lineHeight: "38px", fontWeight: "700" }],
 
-      "h3-medium": ["24px", { lineHeight: "130%", fontWeight: "500" }],
-      "h3-semibold": ["24px", { lineHeight: "130%", fontWeight: "600" }],
-      "h3-bold": ["24px", { lineHeight: "130%", fontWeight: "700" }],
+      "h3-medium": ["24px", { lineHeight: "32px", fontWeight: "500" }],
+      "h3-semibold": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+      "h3-bold": ["24px", { lineHeight: "32px", fontWeight: "700" }],
 
-      "h4-medium": ["20px", { lineHeight: "130%", fontWeight: "500" }],
-      "h4-semibold": ["20px", { lineHeight: "130%", fontWeight: "600" }],
-      "h4-bold": ["20px", { lineHeight: "130%", fontWeight: "700" }],
+      "h4-medium": ["20px", { lineHeight: "28px", fontWeight: "500" }],
+      "h4-semibold": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+      "h4-bold": ["20px", { lineHeight: "28px", fontWeight: "700" }],
 
-      "h5-medium": ["18px", { lineHeight: "130%", fontWeight: "500" }],
-      "h5-semibold": ["18px", { lineHeight: "130%", fontWeight: "600" }],
-      "h5-bold": ["18px", { lineHeight: "130%", fontWeight: "700" }],
+      "h5-medium": ["18px", { lineHeight: "26px", fontWeight: "500" }],
+      "h5-semibold": ["18px", { lineHeight: "26px", fontWeight: "600" }],
+      "h5-bold": ["18px", { lineHeight: "26px", fontWeight: "700" }],
 
-      "h6-medium": ["16px", { lineHeight: "130%", fontWeight: "500" }],
-      "h6-semibold": ["16px", { lineHeight: "130%", fontWeight: "600" }],
-      "h6-bold": ["16px", { lineHeight: "130%", fontWeight: "700" }],
+      "h6-medium": ["16px", { lineHeight: "24px", fontWeight: "500" }],
+      "h6-semibold": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+      "h6-bold": ["16px", { lineHeight: "24px", fontWeight: "700" }],
 
      
       "large-regular":["16px",{lineHeight:"24px",fontWeight:"400"}],

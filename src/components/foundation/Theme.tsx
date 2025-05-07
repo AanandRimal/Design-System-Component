@@ -294,13 +294,12 @@ const darkInverse = {
   }
 
   const Sizes: Record<number, SizeType> = {   
-  32: { height: 32, width: "auto", fontSize: 14, iconSize: 20, paddingY: 6, paddingX: 10 ,lineheight:20, fontWeight:400, },
+  32: { height: 32, width: "auto", fontSize: 14, iconSize: 20, paddingY: 6, paddingX: 10 ,lineheight:20, fontWeight:400, },// lineheigth in Ant D is 1 for 14 px font size is 14px and for 16 px font size is 16 px so linehiehgt 20\14 =1.42857 gives20 and 16/20 gives 1.5 
   36: { height: 36, width: "auto", fontSize: 14, iconSize: 20, paddingY: 8, paddingX: 12, lineheight:20, fontWeight:400, },
   40: { height: 40, width: "auto", fontSize: 14, iconSize: 20, paddingY: 10, paddingX: 12,lineheight:20, fontWeight:400, },
-  44: { height: 44, width: "auto", fontSize: 16, iconSize: 20, paddingY: 12, paddingX: 14,lineheight:20,fontWeight:400, },
+  44: { height: 44, width: "auto", fontSize: 14, iconSize: 20, paddingY: 12, paddingX: 14,lineheight:20,fontWeight:400, },
   48: { height: 48, width: "auto", fontSize: 16, iconSize: 24, paddingY: 12, paddingX: 14, lineheight:24,fontWeight:400, },  
   };
-
   
   export { Themes, Sizes, colors };
   

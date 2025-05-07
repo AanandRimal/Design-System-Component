@@ -53,7 +53,7 @@ const ModalDisplay = () => {
           onOk={closeModal}
           onCancel={closeModal}
           icon={<Button Customtype="secondary" Customsize={40} leftIcon={<LeftIcon />} />}
-          title={"Modal"}
+          title={"Modal title"}
           description="This is a description text."
           customFooter={[
             <Button key="cancel" Customtype="secondary" onClick={closeModal}>Cancel</Button>,

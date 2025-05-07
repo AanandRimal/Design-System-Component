@@ -2,7 +2,7 @@ import React from "react";
 import { Pagination as AntPagination, ConfigProvider, PaginationProps } from "antd";
 import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
-import YourCustomSelect from "../select/Select"; 
+import CustomSelect from "../select/Select"; 
 
 interface CustomPaginationProps extends PaginationProps {
   showTotalItems?: boolean;
@@ -47,6 +47,8 @@ const Pagination: React.FC<CustomPaginationProps> = (props) => {
             itemBg: currentTheme.background.bg1,
             lineWidth: 0,
             colorTextDisabled: currentTheme.text.t3Subtitle,
+            itemSize:32,
+            marginXS:0,
           },
         },
       }}
@@ -57,6 +59,7 @@ const Pagination: React.FC<CustomPaginationProps> = (props) => {
 
           <AntPagination
             {...props}
+            className="text-base-medium font-medium"
             current={current}
             pageSize={pageSize}
             showSizeChanger={false}
@@ -72,23 +75,25 @@ const Pagination: React.FC<CustomPaginationProps> = (props) => {
                 fontSize: 14,
                 fontWeight: 500,
               }}
+              className="text-base-medium font-medium"
             >
               {renderTotalText()}
             </div>
           )}
         </div>
         {props.showRowsPerPage && (
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }} className="text-base-medium font-medium">
             <span
               style={{
                 color: currentTheme.text.t2Component,
                 fontSize: 14,
                 fontWeight: 500,
               }}
+              
             >
-              Rows per page:
+              Rows per page
             </span>
-            <YourCustomSelect
+            <CustomSelect
               value={pageSize}
               onChange={handlePageSizeChange}
               options={[
@@ -109,9 +114,16 @@ const Pagination: React.FC<CustomPaginationProps> = (props) => {
             border: 1px solid ${currentTheme.stroke.strong} !important;
             color: ${currentTheme.text.t3Subtitle};
           }
+            .ant-pagination{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:4px;
+            }
         `}
       </style>
-    </ConfigProvider>
+
+    </ConfigProvider> //used pagination and made gap although ant  d gave marginXS for margin but used gap as it is good 
   );
 };
 

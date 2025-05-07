@@ -30,6 +30,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ ...props}) => {
             separatorColor: currentTheme.text.t3Disabled,
             lastItemColor: currentTheme.text.t2Component,
             linkColor: currentTheme.text.t3Subtitle,
+            linkHoverColor:currentTheme.text.t3Subtitle,
             separatorMargin: 6,
           },
         },

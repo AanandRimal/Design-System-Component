@@ -15,9 +15,10 @@ const Dropdown: React.FC<AntDropdownProps> = ({  ...dropdownProps }) => {
     color: ${currentTheme.text.t3Subtitle};
     margin-right: 8px !important;
   }
-  .ant-dropdown-menu {
+  .ant-dropdown-menu-vertical {
     border: 1px solid ${currentTheme.stroke.strong};
   }
+ 
 `}
 </style>
 
@@ -40,12 +41,15 @@ const Dropdown: React.FC<AntDropdownProps> = ({  ...dropdownProps }) => {
         paddingBlock:6,
         controlPaddingHorizontal:8,
              boxShadowSecondary: '0px 3px 4px 0px rgba(0, 0, 0, 0.12)',
-             colorPrimaryBorder:currentTheme.stroke.strong
+             colorPrimaryBorder:currentTheme.stroke.strong,
+      
           },
         },
       }}
     >
-      <AntDropdown {...dropdownProps}> 
+      <AntDropdown
+
+       {...dropdownProps}> 
        {dropdownProps.children}
       </AntDropdown>
    </ConfigProvider></>       // this if in same line it say react only singlechild if i hd wrtten in same line so i wortte line by line no error 
