@@ -20,7 +20,6 @@ interface TabsProps extends AntTabsProps {
   items?: ExtendedTabItem[];
 } 
 
-// 🎨 Visual style mapping per tab type
 const tabTypeStyles = {
   underline: {
     background: "transparent",
@@ -46,7 +45,7 @@ const tabTypeStyles = {
   },
 };
 
-// 📐 Layout style mapping per tab type
+
 const tabTypeLayoutStyles = {
   underline: {
     padding: "12px",
@@ -66,7 +65,6 @@ const tabTypeLayoutStyles = {
   },
 };
 
-// 🧩 Styled TabLabel using both visual + layout configs
 const TabLabel = styled.div<{
   isActive: boolean;
   theme: any;
@@ -101,7 +99,6 @@ const TabLabel = styled.div<{
   }}
 `;
 //applied hover if not active if i set hover none it inherit the bg color so applied only hover whne not active tab alos added height as antd config height is not working 
-// 🚀 Main Tabs Component
 const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
@@ -113,7 +110,7 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
       theme={{
         components: {
           Tabs: {
-            controlHeight: isBox ? 36 : 44,
+           
             itemSelectedColor: currentTheme.text.t1Title,
             inkBarColor: Customtype === "underline"? currentTheme.primary.default : "transparent",
             colorText: currentTheme.text.t2Component,
@@ -136,6 +133,7 @@ const Tabs: React.FC<TabsProps> = ({ Customtype = "underline", ...props }) => {
             Customtype === "box" ? currentTheme.background.bg0 : "none",
             borderRadius: Customtype === "box" ? "8px" : "none",
             padding:Customtype === "box" ?  "4px" :"0px",
+        
         }}
         items={props.items?.map((tab) => {
           const { icon, label, customIcon, ...rest } = tab;

@@ -5,7 +5,7 @@ import { useTheme } from "../../context-hook/ThemeProvider";
 import { Themes } from "../foundation/Theme";
 import Badge from "../avatar-badge/AvatarBadge";
 import { avatarSizes } from "./AvatarSizes";
-
+type AvatarGroupProps = React.ComponentProps<typeof AntAvatar.Group>;
 interface CustomAvatarProps extends AvatarProps {
   customSize?: number;
   dot?:boolean;
@@ -28,7 +28,7 @@ const getChildrenLabel = (children: React.ReactNode, maxChars: number) => {
   }
   return children;
 };
-const Avatar: React.FC<CustomAvatarProps> = ({customStatus, customSize, icon, ...props }) => {
+const AvatarComponent: React.FC<CustomAvatarProps> = ({customStatus, customSize, icon, ...props }) => {
   const { themeMode } = useTheme();
   const currentTheme = Themes[themeMode];
   const avatarSizeobj = avatarSizes[customSize as keyof typeof avatarSizes] || avatarSizes[120];
@@ -49,6 +49,8 @@ const Avatar: React.FC<CustomAvatarProps> = ({customStatus, customSize, icon, ..
             containerSize: avatarSizeobj.base,
             textFontSize: userIconSize, //icon size
             fontSize:userIconSize,//textlabel size
+            groupOverlapping:-4,
+            
          
           },
         },
@@ -75,5 +77,29 @@ const Avatar: React.FC<CustomAvatarProps> = ({customStatus, customSize, icon, ..
     </ConfigProvider>
   );
 };
+const AvatarGroup: React.FC<AvatarGroupProps> = ({ children, ...groupProps }) => {
+  const { themeMode } = useTheme();
+  const currentTheme = Themes[themeMode];
+  return (
+    <ConfigProvider
+    theme={{
+      components: {
+        Avatar: {
+          lineWidth:2,
+          groupOverlapping:-8,
+          groupBorderColor:currentTheme.background.bg1,
+          colorTextPlaceholder:currentTheme.primary.default
+        },
+      },
+    }}
+  >
+
+    <AntAvatar.Group {...groupProps}>
+      {children}
+    </AntAvatar.Group>
+    </ConfigProvider>
+  );
+};
+const Avatar = Object.assign(AvatarComponent, { Group: AvatarGroup });
 
 export default Avatar;

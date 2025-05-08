@@ -1,16 +1,13 @@
 import { useState } from "react";
 import {  Typography as Type, Divider, Menu,ConfigProvider,Space} from "antd";
-import { Icon } from "@iconify/react";
 import { useTheme } from "../context-hook/ThemeProvider";
 import ColorPalette from "../components/foundation/ColorPalette";
 import Typography from "../components/foundation/Typography";
 import { Themes } from "../components/foundation/Theme";
 import Switch from "../components/switch/Switch"
 import Breadcrumb from "../components/breadcrumbs/BreadCrumbs";
-import Avatar from "../components/avatars/Avatar";
 import BadgeDisplay from "./BadgeDisplay";
 import TabDisplay from "./TabDisplay";
-import Pagination from "../components/pagination/Pagination";
 import "./scrollbar.css"
 import ModalDisplay from "./ModalDisplay";
 import DrawerDisplay from "./DrawerDisplay";
@@ -24,7 +21,6 @@ import ProgressWithLabel from "../components/progress-bar/ProgressWithLabel";
 import SpinnerDisplay from "./SpinnerDisplay";
 import CheckboxDisplay from "./CheckBoxDisplay";
 import TableDisplayComponent from "../components/table/TableDisplay";
-import Table from "../components/table/Table";
 import Slider from "../components/sliders/Slider";
 import ButtonGroupDisplay from "./ButtonGroupDisplay";
 import dayjs from 'dayjs';
@@ -59,8 +55,8 @@ import TypographyDoc from "../component-docs/TypographyDoc";
 import DropdownDoc from "../component-docs/Dropdown";
 import CustomDatePickerr from "./DateSelector";
 import {Toaster as SonnerToaster} from "sonner";
-import { DatePicker } from "antd";
 import PaginatedDemo from "./PaginationDemo";
+import AvatarDisplay from "./AvatarDisplay";
 
 const { Title } = Type;
 const components = [
@@ -94,23 +90,7 @@ export default function KrispMake() {
   const { themeMode, toggleTheme } = useTheme();
   const [selectedComponent, setSelectedComponent] = useState<string>("Button");
 const currentTheme=Themes[themeMode]
-const avatarSizesList = [14, 20, 24, 32, 36, 40, 48, 64, 80, 120];
-const avatarColumns = [
-  { title: "Size", dataIndex: "size", key: "size", width: 100 },
-  { title: "Image", dataIndex: "image", key: "image" },
-  { title: "Initials", dataIndex: "initials", key: "initials" },
-  { title: "Avatar", dataIndex: "avatar", key: "avatar" },
-];
 
-const avatarData = avatarSizesList.map((size) => ({
-  key: `avatar-${size}`,
-  size,
-  image: <Avatar customSize={size} src={<img src={"./Female 2.png"} alt="avatar" />} dot />,
-  initials: <Avatar customSize={size} dot>Kdssdcsdcsdds</Avatar >,
-  avatar: <Avatar customSize={size} icon={  <Icon
-    icon="mage:user-fill"
-  />}  dot/>, 
-}));
   return (
     <ConfigProvider
   theme={{
@@ -397,7 +377,7 @@ children: <AlertDoc />,
 {
 key: 'display',
 label: 'Display',
-children: <Table columns={avatarColumns} dataSource={avatarData} pagination={false} bordered />,
+children:<AvatarDisplay/> ,
 },
 {
 key: 'docs',
