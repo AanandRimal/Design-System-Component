@@ -23,9 +23,6 @@ import CheckboxDisplay from "./CheckBoxDisplay";
 import TableDisplayComponent from "../components/table/TableDisplay";
 import Slider from "../components/sliders/Slider";
 import ButtonGroupDisplay from "./ButtonGroupDisplay";
-import dayjs from 'dayjs';
-import CustomDatePicker from "../components/date-picker/Date-Picker";
-import { LeftIcon } from "../components/icons/LeftIcon";
 import ButtonDoc from "../component-docs/ButtonDoc";
 import Tabs from "../components/tabs/Tabs";
 import InputDoc from "../component-docs/InputDoc";
@@ -53,11 +50,11 @@ import ToasterDoc from "../component-docs/ToasterDoc";
 import TooltipDoc from "../component-docs/ToolTipDoc";
 import TypographyDoc from "../component-docs/TypographyDoc";
 import DropdownDoc from "../component-docs/Dropdown";
-import CustomDatePickerr from "./DateSelector";
 import {Toaster as SonnerToaster} from "sonner";
 import PaginatedDemo from "./PaginationDemo";
 import AvatarDisplay from "./AvatarDisplay";
-
+import DatePickerDisplay from "./DatePickerDisplay";
+import DatePickerDoc from "../component-docs/DatePickerDoc";
 const { Title } = Type;
 const components = [
   "Alert",
@@ -688,55 +685,22 @@ children: <ButtonGroupDoc />,
 {selectedComponent=== "DatePicker" && (
 
 <>  
-<CustomDatePicker type="range"
-  rangePickerProps={{
-    defaultOpen:true,
-    placeholder: ["Start date", "End date"],
-    presets: [
-      { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
-      { label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
-      { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
-      { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
-    ],
-    superNextIcon:<LeftIcon/>,
-    nextIcon:<LeftIcon/>,
-    prevIcon:<LeftIcon/>
+<div className="p-4">
 
-  }}
+<Tabs defaultActiveKey="display" items={ [
+{
+key: 'display',
+label: 'Display',
+children: <DatePickerDisplay />,
+},
+{
+key: 'docs',
+label: 'Docs',
+children: <DatePickerDoc />,
+},
+]} />
+</div>
 
-/>
-<CustomDatePickerr mode="range"   rangePickerProps={{
-    defaultOpen:true}}/>
-<CustomDatePickerr
-  mode="single"
-  datePickerProps={{
-    defaultOpen: true,
-    presets: [
-      { label: 'Today', value: dayjs() },
-      { label: 'Yesterday', value: dayjs().subtract(1, 'day') },
-      { label: '7 Days Ago', value: dayjs().subtract(7, 'day') },
-    ],
-  }}
-/>
-
-<CustomDatePickerr
-  mode="range"
-  rangePickerProps={{
-    defaultOpen:true,
-    placeholder: ["Start date", "End date"],
-    presets: [
-      { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
-      { label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
-      { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
-      { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
-    ],
-    superNextIcon:<LeftIcon/>,
-    nextIcon:<LeftIcon/>,
-    prevIcon:<LeftIcon/>
-
-  }}
-
-/>
 
 </>  
 )}

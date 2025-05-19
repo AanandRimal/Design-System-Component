@@ -29,6 +29,7 @@ interface TextColor {
   t2Component?: string;
   t3Subtitle?: string;
   t3Disabled?: string;
+  t4Disabled?: string;
   inverse?: string;
   staticWhite?: string;
 }
@@ -148,6 +149,7 @@ const text = {
   t2Component: colors.grey[700],
   t3Subtitle:colors.grey[500],
   t3Disabled: colors.grey[400],
+  t4Disabled: colors.grey[400],
   inverse: bw,
   staticWhite: bw
 };
@@ -183,6 +185,7 @@ const darkText = {
   t2Component: colors.grey[300],
   t3Subtitle: colors.grey[400],
   t3Disabled: colors.grey[400],
+  t4Disabled: colors.grey[600],
   inverse: colors.grey[950],
   staticWhite: bw,
 };
