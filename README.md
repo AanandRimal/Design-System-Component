@@ -4,6 +4,8 @@ A customized [Ant Design](https://ant.design/) component library built for Krisp
 
 This repo **is** the review app: it renders every component on its own page with live prop controls and a light/dark theme toggle, so product designers can verify look, spacing, and states against the design spec before engineering integrates it into the main product.
 
+**Live preview:** [design-system-component.vercel.app](https://design-system-component.vercel.app/)
+
 ## Why this exists
 
 - Ant Design gives us solid, accessible base components — we don't reinvent buttons, inputs, modals, etc.
